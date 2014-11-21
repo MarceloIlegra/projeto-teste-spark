@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">   
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <link rel="icon" href="resources/imagens/favicon.png">
+      <title>Sistema de Lançamento de Horas</title>
+   </head>
+   
+   <body class="background-login">
+      <div id="fundo-login">
+         <header>
+         </header>
+         <div class="container" id="form-login">
+            <section id="section-login" class="">
+               <form role="form" class="form-horizontal" action="listagem.html" method="POST">
+                  <div id="logo"></div>
+                  <h4 id="titulo-login">Lançamento de Horas {{name}}</h4>
+				  
+				  <!-- div usuario -->
+                  <div class="input-group col-sm-12">
+                     <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-user">
+                        </span>
+                     </span>
+                     <input type="text" name="usuario" id="usuario" class="form-control" required placeholder="Usuário" />
+                  </div>
+                  <br />
+				  
+				  <!-- div senha -->
+                  <div class="input-group col-sm-12">
+                     <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-asterisk">
+                        </span>
+                     </span>
+                     <input type="password" name="senha" id="senha" required class="form-control" placeholder="Senha" />
+                  </div>
+                  <br />
+				  
+				  <!-- div botão -->
+                  <div class="row">
+                     <div class="col-sm-12">
+                        <input id="botao" type="submit" value="Acessar" class="btn btn-warning" />
+                     </div>
+                  </div>
+				  
+               </form>
+            </section>
+         </div>
+         <!-- /container -->
+      </div>
+      <footer>
+      </footer>
+   </body>
+</html>
