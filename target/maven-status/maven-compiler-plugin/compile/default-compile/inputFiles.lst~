@@ -1,0 +1,15 @@
+<<<<<<< HEAD
+/home/ilegra/repositorios_teste/JT/projeto-teste-spark-master/src/main/java/com/ilegra/jt/lancamentodehoras/repository/UserRepository.java
+/home/ilegra/repositorios_teste/JT/projeto-teste-spark-master/src/main/java/com/ilegra/jt/lancamentodehoras/repository/TimeRepository.java
+/home/ilegra/repositorios_teste/JT/projeto-teste-spark-master/src/main/java/com/ilegra/jt/lancamentodehoras/dao/UserDAO.java
+/home/ilegra/repositorios_teste/JT/projeto-teste-spark-master/src/main/java/com/ilegra/jt/lancamentodehoras/controller/UserController.java
+/home/ilegra/repositorios_teste/JT/projeto-teste-spark-master/src/main/java/com/ilegra/jt/lancamentodehoras/repository/SubProjectRepository.java
+/home/ilegra/repositorios_teste/JT/projeto-teste-spark-master/src/main/java/com/ilegra/jt/lancamentodehoras/model/SubProject.java
+/home/ilegra/repositorios_teste/JT/projeto-teste-spark-master/src/main/java/com/ilegra/jt/lancamentodehoras/main/App.java
+/home/ilegra/repositorios_teste/JT/projeto-teste-spark-master/src/main/java/com/ilegra/jt/lancamentodehoras/model/User.java
+/home/ilegra/repositorios_teste/JT/projeto-teste-spark-master/src/main/java/com/ilegra/jt/lancamentodehoras/model/Time.java
+/home/ilegra/repositorios_teste/JT/projeto-teste-spark-master/src/main/java/com/ilegra/jt/lancamentodehoras/model/Project.java
+/home/ilegra/repositorios_teste/JT/projeto-teste-spark-master/src/main/java/com/ilegra/jt/lancamentodehoras/repository/ProjectRepository.java
+=======
+/home/ilegra/NetBeansProjects/lancamentodehoras/src/main/java/com/ilegra/jt/lancamentodehoras/Routes.java
+>>>>>>> baf9dea4f845de14d20d359b58dd7991b3974deb

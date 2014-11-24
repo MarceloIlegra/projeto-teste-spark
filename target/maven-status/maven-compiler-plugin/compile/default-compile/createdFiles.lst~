@@ -1,0 +1,15 @@
+<<<<<<< HEAD
+com/ilegra/jt/lancamentodehoras/model/SubProject.class
+com/ilegra/jt/lancamentodehoras/main/App.class
+com/ilegra/jt/lancamentodehoras/repository/ProjectRepository.class
+com/ilegra/jt/lancamentodehoras/controller/UserController.class
+com/ilegra/jt/lancamentodehoras/model/Time.class
+com/ilegra/jt/lancamentodehoras/repository/UserRepository.class
+com/ilegra/jt/lancamentodehoras/repository/TimeRepository.class
+com/ilegra/jt/lancamentodehoras/model/User.class
+com/ilegra/jt/lancamentodehoras/dao/UserDAO.class
+com/ilegra/jt/lancamentodehoras/model/Project.class
+com/ilegra/jt/lancamentodehoras/repository/SubProjectRepository.class
+=======
+com/ilegra/jt/lancamentodehoras/Routes.class
+>>>>>>> baf9dea4f845de14d20d359b58dd7991b3974deb
