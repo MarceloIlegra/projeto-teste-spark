@@ -13,7 +13,7 @@ public class UserDAO implements UserRepository{
            
         return  App.users
                 .stream()
-                .filter((valor)->valor.getName().equals(login) && valor.getPassword().equals(password))
+                .filter((valor)->valor.getLogin().equals(login) && valor.getPassword().equals(password))
                 .findFirst();
      
     }

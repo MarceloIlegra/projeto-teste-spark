@@ -2,35 +2,35 @@ package com.ilegra.jt.lancamentodehoras.model;
 
 public class User {
     
-    private Integer id;
-    private String name;
+    private int id;
+    private String login;
     private String password;
 
     public User(){
         
     }
     
-    public User(String name, String password){
+    public User(String login, String password){
         
-        this.name = name;
+        this.login = login;
         this.password = password;
         
     }
     
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getLogin() {
+        return login;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getPassword() {
