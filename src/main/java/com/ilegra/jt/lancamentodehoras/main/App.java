@@ -1,7 +1,7 @@
 package com.ilegra.jt.lancamentodehoras.main;
 
 
-import com.ilegra.jt.lancamentodehoras.controller.UserController;
+import com.ilegra.jt.lancamentodehoras.service.UserService;
 import com.ilegra.jt.lancamentodehoras.dao.UserDAO;
 import com.ilegra.jt.lancamentodehoras.model.User;
 import java.util.ArrayList;

@@ -1,11 +1,10 @@
-
-package com.ilegra.jt.lancamentodehoras.controller;
+package com.ilegra.jt.lancamentodehoras.service;
 
 import com.ilegra.jt.lancamentodehoras.dao.UserDAO;
 import com.ilegra.jt.lancamentodehoras.model.User;
 import java.util.Optional;
 
-public class UserController {
+public class UserService {
 
     public void autenticar(User user) throws Exception{
         
@@ -13,5 +12,7 @@ public class UserController {
         Optional<User> userLogin = dao.login(user.getName(), user.getPassword());
                        
     }
+    
+    
     
 }
