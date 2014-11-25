@@ -9,7 +9,7 @@ public class UserService {
     public void autenticar(User user) throws Exception{
         
         UserDAO dao = new UserDAO();
-        Optional<User> userLogin = dao.login(user.getName(), user.getPassword());
+        Optional<User> userLogin = dao.login(user.getLogin(), user.getPassword());
                        
     }
     

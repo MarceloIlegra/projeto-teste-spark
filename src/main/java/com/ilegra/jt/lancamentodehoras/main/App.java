@@ -29,11 +29,11 @@ public class App {
         
         post("/login", (request, response) -> {
             
-            String usuario = request.queryParams("usuario");
+            String login = request.queryParams("login");
             String senha = request.queryParams("senha");
             
             UserDAO dao = new UserDAO();
-            Optional<User> logado = dao.login(usuario, senha);
+            Optional<User> logado = dao.login(login, senha);
             
             logado.ifPresent((valor)->response.redirect("/lancamentohoras"));
             response.redirect("/login");
