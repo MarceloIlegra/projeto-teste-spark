@@ -1,6 +1,7 @@
 package com.ilegra.jt.lancamentodehoras.main;
 
 
+import com.ilegra.jt.lancamentodehoras.config.Memory;
 import com.ilegra.jt.lancamentodehoras.config.Routes;
 import com.ilegra.jt.lancamentodehoras.model.User;
 import java.util.ArrayList;
@@ -12,6 +13,8 @@ public class App {
                 
         staticFileLocation("/public");
        
+        Memory.start();
+        
         Routes routes = new Routes();
         routes.init();
         
