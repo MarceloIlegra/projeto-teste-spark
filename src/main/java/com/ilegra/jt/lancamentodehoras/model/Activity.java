@@ -3,13 +3,14 @@ package com.ilegra.jt.lancamentodehoras.model;
 import java.time.LocalDateTime;
 
 public class Activity {
-    
+
     private Integer id;
     private LocalDateTime startHour;
     private LocalDateTime finishHour;
     private Project project;
-    private SubProject Subproject;
+    private SubProject subProject;
     private String description;
+    private Group group;
 
     public Integer getId() {
         return id;
@@ -43,14 +44,6 @@ public class Activity {
         this.project = project;
     }
 
-    public SubProject getSubproject() {
-        return Subproject;
-    }
-
-    public void setSubproject(SubProject Subproject) {
-        this.Subproject = Subproject;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -58,7 +51,21 @@ public class Activity {
     public void setDescription(String description) {
         this.description = description;
     }
-    
-    
-    
+
+    public SubProject getSubProject() {
+        return subProject;
+    }
+
+    public void setSubProject(SubProject subProject) {
+        this.subProject = subProject;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
 }
