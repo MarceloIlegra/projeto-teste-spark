@@ -1,6 +1,7 @@
 package com.ilegra.jt.lancamentodehoras.config;
 
 
+import static com.ilegra.jt.lancamentodehoras.config.Memory.activities;
 import com.ilegra.jt.lancamentodehoras.dao.UserDAO;
 import com.ilegra.jt.lancamentodehoras.model.User;
 import java.util.HashMap;
