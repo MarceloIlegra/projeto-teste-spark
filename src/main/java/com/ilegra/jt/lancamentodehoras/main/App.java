@@ -6,14 +6,9 @@ import com.ilegra.jt.lancamentodehoras.model.User;
 import java.util.ArrayList;
 import static spark.Spark.*;
 
-public class App {
+public class App {   
     
-    public static ArrayList<User> users = new ArrayList<User>();
-    
-    public static void main( String[] args ){     
-        
-        users.add(new User("marcelo", "123"));
-        users.add(new User("admin", "123"));
+    public static void main( String[] args ){            
                 
         staticFileLocation("/public");
        
