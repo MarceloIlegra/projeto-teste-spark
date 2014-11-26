@@ -8,13 +8,15 @@ import com.ilegra.jt.lancamentodehoras.model.User;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Memory {
 
     public static ArrayList<User> users = new ArrayList<User>();
-    public static ArrayList<Activity> activities = new ArrayList<Activity>();
+    public static List<Activity> activities = new ArrayList<Activity>();
     
     public static void start(){
+        
         users.add(new User("marcelo", "123"));
         users.add(new User("admin", "123"));
         

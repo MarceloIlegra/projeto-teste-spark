@@ -26,7 +26,6 @@
                </div>
             </div>
          </header>
-		 
 		 <!-- div botão pesquisar e nova atividade-->
          <div class="container" id="form-listagem">
             <section id="section-pesquisa">
@@ -233,7 +232,21 @@
                            <th>Ações</th>
                         </tr>
                      </thead>
-                     <tbody>                   
+                     <tbody> 
+                        {{#activities}}
+                        <tr>
+                           <td>zzz</td>
+                           <td>{{startHour}}</td>
+                           <td>{{finishHour}}</td>
+                           <td>{{project.description}}</td>
+                           <td>{{subProject.description}}</td>
+                           <td>Grupo??</td>
+                           <td>{{description}}</td>
+                           <td>Tipo Atividade??</td>
+                           <td>Horas</td>
+                           <td>Ações</td>
+                        </tr>                            
+                        {{/activities}}                  
                      </tbody>
                   </table>
                </div>
@@ -247,6 +260,5 @@
       <script src="vendor/jquery-ui-1.11.2.custom/jquery-ui.js"></script>
 
       <script src="static/js/scripts.js"></script>
-      <script src="static/js/simulacao.js"></script>
    </body>
 </html>
