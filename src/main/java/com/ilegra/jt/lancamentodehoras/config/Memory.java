@@ -19,10 +19,13 @@ public class Memory {
     public static List<SubProject> subProjects = new ArrayList<>();
     public static List<Group> groups = new ArrayList<>();
     public static List<ActivityType> activityType = new ArrayList<>();
+    public static User userLogged;
 
     public static void start() {
 
-        users.add(new User("marcelo", "123"));
+        userLogged = new User("marcelo", "123"); 
+        
+        users.add(userLogged);
         users.add(new User("admin", "123"));
 
         Project project1 = new Project(0, "Projeto teste 1");
@@ -68,8 +71,8 @@ public class Memory {
         activity1.setSubProject(subProject1);
         activity1.setGroup(group1);
         activity1.setActivityType(activityType1);
-        activity1.setStartHour(LocalDateTime.of(2014, 11, 28, 15, 30));
-        activity1.setFinishHour(LocalDateTime.of(2014, 11, 28, 18, 00));
+        activity1.setStartHour(LocalDateTime.of(2014, 11, 28, 15, 43));
+        activity1.setFinishHour(LocalDateTime.of(2014, 11, 28, 18, 38));
         activities.add(activity1);
 
         Activity activity2 = new Activity();
@@ -79,8 +82,8 @@ public class Memory {
         activity2.setSubProject(subProject1);
         activity2.setGroup(group1);
         activity2.setActivityType(activityType1);
-        activity2.setStartHour(LocalDateTime.of(2014, 11, 27, 15, 30));
-        activity2.setFinishHour(LocalDateTime.of(2014, 11, 27, 18, 30));
+        activity2.setStartHour(LocalDateTime.of(2014, 11, 27, 15, 48));
+        activity2.setFinishHour(LocalDateTime.of(2014, 11, 27, 18, 22));
         activities.add(activity2);
 
         Activity activity3 = new Activity();
