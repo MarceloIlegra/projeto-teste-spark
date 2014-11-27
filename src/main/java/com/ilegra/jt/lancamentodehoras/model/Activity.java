@@ -11,6 +11,7 @@ public class Activity {
     private SubProject subProject;
     private String description;
     private Group group;
+    private ActivityType activityType;
 
     public Integer getId() {
         return id;
@@ -67,5 +68,13 @@ public class Activity {
     public void setGroup(Group group) {
         this.group = group;
     }
+
+    public ActivityType getActivityType() {
+        return activityType;
+    }
+
+    public void setActivityType(ActivityType activityType) {
+        this.activityType = activityType;
+    }  
 
 }
