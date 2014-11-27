@@ -49,7 +49,7 @@
 						
                         <div class="modal-body">
                            <div class="">
-                              <form  role="form" class="form-horizontal" style="display:block;" id="formulario_nova_atividade" >
+                              <form action="lancamentohoras/salvar" method="post" role="form" class="form-horizontal" style="display:block;" id="formulario_nova_atividade" >
 
    							        <div class="form-group valida-data">
                                     <label for="data" class="control-label col-md-3">Data</label>
@@ -119,15 +119,15 @@
                                        <textarea rows="3" cols="50" class ="form-control descricao_area" id="nova-atividade-descricao"></textarea>
                                     </div>
                                  </div>
-
+                                <input type="hidden" name="nova-atividade-id" id="nova-atividade-id" value="" />
+                                <div class="modal-footer">
+                                   <button type="button" class="btn botoes limpar-modal" data-dismiss="modal">Fechar</button>
+                                   <input type="submit" class="btn botoes" id="salvar" value="Salvar" />
+                                </div>
                               </form>
                            </div>
                         </div>
-                        <input type="hidden" name="nova-atividade-id" id="nova-atividade-id" value="" />
-                        <div class="modal-footer">
-                           <button type="button" class="btn botoes limpar-modal" data-dismiss="modal">Fechar</button>
-                           <button type="button" class="btn botoes" id="salvar">Salvar</button>
-                        </div>
+
                      </div>
                   </div>
                </div>

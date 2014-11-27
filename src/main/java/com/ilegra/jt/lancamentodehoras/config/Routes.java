@@ -1,9 +1,10 @@
 package com.ilegra.jt.lancamentodehoras.config;
 
 
-import static com.ilegra.jt.lancamentodehoras.config.Memory.activities;
+import com.ilegra.jt.lancamentodehoras.dao.ActivityDAO;
 import com.ilegra.jt.lancamentodehoras.dao.UserDAO;
 import com.ilegra.jt.lancamentodehoras.model.User;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -25,13 +26,32 @@ public class Routes {
         
         get("/lancamentohoras", (request, response) -> new ModelAndView(map, "listagem.mustache"), new MustacheTemplateEngine());
         
+        post("lancamentohoras/salvar" ,(request , response) ->{
+            
+             String startHour = request.queryParams("horaInicio");
+             String finishHour = request.queryParams("horaFim");
+             String project = request.queryParams("projeto");
+             String subProject = request.queryParams("subprojeto");
+             String group = request.queryParams("grupo");
+             String activityType = request.queryParams("tipoAtividade");
+             String description = request.queryParams("descricao");
+             
+             ActivityDAO activity = new ActivityDAO();
+             
+             
+             
+             
+             return startHour; 
+            
+        });
+        
         post("/login", (request, response) -> {
             
             String usuario = request.queryParams("usuario");
             String senha = request.queryParams("senha");
             
-            UserDAO dao = new UserDAO();
-            Optional<User> logado = dao.login(usuario, senha);
+            UserDAO user = new UserDAO();
+            Optional<User> logado = user.login(usuario, senha);
             
             logado.ifPresent((valor)->response.redirect("/lancamentohoras"));
             response.redirect("/login");
