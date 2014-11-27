@@ -1,11 +1,11 @@
 package com.ilegra.jt.lancamentodehoras.model;
 
-public class ActityType {
+public class ActivityType {
 
     private Integer id;
     private String description;
 
-    public ActityType(Integer id, String description) {
+    public ActivityType(Integer id, String description) {
         this.id = id;
         this.description = description;
     }

@@ -1,12 +1,14 @@
 package com.ilegra.jt.lancamentodehoras.config;
 
 import com.ilegra.jt.lancamentodehoras.model.Activity;
+import static com.ilegra.jt.lancamentodehoras.model.Activity.formatador;
 import com.ilegra.jt.lancamentodehoras.model.Project;
 import com.ilegra.jt.lancamentodehoras.model.SubProject;
 import com.ilegra.jt.lancamentodehoras.model.User;
 import com.ilegra.jt.lancamentodehoras.model.Group;
-import java.time.LocalDateTime;
-import java.time.Month;
+import com.ilegra.jt.lancamentodehoras.model.ActivityType;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -17,6 +19,7 @@ public class Memory {
     public static List<Project> projects = new ArrayList<>();
     public static List<SubProject> subProjects = new ArrayList<>();
     public static List<Group> groups = new ArrayList<>();
+    public static List<ActivityType> activityType = new ArrayList<>();
 
     public static void start() {
 
@@ -40,15 +43,24 @@ public class Memory {
 
         SubProject subProject3 = new SubProject(2, "SubProjeto teste 3");
         subProjects.add(subProject3);
-        
-        Group group1 = new Group(0,"Grupo teste 1");
+
+        Group group1 = new Group(0, "Grupo teste 1");
         groups.add(group1);
-        
-        Group group2 = new Group(1,"Grupo teste 2");
+
+        Group group2 = new Group(1, "Grupo teste 2");
         groups.add(group2);
-        
-        Group group3 = new Group(2,"Grupo teste 3");
+
+        Group group3 = new Group(2, "Grupo teste 3");
         groups.add(group3);
+
+        ActivityType activityType1 = new ActivityType(0, "Tipo teste 1");
+        activityType.add(activityType1);
+
+        ActivityType activityType2 = new ActivityType(1, "Tipo teste 2");
+        activityType.add(activityType2);
+
+        ActivityType activityType3 = new ActivityType(2, "Tipo teste 3");
+        activityType.add(activityType3);
 
         Activity activity1 = new Activity();
         activity1.setId(0);
@@ -56,8 +68,10 @@ public class Memory {
         activity1.setProject(project1);
         activity1.setSubProject(subProject1);
         activity1.setGroup(group1);
-        activity1.setStartHour(LocalDateTime.of(2014, Month.JUNE, 12, 17, 0));
-        activity1.setFinishHour(LocalDateTime.of(2014, Month.JUNE, 12, 18, 0));
+        activity1.setActivityType(activityType1);
+        activity1.setStartHour(LocalTime.of(11, 00));
+        activity1.setFinishHour(LocalTime.of(18, 00));
+        activity1.setDate(LocalDate.of(2014, 11, 27));
         activities.add(activity1);
 
         Activity activity2 = new Activity();
@@ -66,8 +80,10 @@ public class Memory {
         activity2.setProject(project2);
         activity2.setSubProject(subProject2);
         activity2.setGroup(group2);
-        activity2.setStartHour(LocalDateTime.of(2014, Month.JUNE, 13, 9, 0));
-        activity2.setFinishHour(LocalDateTime.of(2014, Month.JUNE, 13, 11, 0));
+        activity2.setActivityType(activityType2);
+        activity2.setStartHour(LocalTime.of(8, 00));
+        activity2.setFinishHour(LocalTime.of(18, 00));
+        activity2.setDate(LocalDate.of(2014, 11, 27));
         activities.add(activity2);
 
         Activity activity3 = new Activity();
@@ -76,8 +92,10 @@ public class Memory {
         activity3.setProject(project3);
         activity3.setSubProject(subProject3);
         activity3.setGroup(group3);
-        activity3.setStartHour(LocalDateTime.of(2014, Month.JUNE, 13, 9, 0));
-        activity3.setFinishHour(LocalDateTime.of(2014, Month.JUNE, 13, 11, 0));
+        activity3.setActivityType(activityType3);
+        activity3.setStartHour(LocalTime.of(10, 45));
+        activity3.setFinishHour(LocalTime.of(17, 50));
+        activity3.setDate(LocalDate.of(2014, 11, 27));
         activities.add(activity3);
 
     }

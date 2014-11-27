@@ -19,7 +19,7 @@ public class Routes {
         Map map = new HashMap();
         map.put("activities", Memory.activities);
         
-        get("/", (request, response) -> new ModelAndView(null, "principal.mustache"), new MustacheTemplateEngine() );
+        get("/", (request, response) -> new ModelAndView(null, "login.mustache"), new MustacheTemplateEngine() );
         
         get("/login", (request, response) -> new ModelAndView(null, "login.mustache"), new MustacheTemplateEngine());
         
