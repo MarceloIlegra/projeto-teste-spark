@@ -1,14 +1,13 @@
 package com.ilegra.jt.lancamentodehoras.config;
 
 import com.ilegra.jt.lancamentodehoras.model.Activity;
-import static com.ilegra.jt.lancamentodehoras.model.Activity.formatador;
 import com.ilegra.jt.lancamentodehoras.model.Project;
 import com.ilegra.jt.lancamentodehoras.model.SubProject;
 import com.ilegra.jt.lancamentodehoras.model.User;
 import com.ilegra.jt.lancamentodehoras.model.Group;
 import com.ilegra.jt.lancamentodehoras.model.ActivityType;
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
+import java.time.Duration;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -69,21 +68,19 @@ public class Memory {
         activity1.setSubProject(subProject1);
         activity1.setGroup(group1);
         activity1.setActivityType(activityType1);
-        activity1.setStartHour(LocalTime.of(11, 00));
-        activity1.setFinishHour(LocalTime.of(18, 00));
-        activity1.setDate(LocalDate.of(2014, 11, 27));
+        activity1.setStartHour(LocalDateTime.of(2014, 11, 28, 15, 30));
+        activity1.setFinishHour(LocalDateTime.of(2014, 11, 28, 18, 00));
         activities.add(activity1);
 
         Activity activity2 = new Activity();
-        activity2.setId(1);
-        activity2.setDescription("Atividade descricao 2");
-        activity2.setProject(project2);
-        activity2.setSubProject(subProject2);
-        activity2.setGroup(group2);
-        activity2.setActivityType(activityType2);
-        activity2.setStartHour(LocalTime.of(8, 00));
-        activity2.setFinishHour(LocalTime.of(18, 00));
-        activity2.setDate(LocalDate.of(2014, 11, 27));
+        activity2.setId(0);
+        activity2.setDescription("Atividade descricao 1");
+        activity2.setProject(project1);
+        activity2.setSubProject(subProject1);
+        activity2.setGroup(group1);
+        activity2.setActivityType(activityType1);
+        activity2.setStartHour(LocalDateTime.of(2014, 11, 27, 15, 30));
+        activity2.setFinishHour(LocalDateTime.of(2014, 11, 27, 18, 30));
         activities.add(activity2);
 
         Activity activity3 = new Activity();
@@ -93,10 +90,10 @@ public class Memory {
         activity3.setSubProject(subProject3);
         activity3.setGroup(group3);
         activity3.setActivityType(activityType3);
-        activity3.setStartHour(LocalTime.of(10, 45));
-        activity3.setFinishHour(LocalTime.of(17, 50));
-        activity3.setDate(LocalDate.of(2014, 11, 27));
-        activities.add(activity3);
+        activity3.setStartHour(LocalDateTime.of(2014, 11, 21, 14, 30));
+        activity3.setFinishHour(LocalDateTime.of(2014, 11, 21, 18, 30));
+        activities.add(activity3);        
+     
 
     }
 

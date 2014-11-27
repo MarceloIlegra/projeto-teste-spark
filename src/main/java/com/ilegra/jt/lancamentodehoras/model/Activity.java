@@ -1,21 +1,21 @@
 package com.ilegra.jt.lancamentodehoras.model;
 
-import java.time.LocalTime;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.Duration;
 
 public class Activity {
 
     private Integer id;
-    private LocalDate date;
-    private LocalTime startHour;
-    private LocalTime finishHour;
+    private LocalDateTime startHour;
+    private LocalDateTime finishHour;
     private Project project;
     private SubProject subProject;
     private String description;
     private Group group;
     private ActivityType activityType;
-    public static DateTimeFormatter formatador =  DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    public static DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    public static DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("HH:mm");
 
     public Integer getId() {
         return id;
@@ -25,19 +25,19 @@ public class Activity {
         this.id = id;
     }
 
-    public LocalTime getStartHour() {
+    public LocalDateTime getStartHour() {
         return startHour;
     }
 
-    public void setStartHour(LocalTime startHour) {
+    public void setStartHour(LocalDateTime startHour) {
         this.startHour = startHour;
     }
 
-    public LocalTime getFinishHour() {
+    public LocalDateTime getFinishHour() {
         return finishHour;
     }
 
-    public void setFinishHour(LocalTime finishHour) {
+    public void setFinishHour(LocalDateTime finishHour) {
         this.finishHour = finishHour;
     }
 
@@ -81,16 +81,24 @@ public class Activity {
         this.activityType = activityType;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public String getDateFormatedPTbr() {
+        return this.getStartHour().format(formatDate);
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public String getStartHourFormated() {
+        return this.getStartHour().format(formatTime);
     }
-    
-    public String getDateFormatedPTbr(){
-        return this.getDate().format(formatador);
+
+    public String getEndHourFormated() {
+        return this.getFinishHour().format(formatTime);
+    }
+
+    public String getWorkedHours() {
+
+        Duration intervalo = Duration.between(this.startHour, this.finishHour);
+
+        return String.format("%d:%d", intervalo.toHours(), intervalo.toMinutes() - (intervalo.toHours() * 60));
+
     }
 
 }
