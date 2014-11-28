@@ -22,10 +22,10 @@ public class Routes {
         
         ProjectDAO projectDAO = new ProjectDAO();
 
+
         SubProjectDAO subprojectDAO = new SubProjectDAO();
         GroupDAO groupDAO = new GroupDAO();
         ActivityTypeDAO activityTypeDAO = new ActivityTypeDAO();
-
         
         Map map = new HashMap();
         map.put("activities", Memory.activities);
