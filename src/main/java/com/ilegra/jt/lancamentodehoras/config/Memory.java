@@ -26,7 +26,8 @@ public class Memory {
         userLogged = new User("marcelo", "123"); 
         
         users.add(userLogged);
-        users.add(new User("admin", "123"));
+        users.add(new User("paulo", "123"));
+        users.add(new User("aline", "123"));
 
         Project project1 = new Project(0, "Projeto teste 1");
         projects.add(project1);
@@ -66,6 +67,7 @@ public class Memory {
 
         Activity activity1 = new Activity();
         activity1.setId(0);
+        activity1.setUser(userLogged);
         activity1.setDescription("Atividade descricao 1");
         activity1.setProject(project1);
         activity1.setSubProject(subProject1);
@@ -77,6 +79,7 @@ public class Memory {
 
         Activity activity2 = new Activity();
         activity2.setId(0);
+        activity2.setUser(userLogged);
         activity2.setDescription("Atividade descricao 1");
         activity2.setProject(project1);
         activity2.setSubProject(subProject1);
@@ -88,6 +91,7 @@ public class Memory {
 
         Activity activity3 = new Activity();
         activity3.setId(2);
+        activity3.setUser(userLogged);
         activity3.setDescription("Atividade descricao 3");
         activity3.setProject(project3);
         activity3.setSubProject(subProject3);

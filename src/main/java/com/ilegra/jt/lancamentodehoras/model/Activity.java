@@ -7,6 +7,7 @@ import java.time.Duration;
 public class Activity {
 
     private Integer id;
+    private User user;
     private LocalDateTime startHour;
     private LocalDateTime finishHour;
     private Project project;
@@ -99,6 +100,14 @@ public class Activity {
 
         return String.format("%d:%d", intervalo.toHours(), intervalo.toMinutes() - (intervalo.toHours() * 60));
 
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
 }

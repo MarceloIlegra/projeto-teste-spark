@@ -1,5 +1,6 @@
 package com.ilegra.jt.lancamentodehoras.dao;
 
+import com.ilegra.jt.lancamentodehoras.config.Memory;
 import com.ilegra.jt.lancamentodehoras.model.Activity;
 import com.ilegra.jt.lancamentodehoras.model.Project;
 import com.ilegra.jt.lancamentodehoras.model.User;
@@ -24,10 +25,9 @@ public class ActivityDAO implements ActivityRepository {
     }
 
     @Override
-    public List<Activity> listByMonth(User user, Short month) {
+    public List<Activity> listByMonth(User user, Short month) {                
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+    }   
     
     
 }
