@@ -1,4 +1,3 @@
-
 package com.ilegra.jt.lancamentodehoras.dao;
 
 import com.ilegra.jt.lancamentodehoras.config.Memory;
