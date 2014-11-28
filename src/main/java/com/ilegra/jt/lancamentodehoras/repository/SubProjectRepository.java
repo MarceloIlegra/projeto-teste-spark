@@ -13,4 +13,6 @@ public interface SubProjectRepository {
     
     public List<SubProject> listByUserAndProject(User user, Project project);
     
+    public List<SubProject> listAll();
+    
 }

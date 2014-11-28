@@ -9,4 +9,6 @@ public interface ProjectRepository {
     
     public List<Project> listByUser(User user);
     
+    public List<Project> listAll();
+    
 }
