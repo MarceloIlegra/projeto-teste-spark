@@ -2,9 +2,9 @@ package com.ilegra.jt.lancamentodehoras.config;
 
 
 import com.ilegra.jt.lancamentodehoras.dao.ActivityDAO;
+import com.ilegra.jt.lancamentodehoras.dao.ProjectDAO;
 import com.ilegra.jt.lancamentodehoras.dao.UserDAO;
 import com.ilegra.jt.lancamentodehoras.model.User;
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -17,8 +17,12 @@ public class Routes {
     public void init(){
     
         
+        ProjectDAO projectDAO = new ProjectDAO();
+        
+        
         Map map = new HashMap();
         map.put("activities", Memory.activities);
+        map.put("projects", projectDAO.listAll());
         
         get("/", (request, response) -> new ModelAndView(null, "login.mustache"), new MustacheTemplateEngine() );
         
@@ -43,7 +47,7 @@ public class Routes {
              
              return startHour; 
             
-        });
+        });        
         
         post("/login", (request, response) -> {
             

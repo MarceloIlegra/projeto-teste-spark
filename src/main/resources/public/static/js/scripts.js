@@ -9,7 +9,7 @@ $(function(){
 	      formSel.slideDown("slow");
 	    }
 	 });
-	$( "#datepicker" ).datepicker();
+	$( ".datepicker" ).datepicker();
 });
 
 function isEmpty(valor){

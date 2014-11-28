@@ -76,8 +76,9 @@
                                     <label for="projeto" class="control-label col-md-3">Projeto</label>
                                     <div class="col-md-9">
                                        <select name="projeto" id="nova-atividade-projeto" class="form-control ">
-                                          <option value="">Selecione...</option>
-                                          <option value="ILG-JT-DSV-JAVA">ILG-JT-DSV-JAVA</option>
+                                          {{#projects}}
+                                            <option value="{{id}}">{{description}}</option>
+                                          {{/projects}}
                                        </select>
                                     </div>
                                  </div>
