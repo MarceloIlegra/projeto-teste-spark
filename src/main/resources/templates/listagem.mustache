@@ -87,8 +87,9 @@
                                     <label for="subprojeto" class="control-label col-md-3">Sub-projeto</label>
                                     <div class="col-md-9">
                                        <select name="subprojeto" id="nova-atividade-subprojeto" class="form-control">
-                                          <option value="">Selecione...</option>
-										  <option value="Segunda opção">Segunda opção</option>
+                                         {{#subProjects}}
+                                            <option value="{{id}}">{{description}}</option>
+                                          {{/subProjects}}
                                        </select>
                                     </div>
                                  </div>
@@ -97,9 +98,9 @@
                                     <label for="grupo" class="control-label col-md-3">Grupo</label>
                                     <div class="col-md-9">
                                        <select name="grupo" id="nova-atividade-grupo" class="form-control ">
-                                          <option value="">Selecione...</option>
-										  <option value="Segunda opção">Segunda opção</option>
-                                       </select>
+                                          {{#groups}}
+                                            <option value="{{id}}">{{description}}</option>
+                                          {{/groups}}
                                        </select>
                                     </div>
                                  </div>
@@ -108,8 +109,9 @@
                                     <label for="tipo_atividade" class="control-label col-md-3">Tipo Atividade</label>
                                     <div class="col-md-9">
                                        <select name="tipo_atividade" id="nova-atividade-tipo" class="form-control">
-                                          <option value="">Selecione...</option>
-										  <option value="OUT - Outros">OUT - Outros</option>
+                                          {{#activityType}}
+                                            <option value="{{id}}">{{description}}</option>
+                                          {{/activityType}}
                                        </select>
                                     </div>
                                  </div>

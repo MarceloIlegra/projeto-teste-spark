@@ -1,8 +1,10 @@
 package com.ilegra.jt.lancamentodehoras.config;
 
-
 import com.ilegra.jt.lancamentodehoras.dao.ActivityDAO;
+import com.ilegra.jt.lancamentodehoras.dao.ActivityTypeDAO;
 import com.ilegra.jt.lancamentodehoras.dao.ProjectDAO;
+import com.ilegra.jt.lancamentodehoras.dao.SubProjectDAO;
+import com.ilegra.jt.lancamentodehoras.dao.GroupDAO;
 import com.ilegra.jt.lancamentodehoras.dao.UserDAO;
 import com.ilegra.jt.lancamentodehoras.model.User;
 import java.util.HashMap;
@@ -18,11 +20,16 @@ public class Routes {
     
         
         ProjectDAO projectDAO = new ProjectDAO();
-        
+        SubProjectDAO subprojectDAO = new SubProjectDAO();
+        GroupDAO groupDAO = new GroupDAO();
+        ActivityTypeDAO activityTypeDAO = new ActivityTypeDAO();
         
         Map map = new HashMap();
         map.put("activities", Memory.activities);
         map.put("projects", projectDAO.listAll());
+        map.put("subProjects", subprojectDAO.listAll());
+        map.put("groups", groupDAO.listAll());
+        map.put("activityType", activityTypeDAO.listAll());
         
         get("/", (request, response) -> new ModelAndView(null, "login.mustache"), new MustacheTemplateEngine() );
         
