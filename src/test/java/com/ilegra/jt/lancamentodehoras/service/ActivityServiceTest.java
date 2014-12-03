@@ -8,7 +8,7 @@ import org.junit.Test;
 public class ActivityServiceTest {
 
     @Test
-    public void receiveEmptyReturnFalse() {
+    public void receiveEmptyReturnTrue() {
         assertEquals(true, ActivityService.isEmpty(""));
     }
 
