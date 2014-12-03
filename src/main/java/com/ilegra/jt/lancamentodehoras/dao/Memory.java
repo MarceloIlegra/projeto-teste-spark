@@ -1,4 +1,4 @@
-package com.ilegra.jt.lancamentodehoras.config;
+package com.ilegra.jt.lancamentodehoras.dao;
 
 import com.ilegra.jt.lancamentodehoras.model.Activity;
 import com.ilegra.jt.lancamentodehoras.model.Project;
@@ -7,7 +7,6 @@ import com.ilegra.jt.lancamentodehoras.model.User;
 import com.ilegra.jt.lancamentodehoras.model.Group;
 import com.ilegra.jt.lancamentodehoras.model.ActivityType;
 import java.time.LocalDateTime;
-import java.time.Duration;
 import java.util.List;
 import java.util.ArrayList;
 
