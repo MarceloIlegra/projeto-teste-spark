@@ -1,4 +1,4 @@
-package com.ilegra.jt.lancamentodehoras.config;
+package com.ilegra.jt.lancamentodehoras.routes;
 
 import com.ilegra.jt.lancamentodehoras.dao.ActivityDAO;
 import com.ilegra.jt.lancamentodehoras.dao.ActivityTypeDAO;
@@ -7,7 +7,6 @@ import com.ilegra.jt.lancamentodehoras.dao.SubProjectDAO;
 import com.ilegra.jt.lancamentodehoras.dao.GroupDAO;
 import com.ilegra.jt.lancamentodehoras.dao.UserDAO;
 import com.ilegra.jt.lancamentodehoras.model.User;
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;

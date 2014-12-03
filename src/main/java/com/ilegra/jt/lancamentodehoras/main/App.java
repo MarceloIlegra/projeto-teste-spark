@@ -1,10 +1,8 @@
 package com.ilegra.jt.lancamentodehoras.main;
 
 
-import com.ilegra.jt.lancamentodehoras.config.Memory;
-import com.ilegra.jt.lancamentodehoras.config.Routes;
-import com.ilegra.jt.lancamentodehoras.model.User;
-import java.util.ArrayList;
+import com.ilegra.jt.lancamentodehoras.dao.Memory;
+import com.ilegra.jt.lancamentodehoras.routes.Routes;
 import static spark.Spark.*;
 
 public class App {   

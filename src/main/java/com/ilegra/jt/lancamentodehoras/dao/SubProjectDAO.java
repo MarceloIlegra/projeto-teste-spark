@@ -1,6 +1,5 @@
 package com.ilegra.jt.lancamentodehoras.dao;
 
-import com.ilegra.jt.lancamentodehoras.config.Memory;
 import com.ilegra.jt.lancamentodehoras.model.Project;
 import com.ilegra.jt.lancamentodehoras.model.SubProject;
 import com.ilegra.jt.lancamentodehoras.model.User;
@@ -14,6 +13,7 @@ public class SubProjectDAO implements SubProjectRepository {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
     public List<SubProject> listAll(){
         return Memory.subProjects; 
     }

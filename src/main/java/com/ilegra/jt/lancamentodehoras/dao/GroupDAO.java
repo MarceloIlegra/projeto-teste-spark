@@ -1,6 +1,5 @@
 package com.ilegra.jt.lancamentodehoras.dao;
 
-import com.ilegra.jt.lancamentodehoras.config.Memory;
 import com.ilegra.jt.lancamentodehoras.model.Group;
 import com.ilegra.jt.lancamentodehoras.model.User;
 import com.ilegra.jt.lancamentodehoras.model.Project;
