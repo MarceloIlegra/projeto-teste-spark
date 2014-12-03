@@ -27,8 +27,10 @@ public class Routes {
         GroupDAO groupDAO = new GroupDAO();
         ActivityTypeDAO activityTypeDAO = new ActivityTypeDAO();
         
+        ActivityDAO activityDAO = new ActivityDAO();
+        
         Map map = new HashMap();
-        map.put("activities", Memory.activities);
+        map.put("activities", activityDAO.listAll());
         map.put("projects", projectDAO.listAll());
         map.put("subProjects", subprojectDAO.listAll());
         map.put("groups", groupDAO.listAll());
@@ -42,6 +44,7 @@ public class Routes {
 
         post("lancamentohoras/salvar", (request, response) -> {
 
+            /**
             String dateString = request.queryParams("data");
             String[] dateArray = dateString.split("/");
 
@@ -70,11 +73,11 @@ public class Routes {
             String group = request.queryParams("grupo");
             String activityType = request.queryParams("tipoAtividade");
             String description = request.queryParams("descricao");
-
-            ActivityDAO activityDAO = new ActivityDAO();
+            */
+            //ActivityDAO activityDAO = new ActivityDAO();
             // activityDAO.add(user, project, activity);
 
-            return activityDAO;
+            return "OK";
         });
 
         post("/login", (request, response) -> {

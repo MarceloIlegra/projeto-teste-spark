@@ -29,5 +29,8 @@ public class ActivityDAO implements ActivityRepository {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }   
     
+    public List<Activity> listAll(){
+        return Memory.activities;
+    }
     
 }
