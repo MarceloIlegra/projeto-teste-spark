@@ -1,6 +1,8 @@
 package com.ilegra.jt.lancamentodehoras.dao;
 
+
 import com.ilegra.jt.lancamentodehoras.model.Project;
+
 import com.ilegra.jt.lancamentodehoras.model.SubProject;
 import com.ilegra.jt.lancamentodehoras.model.User;
 import com.ilegra.jt.lancamentodehoras.repository.SubProjectRepository;
@@ -11,8 +13,8 @@ import java.util.Optional;
 public class SubProjectDAO implements SubProjectRepository {
 
     @Override
-    public List<SubProject> listByUserAndProject(User user, Project project) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<SubProject> listBySubProject(User user, SubProject subproject) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
     @Override
@@ -21,14 +23,15 @@ public class SubProjectDAO implements SubProjectRepository {
               .stream()
               .filter((subProject)-> id == subProject.getId())
               .findFirst();
+
     }
 
     @Override
-    public List<SubProject> listAll(){
-                                
-        return Memory.subProjects == null 
-                ? new ArrayList<SubProject>() 
-                : Memory.subProjects;       
+    public List<SubProject> listAll() {
+
+        return Memory.subProjects == null
+                ? new ArrayList<>()
+                : Memory.subProjects;
     }
 
 }
