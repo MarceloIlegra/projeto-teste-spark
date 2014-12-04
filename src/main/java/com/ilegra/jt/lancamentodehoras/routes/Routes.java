@@ -7,6 +7,11 @@ import com.ilegra.jt.lancamentodehoras.dao.SubProjectDAO;
 import com.ilegra.jt.lancamentodehoras.dao.GroupDAO;
 import com.ilegra.jt.lancamentodehoras.dao.UserDAO;
 import com.ilegra.jt.lancamentodehoras.model.User;
+import com.ilegra.jt.lancamentodehoras.repository.ActivityRepository;
+import com.ilegra.jt.lancamentodehoras.repository.ActivityTypeRepository;
+import com.ilegra.jt.lancamentodehoras.repository.GroupRepository;
+import com.ilegra.jt.lancamentodehoras.repository.ProjectRepository;
+import com.ilegra.jt.lancamentodehoras.repository.SubProjectRepository;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -17,16 +22,14 @@ import spark.template.mustache.MustacheTemplateEngine;
 public class Routes {
 
     public void init() {
-
         
-        ProjectDAO projectDAO = new ProjectDAO();
+        ProjectRepository projectDAO = new ProjectDAO();
 
-
-        SubProjectDAO subprojectDAO = new SubProjectDAO();
-        GroupDAO groupDAO = new GroupDAO();
-        ActivityTypeDAO activityTypeDAO = new ActivityTypeDAO();
+        SubProjectRepository subprojectDAO = new SubProjectDAO();
+        GroupRepository groupDAO = new GroupDAO();
+        ActivityTypeRepository activityTypeDAO = new ActivityTypeDAO();
         
-        ActivityDAO activityDAO = new ActivityDAO();
+        ActivityRepository activityDAO = new ActivityDAO();
         
         Map map = new HashMap();
         map.put("activities", activityDAO.listAll());
@@ -43,38 +46,6 @@ public class Routes {
 
         post("lancamentohoras/salvar", (request, response) -> {
 
-            /**
-            String dateString = request.queryParams("data");
-            String[] dateArray = dateString.split("/");
-
-            String startHourString = request.queryParams("horaInicio");
-            String[] startHourArray = startHourString.split(":");
-
-            String finishHourString = request.queryParams("horaFim");
-            String[] finishHourArray = finishHourString.split(":");
-
-            //LocalDateTime date = LocalDateTime.parse(startHour, formatDate);
-            LocalDateTime date = LocalDateTime.of(new Integer(dateArray[0]),
-                    new Integer(dateArray[1]),
-                    new Integer(dateArray[2]),
-                    new Integer(startHourArray[0]),
-                    new Integer(startHourArray[1]));
-
-            LocalDateTime date1 = LocalDateTime.of(new Integer(dateArray[0]),
-                    new Integer(dateArray[1]),
-                    new Integer(dateArray[2]),
-                    new Integer(finishHourArray[0]),
-                    new Integer(finishHourArray[1]));
-
-            String projectString = request.queryParams("projeto");
-
-            String subProject = request.queryParams("subprojeto");
-            String group = request.queryParams("grupo");
-            String activityType = request.queryParams("tipoAtividade");
-            String description = request.queryParams("descricao");
-            */
-            //ActivityDAO activityDAO = new ActivityDAO();
-            // activityDAO.add(user, project, activity);
 
             return "OK";
         });

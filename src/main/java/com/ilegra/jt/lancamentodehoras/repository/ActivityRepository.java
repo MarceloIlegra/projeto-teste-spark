@@ -11,5 +11,5 @@ public interface ActivityRepository {
     public void delete(User user, Project project, Activity activity);
     public void update(User user, Project project, Activity activity);
     public List<Activity> listByMonth(User user, Short month);
-    
+    public List<Activity> listAll();
 }

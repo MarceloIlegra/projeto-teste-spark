@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface ActivityTypeRepository {
     public List<ActivityType> listByActivity(User user, ActivityType activityType);
+    public List<ActivityType> listAll();
 
 }

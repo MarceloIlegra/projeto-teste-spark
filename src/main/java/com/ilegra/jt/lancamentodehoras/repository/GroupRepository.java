@@ -9,5 +9,5 @@ import java.util.List;
 public interface GroupRepository {
 
     public List<Group> listByUserAndProjectAndSubProject(User user, Project project, SubProject subProject);
-
+    public List<Group> listAll();
 }

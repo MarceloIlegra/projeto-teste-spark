@@ -7,12 +7,13 @@ import java.util.List;
 
 public class ActivityTypeDAO implements ActivityTypeRepository {
    
- @Override
-     public List<ActivityType> listByActivity(User user, ActivityType activityType){
+    @Override
+    public List<ActivityType> listByActivity(User user, ActivityType activityType){
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-      public List<ActivityType> listAll(){
+    
+    @Override
+    public List<ActivityType> listAll(){
         return Memory.activityType;
     }
 }

@@ -20,6 +20,7 @@ public class ActivityService {
         String startHourText = request.queryParams("horainicio");
         String finishHourText = request.queryParams("horafim");
         String projectText = request.queryParams("nova-atividade-projeto");
+        String subProjectText = request.queryParams("subprojeto");
         
         LocalDateTime startHour = null;
         LocalDateTime finishHour = null;
