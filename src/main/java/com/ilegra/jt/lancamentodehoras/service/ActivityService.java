@@ -38,11 +38,7 @@ public class ActivityService {
         }   
         
         ProjectDAO projectDAO = new ProjectDAO();
-        try {
-            Project project = projectDAO.getById(new Integer(projectText));
-        } catch (ProjectNotFoundException ex) {
-            System.out.println("Expection Message: " + ex.getMessage());
-        }
+
         
         
         
