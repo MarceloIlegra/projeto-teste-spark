@@ -10,7 +10,11 @@ public class ActivityDAO implements ActivityRepository {
 
     @Override
     public Long add(User user, Project project, Activity activity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        activity.setProject(project);
+        activity.setUser(user);
+        Memory.activities.add(activity);
+        System.out.println(activity);
+        return new Long(123);
     }
 
     @Override

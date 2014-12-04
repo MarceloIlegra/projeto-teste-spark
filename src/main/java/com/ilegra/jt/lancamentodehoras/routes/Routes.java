@@ -12,6 +12,7 @@ import com.ilegra.jt.lancamentodehoras.repository.ActivityTypeRepository;
 import com.ilegra.jt.lancamentodehoras.repository.GroupRepository;
 import com.ilegra.jt.lancamentodehoras.repository.ProjectRepository;
 import com.ilegra.jt.lancamentodehoras.repository.SubProjectRepository;
+import com.ilegra.jt.lancamentodehoras.service.ActivityService;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -24,12 +25,13 @@ public class Routes {
     public void init() {
         
         ProjectRepository projectDAO = new ProjectDAO();
-
         SubProjectRepository subprojectDAO = new SubProjectDAO();
         GroupRepository groupDAO = new GroupDAO();
-        ActivityTypeRepository activityTypeDAO = new ActivityTypeDAO();
-        
+        ActivityTypeRepository activityTypeDAO = new ActivityTypeDAO();        
         ActivityRepository activityDAO = new ActivityDAO();
+        
+        
+        
         
         Map map = new HashMap();
         map.put("activities", activityDAO.listAll());
@@ -45,8 +47,11 @@ public class Routes {
         get("/lancamentohoras", (request, response) -> new ModelAndView(map, "listagem.mustache"), new MustacheTemplateEngine());
 
         post("lancamentohoras/salvar", (request, response) -> {
+            ActivityService activityService = new ActivityService();
+            activityService.save(request);
 
-
+            response.redirect("/lancamentohoras");
+            
             return "OK";
         });
 
