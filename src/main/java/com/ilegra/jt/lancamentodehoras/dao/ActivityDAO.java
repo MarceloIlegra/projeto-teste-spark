@@ -24,12 +24,13 @@ public class ActivityDAO implements ActivityRepository {
     }
 
     @Override
-    public List<Activity> listByMonth(User user, Short month) {                
+    public List<Activity> listByMonth(User user, Short month) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }   
-    
-    public List<Activity> listAll(){
+    }
+
+    @Override
+    public List<Activity> listAll() {
         return Memory.activities;
     }
-    
+
 }
