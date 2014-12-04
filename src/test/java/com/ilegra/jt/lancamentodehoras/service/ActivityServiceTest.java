@@ -26,7 +26,17 @@ public class ActivityServiceTest {
     public void receiveTextInBrazilianDateFormatReturnTrue() {
         assertEquals(true, ActivityService.validateDate("20/12/2014"));
     }
+    
+    @Test
+    public void receiveInvalidDayReturnFalse() {
+        assertEquals(false, ActivityService.validateDate("50/12/2014"));
+    }    
 
+    @Test
+    public void receiveInvalidMonthReturnFalse() {
+        assertEquals(false, ActivityService.validateDate("20/13/2014"));
+    }        
+    
     @Test
     public void receiveTextContainsHoursInFormatHoursMinuteReturnTrue() {
         assertEquals(true, ActivityService.isHour("20:00"));
@@ -45,6 +55,7 @@ public class ActivityServiceTest {
 
         assertEquals(expected, actual);
 
-    }
+    }    
+        
 
 }

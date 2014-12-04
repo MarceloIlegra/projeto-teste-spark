@@ -1,12 +1,15 @@
 
 package com.ilegra.jt.lancamentodehoras.service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import com.ilegra.jt.lancamentodehoras.dao.ProjectDAO;
+import com.ilegra.jt.lancamentodehoras.exceptions.ProjectNotFoundException;
+import com.ilegra.jt.lancamentodehoras.model.Project;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import spark.Request;
 
 public class ActivityService {
@@ -14,14 +17,35 @@ public class ActivityService {
     public void save(Request request){
         
         String date = request.queryParams("nova-atividade-data");
-        String hour = request.queryParams("horainicio");
-        LocalDateTime startHour = null;
+        String startHourText = request.queryParams("horainicio");
+        String finishHourText = request.queryParams("horafim");
+        String projectText = request.queryParams("nova-atividade-projeto");
         
-        if(validateDate(date) && isHour(hour)){
+        LocalDateTime startHour = null;
+        LocalDateTime finishHour = null;
+        
+        if(validateDate(date) && isHour(startHourText)){
             
-            startHour = toLocalDateTime(date, hour);         
+            startHour = toLocalDateTime(date, startHourText);         
             
         }
+
+        if(validateDate(date) && isHour(finishHourText)){
+            
+            finishHour = toLocalDateTime(date, finishHourText);         
+            
+        }   
+        
+        ProjectDAO projectDAO = new ProjectDAO();
+        try {
+            Project project = projectDAO.getById(new Integer(projectText));
+        } catch (ProjectNotFoundException ex) {
+            System.out.println("Expection Message: " + ex.getMessage());
+        }
+        
+        
+        
+        
         
     }
 
@@ -39,15 +63,16 @@ public class ActivityService {
     public static boolean validateDate(String date) {
         
         boolean isValidate = !isEmpty(date) && !isNull(date);
+        LocalDate localDate = null;
         
         if(isValidate){
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-
-            try {
-                simpleDateFormat.parse(date);
-            } catch (ParseException exceptionMessage) {
+            
+            try{
+                localDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            }catch(java.time.format.DateTimeParseException exceptionMessage){
                 isValidate = false;
-            }            
+            }
+          
         }        
         
         return isValidate;        
