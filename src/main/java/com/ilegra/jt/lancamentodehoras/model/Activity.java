@@ -110,4 +110,11 @@ public class Activity {
         this.user = user;
     }
 
+    @Override
+    public String toString() {
+        return "Activity{" + "id=" + id + ", user=" + user + ", startHour=" + startHour + ", finishHour=" + finishHour + ", project=" + project + ", subProject=" + subProject + ", description=" + description + ", group=" + group + ", activityType=" + activityType + '}';
+    }
+
+    
+    
 }

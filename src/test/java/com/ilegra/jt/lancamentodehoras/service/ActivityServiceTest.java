@@ -56,6 +56,24 @@ public class ActivityServiceTest {
         assertEquals(expected, actual);
 
     }    
+    
+    @Test
+    public void validateHoursNaoPermiteHoraInicioMaiorQueHoraFim(){
+        LocalDateTime start = LocalDateTime.of(2014, Month.MARCH, 10, 20, 20);
+        LocalDateTime end = LocalDateTime.of(2014, Month.MARCH, 10, 10, 20);
+        
+        assertFalse(ActivityService.validateHours(start, end));
+        
+    }
+    
+    @Test
+    public void validateHoursPermiteHoraInicioMenorQueHoraFim(){
+        LocalDateTime start = LocalDateTime.of(2014, Month.MARCH, 10, 2, 20);
+        LocalDateTime end = LocalDateTime.of(2014, Month.MARCH, 10, 10, 20);
+        
+        assertTrue(ActivityService.validateHours(start, end));
+        
+    }
         
 
 }

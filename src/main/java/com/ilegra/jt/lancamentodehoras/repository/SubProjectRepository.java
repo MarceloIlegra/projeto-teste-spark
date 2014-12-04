@@ -10,11 +10,11 @@ import java.util.Optional;
  * @author Rafael Souza
  */
 public interface SubProjectRepository {
-    
+
     public List<SubProject> listBySubProject(User user, SubProject subproject);
-    
+
     public List<SubProject> listAll();
-    
+
     public Optional<SubProject> getById(int id);
-    
+
 }
