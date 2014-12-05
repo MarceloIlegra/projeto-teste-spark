@@ -20,10 +20,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import spark.Request;
 import java.util.Optional;
 
 public class ActivityService {
+
+    private static LocalDateTime today = LocalDateTime.now();
 
     public void save(Request request) {
 
@@ -75,14 +78,17 @@ public class ActivityService {
         activity1.setUser(user);
         activity1.setStartHour(startHour);
         activity1.setFinishHour(finishHour);
+        activity1.setProject(project);
         activity1.setSubProject(subProject);
         activity1.setGroup(group);
         activity1.setActivityType(activityType);
         activity1.setDescription(description);
 
-        if (validateHours(startHour, finishHour)) {
+        if (validateHours(startHour, finishHour)
+                && validadeBetweenDates(startHour)
+                && validadeStartDateUpperThanToday(startHour)) {
             ActivityRepository ActivityDAO = new ActivityDAO();
-            ActivityDAO.add(user, project, activity1);
+            ActivityDAO.add(user, activity1);
         }
 
     }
@@ -141,6 +147,24 @@ public class ActivityService {
 
         return !starHour.isAfter(finishHour);
 
+    }
+
+    public static boolean validadeBetweenDates(LocalDateTime startHour) {
+        int diasEntre = (int) ChronoUnit.DAYS.between(startHour, today);
+
+        if (diasEntre >= 5) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean validadeStartDateUpperThanToday(LocalDateTime startHour) {
+        int diasEntre = (int) ChronoUnit.DAYS.between(startHour, today);
+
+        if (diasEntre == 0) {
+            return true;
+        }
+        return false;
     }
 
 }
