@@ -20,13 +20,13 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import spark.Request;
 import java.util.Optional;
 
 public class ActivityService {
 
     private static LocalDateTime today = LocalDateTime.now();
+    private static int LIMIT = 5;
 
     public void save(Request request) {
 
@@ -78,17 +78,16 @@ public class ActivityService {
         activity1.setUser(user);
         activity1.setStartHour(startHour);
         activity1.setFinishHour(finishHour);
-        activity1.setProject(project);
         activity1.setSubProject(subProject);
         activity1.setGroup(group);
         activity1.setActivityType(activityType);
         activity1.setDescription(description);
 
         if (validateHours(startHour, finishHour)
-                && validadeBetweenDates(startHour)
-                && validadeStartDateUpperThanToday(startHour)) {
+                && validateStartDateBeforeToday(startHour)
+                && validateStartDateAfterToday(startHour)) {
             ActivityRepository ActivityDAO = new ActivityDAO();
-            ActivityDAO.add(user, activity1);
+            ActivityDAO.add(user, project, activity1);
         }
 
     }
@@ -149,22 +148,18 @@ public class ActivityService {
 
     }
 
-    public static boolean validadeBetweenDates(LocalDateTime startHour) {
-        int diasEntre = (int) ChronoUnit.DAYS.between(startHour, today);
+    public static boolean validateStartDateBeforeToday(LocalDateTime startHour) {
 
-        if (diasEntre >= 5) {
-            return false;
-        }
-        return true;
+        LocalDateTime dataLimit = today.minusDays(LIMIT);
+
+        return startHour.isAfter(dataLimit);
+
     }
 
-    public static boolean validadeStartDateUpperThanToday(LocalDateTime startHour) {
-        int diasEntre = (int) ChronoUnit.DAYS.between(startHour, today);
+    public static boolean validateStartDateAfterToday(LocalDateTime startHour) {
 
-        if (diasEntre == 0) {
-            return true;
-        }
-        return false;
+        return !startHour.isAfter(today);
+
     }
 
 }
