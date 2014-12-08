@@ -22,6 +22,8 @@ import spark.template.mustache.MustacheTemplateEngine;
 
 public class Routes {
 
+    private Map map = new HashMap();
+    
     public void init() {
         
         ProjectRepository projectDAO = new ProjectDAO();
@@ -29,12 +31,10 @@ public class Routes {
         GroupRepository groupDAO = new GroupDAO();
         ActivityTypeRepository activityTypeDAO = new ActivityTypeDAO();        
         ActivityRepository activityDAO = new ActivityDAO();
-        
-        
-        
-        
-        Map map = new HashMap();
+                                
+        //Map map = new HashMap();
         map.put("activities", activityDAO.listAll());
+        map.put("activities_total_time", activityDAO.getTotalTimeFormated());
         map.put("projects", projectDAO.listAll());
         map.put("subProjects", subprojectDAO.listAll());
         map.put("groups", groupDAO.listAll());
@@ -44,30 +44,24 @@ public class Routes {
 
         get("/login", (request, response) -> new ModelAndView(null, "login.mustache"), new MustacheTemplateEngine());
 
-        get("/lancamentohoras", (request, response) -> new ModelAndView(map, "listagem.mustache"), new MustacheTemplateEngine());
+        get("/lancamentohoras", (request, response) -> new ModelAndView(map, "lancamentohoras.mustache"), new MustacheTemplateEngine());
 
         post("lancamentohoras/salvar", (request, response) -> {
             ActivityService activityService = new ActivityService();
             activityService.save(request);
-
-            response.redirect("/lancamentohoras");
-            
-            return "OK";
+            map.put("activities_total_time", new ActivityDAO().getTotalTimeFormated());
+            response.redirect("/lancamentohoras");            
+            return null;
         });
 
         post("/login", (request, response) -> {
-
             String usuario = request.queryParams("usuario");
             String senha = request.queryParams("senha");
-
             UserDAO user = new UserDAO();
             Optional<User> logado = user.login(usuario, senha);
-
             logado.ifPresent((valor) -> response.redirect("/lancamentohoras"));
             response.redirect("/login");
-
-            return "loginteste";
-
+            return null;
         });
 
     }

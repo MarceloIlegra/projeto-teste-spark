@@ -36,5 +36,22 @@ public class ActivityDAO implements ActivityRepository {
     public List<Activity> listAll() {
         return Memory.activities;
     }
+    
+    @Override
+    public long getTotalTimeInMinutes(){
+        return Memory.activities
+                .stream()
+                .mapToLong((activity)->activity.getWorkedHours().toMinutes())
+                .sum();        
+    }
+    
+    @Override
+    public String getTotalTimeFormated(){
+        long minutes = this.getTotalTimeInMinutes();
+        long hours = (long)Math.floor(minutes/60);
+        long min = minutes % 60;        
+       
+        return String.format("%d:%d", hours, min);
+    }    
 
 }

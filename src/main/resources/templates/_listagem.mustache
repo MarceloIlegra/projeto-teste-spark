@@ -1,0 +1,44 @@
+<div class="table-responsive ">
+   <table class="table table-bordered table-hover table-striped" id="tblHoras">
+      <caption>
+         <h4>Atividades</h4>
+      </caption>
+      <thead>
+         <tr>
+            <th>Data</th>
+            <th>Hora Inicio</th>
+            <th>Hora Fim</th>
+            <th>Projeto</th>
+            <th>Sub-Projeto</th>
+            <th>Grupo</th>
+            <th>Descrição</th>
+            <th>Tipo Atividade</th>
+            <th>Horas</th>
+            <th>Ações</th>
+         </tr>
+      </thead>
+      <tbody> 
+         {{#activities}}
+             <tr>
+                <td>{{dateFormatedPTbr}}</td>
+                <td>{{startHourFormated}}</td>
+                <td>{{EndHourFormated}}</td>
+                <td>{{project.description}}</td>
+                <td>{{subProject.description}}</td>
+                <td>{{group.description}}</td>
+                <td>{{description}}</td>
+                <td>{{activityType.description}}</td>
+                <td>{{workedHoursFormated}}</td>
+                <td>Ações</td>
+             </tr>                            
+         {{/activities}}                  
+     </tbody>
+     <tfoot>
+         <tr>
+            <td colspan="8"></td>
+            <td>{{activities_total_time}}</td>
+            <td>Ações</td>
+         </tr>                            
+     </tfoot>
+   </table>
+</div>

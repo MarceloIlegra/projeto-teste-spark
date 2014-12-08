@@ -94,12 +94,16 @@ public class Activity {
         return this.getFinishHour().format(formatTime);
     }
 
-    public String getWorkedHours() {
+    public String getWorkedHoursFormated() {
 
-        Duration intervalo = Duration.between(this.startHour, this.finishHour);
+        Duration intervalo = this.getWorkedHours();
 
         return String.format("%d:%d", intervalo.toHours(), intervalo.toMinutes() - (intervalo.toHours() * 60));
 
+    }
+    
+    public Duration getWorkedHours(){
+        return Duration.between(this.startHour, this.finishHour);
     }
 
     public User getUser() {
