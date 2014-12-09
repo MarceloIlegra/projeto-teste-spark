@@ -3,6 +3,7 @@ package com.ilegra.jt.lancamentodehoras.model;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.Duration;
+import java.util.Objects;
 
 public class Activity {
 
@@ -17,6 +18,25 @@ public class Activity {
     private ActivityType activityType;
     public static DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     public static DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("HH:mm");
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 19 * hash + Objects.hashCode(this.id);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Activity other = (Activity) obj;
+        return true;
+    }
 
     public Integer getId() {
         return id;

@@ -25,8 +25,8 @@ import java.util.Optional;
 
 public class ActivityService {
 
-    private static LocalDateTime today = LocalDateTime.now();
-    private static int LIMIT = 5;
+    private static final LocalDateTime today = LocalDateTime.now();
+    private static final int LIMIT = 5;
 
     public void save(Request request) {
 
