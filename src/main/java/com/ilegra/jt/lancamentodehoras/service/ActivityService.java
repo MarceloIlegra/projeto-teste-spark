@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 public class ActivityService {
 
     private static final LocalDateTime today = LocalDateTime.now();
-    private static final int LIMIT = 5;
+    private static final int daysLimit = 5;
 
     public void save(Request request) {
 
@@ -87,7 +87,8 @@ public class ActivityService {
 
         if (validateHours(startHour, finishHour)
                 && validateStartDateBeforeToday(startHour)
-                && validateStartDateAfterToday(startHour)) {
+                && validateStartDateAfterToday(startHour)
+                && !isOverlapHour(startHour,finishHour)){
             ActivityRepository ActivityDAO = new ActivityDAO();
             ActivityDAO.add(user, project, activity1);
         }
@@ -152,7 +153,7 @@ public class ActivityService {
 
     public static boolean validateStartDateBeforeToday(LocalDateTime startHour) {
 
-        LocalDateTime dataLimit = today.minusDays(LIMIT);
+        LocalDateTime dataLimit = today.minusDays(daysLimit);
 
         return startHour.isAfter(dataLimit);
 

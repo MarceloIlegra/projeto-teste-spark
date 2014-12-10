@@ -21,6 +21,7 @@ public class ActivityServiceTest {
         first.setFinishHour(LocalDateTime.of(year, month, dayOfMonth, 10, 30));
         Memory.activities = Arrays.asList(first);
     }
+    private static final LocalDateTime today = LocalDateTime.now();
 
     @Test
     public void receiveEmptyReturnTrue() {
@@ -90,60 +91,50 @@ public class ActivityServiceTest {
 
     }
 
-    @Test//horaInicialEmIntervaloJaCadastrado
+    @Test
     public void startHourAlreadyExist() {
         LocalDateTime start = LocalDateTime.of(2014, Month.DECEMBER, 5, 10, 00);
         LocalDateTime end = LocalDateTime.of(2014, Month.DECEMBER, 5, 10, 40);
         assertTrue(ActivityService.isOverlapHour(start, end));
     }
 
-    @Test//horaFinalEmIntervaloJaCadastrado
+    @Test
     public void finishHourAlreadyExist() {
         LocalDateTime start = LocalDateTime.of(2014, Month.DECEMBER, 5, 9, 00);
         LocalDateTime end = LocalDateTime.of(2014, Month.DECEMBER, 5, 9, 40);
         assertTrue(ActivityService.isOverlapHour(start, end));
     }
 
-    @Test //horarioDentroDeIntervaloJaCadastrado
+    @Test
     public void timeInsideARangeAlreadyRegistered() {
         LocalDateTime start = LocalDateTime.of(2014, Month.DECEMBER, 5, 9, 40);
         LocalDateTime end = LocalDateTime.of(2014, Month.DECEMBER, 5, 10, 10);
         assertTrue(ActivityService.isOverlapHour(start, end));
     }
 
-    @Test//dataComIntervaloContendoHorasJaLancadas
+    @Test
     public void dateWithtHoursAlreadyRegistered() {
         LocalDateTime start = LocalDateTime.of(2014, Month.DECEMBER, 5, 9, 0);
         LocalDateTime end = LocalDateTime.of(2014, Month.DECEMBER, 5, 11, 0);
         assertTrue(ActivityService.isOverlapHour(start, end));
     }
-    
-    @Test//periodoNaoSobrepostoDeveRetornaFalse
+
+    @Test
     public void periodNotOverLap() {
         LocalDateTime start = LocalDateTime.of(2014, Month.DECEMBER, 5, 8, 0);
         LocalDateTime end = LocalDateTime.of(2014, Month.DECEMBER, 5, 8, 30);
         assertFalse(ActivityService.isOverlapHour(start, end));
     }
-    
-    /**
-     * @Test public void naoAdicionaDataComHoraInicialEmIntervaloJaCadastrado(){
-     * LocalDateTime start = LocalDateTime.of(2014, Month.DECEMBER, 5, 10, 00);
-     * LocalDateTime end = LocalDateTime.of(2014, Month.DECEMBER, 5, 12, 0);
-     * assertEquals(true, ActivityService.isHoraSobrePosta(start, end)); }
-     */
-    /**
-     * @Test public void validaDiasEntreDatas() { LocalDateTime today =
-     * LocalDateTime.now(); LocalDateTime startDate = LocalDateTime.of(2014,
-     * Month.MARCH, 10, 10, 20);
-     * assertFalse(ActivityService.validadeBetweenDates(startDate));
-     *
-     * }
-     *
-     * @Test public void validaSeDataLancadaÉMaiorQueHoje() { LocalDateTime
-     * today = LocalDateTime.now(); LocalDateTime startDate =
-     * LocalDateTime.of(2014, Month.NOVEMBER, 5, 10, 20);
-     * assertFalse(ActivityService.validadeStartDateUpperThanToday(startDate));
-     *
-     * }
-     */
+
+    @Test
+    public void startDateBeforeToday() {
+        LocalDateTime startDate = today.minusDays(5);
+        assertFalse(ActivityService.validateStartDateBeforeToday(startDate));
+    }
+
+    @Test
+    public void startDateAfterToday() {
+        LocalDateTime startDate = today.plusDays(1);
+        assertFalse(ActivityService.validateStartDateAfterToday(startDate));
+    }
 }
