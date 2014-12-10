@@ -20,8 +20,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import spark.Request;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class ActivityService {
 
@@ -160,6 +162,15 @@ public class ActivityService {
 
         return !startHour.isAfter(today);
 
+    }
+    
+    public static boolean isHoraSobrePosta(LocalDateTime startHour, LocalDateTime finishHour){        
+        List<Activity> activities = new ActivityDAO().listAll();
+        int total = activities.stream()
+                .filter((valor)->startHour.isBefore(valor.getStartHour()) && finishHour.isAfter(valor.getFinishHour()))
+                .collect(Collectors.toList())
+                .size();
+        return total > 0 ;        
     }
 
 }

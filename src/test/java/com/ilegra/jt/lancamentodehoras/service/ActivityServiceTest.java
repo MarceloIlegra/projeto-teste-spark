@@ -1,12 +1,29 @@
 package com.ilegra.jt.lancamentodehoras.service;
 
+import com.ilegra.jt.lancamentodehoras.dao.Memory;
+import com.ilegra.jt.lancamentodehoras.model.Activity;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import static org.junit.Assert.*;
+import org.junit.Before;
 import org.junit.Test;
 
 public class ActivityServiceTest {
-
+   
+    @Before
+    public void setup(){
+        int year = 2014;
+        Month month = Month.DECEMBER; 
+        int dayOfMonth = 5;        
+        Activity first = new Activity();
+        first.setStartHour(LocalDateTime.of(year, month, dayOfMonth, 9, 30));
+        first.setFinishHour(LocalDateTime.of(year, month, dayOfMonth, 10, 30));         
+        Memory.activities = Arrays.asList(first);
+    }
+    
     @Test
     public void receiveEmptyReturnTrue() {
         assertEquals(true, ActivityService.isEmpty(""));
@@ -74,6 +91,15 @@ public class ActivityServiceTest {
         assertTrue(ActivityService.validateHours(start, end));
 
     }
+    
+    
+    @Test
+    public void naoAdicionaDataComHoraInicialEmIntervaloJaCadastrado(){
+        LocalDateTime start = LocalDateTime.of(2014, Month.DECEMBER, 5, 10, 00);
+        LocalDateTime end = LocalDateTime.of(2014, Month.DECEMBER, 5, 12, 0);        
+        assertEquals(true, ActivityService.isHoraSobrePosta(start, end));
+    }
+    
     /**
      * @Test public void validaDiasEntreDatas() { LocalDateTime today =
      * LocalDateTime.now(); LocalDateTime startDate = LocalDateTime.of(2014,

@@ -97,8 +97,10 @@ public class Activity {
     public String getWorkedHoursFormated() {
 
         Duration intervalo = this.getWorkedHours();
-
-        return String.format("%d:%d", intervalo.toHours(), intervalo.toMinutes() - (intervalo.toHours() * 60));
+        long hour = intervalo.toHours();
+        long minutes = intervalo.toMinutes() - (hour * 60);
+        
+        return String.format("%d:%d", hour, minutes);
 
     }
     
