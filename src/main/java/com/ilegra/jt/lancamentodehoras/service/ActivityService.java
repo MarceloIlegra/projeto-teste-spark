@@ -172,12 +172,6 @@ public class ActivityService {
                     return timeIsAlreadyDefined(startHour, activity) 
                             || timeIsAlreadyDefined(finishHour, activity) 
                             || isActivityInsideRange(activity, startHour, finishHour);
-                    /**
-                    return startHour.equals(activity.getStartHour())
-                            || finishHour.equals(activity.getFinishHour())
-                            || timeIsAlreadyDefined(startHour, activity) 
-                            || timeIsAlreadyDefined(finishHour, activity) 
-                            || isActivityInsideRange(activity, startHour, finishHour);*/
                  })
                 .collect(Collectors.toList())
                 .size();
