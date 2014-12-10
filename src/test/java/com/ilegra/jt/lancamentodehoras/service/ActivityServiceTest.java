@@ -117,14 +117,14 @@ public class ActivityServiceTest {
         LocalDateTime end = LocalDateTime.of(2014, Month.DECEMBER, 5, 11, 0);
         assertTrue(ActivityService.isOverlapHour(start, end));
     }
-
+    
     @Test
     public void periodoNaoSobrepostoDeveRetornaFalse() {
         LocalDateTime start = LocalDateTime.of(2014, Month.DECEMBER, 5, 8, 0);
         LocalDateTime end = LocalDateTime.of(2014, Month.DECEMBER, 5, 8, 30);
         assertFalse(ActivityService.isOverlapHour(start, end));
     }
-
+    
     /**
      * @Test public void naoAdicionaDataComHoraInicialEmIntervaloJaCadastrado(){
      * LocalDateTime start = LocalDateTime.of(2014, Month.DECEMBER, 5, 10, 00);
