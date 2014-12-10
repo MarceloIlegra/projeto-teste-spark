@@ -172,6 +172,12 @@ public class ActivityService {
                     return timeIsAlreadyDefined(startHour, activity) 
                             || timeIsAlreadyDefined(finishHour, activity) 
                             || isActivityInsideRange(activity, startHour, finishHour);
+                    /**
+                    return startHour.equals(activity.getStartHour())
+                            || finishHour.equals(activity.getFinishHour())
+                            || timeIsAlreadyDefined(startHour, activity) 
+                            || timeIsAlreadyDefined(finishHour, activity) 
+                            || isActivityInsideRange(activity, startHour, finishHour);*/
                  })
                 .collect(Collectors.toList())
                 .size();
@@ -183,7 +189,10 @@ public class ActivityService {
                 && endRange.isAfter(activity.getFinishHour());
     }
     
-    private static boolean timeIsAlreadyDefined(LocalDateTime time, Activity activity){
+    private static boolean timeIsAlreadyDefined(LocalDateTime time, Activity activity){        
+        if(time.equals(activity.getStartHour()) || time.equals(activity.getFinishHour())){
+            return true;
+        }        
         return time.isAfter(activity.getStartHour()) 
                 && time.isBefore(activity.getFinishHour());
     }

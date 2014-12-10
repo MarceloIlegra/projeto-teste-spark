@@ -120,6 +120,13 @@ public class ActivityServiceTest {
     }
 
     @Test
+    public void periodEqualsAlreadyRegistered() {
+        LocalDateTime start = LocalDateTime.of(2014, Month.DECEMBER, 5, 9, 20);
+        LocalDateTime end = LocalDateTime.of(2014, Month.DECEMBER, 5, 10, 30);
+        assertTrue(ActivityService.isOverlapHour(start, end));
+    }    
+    
+    @Test
     public void periodNotOverLap() {
         LocalDateTime start = LocalDateTime.of(2014, Month.DECEMBER, 5, 8, 0);
         LocalDateTime end = LocalDateTime.of(2014, Month.DECEMBER, 5, 8, 30);
