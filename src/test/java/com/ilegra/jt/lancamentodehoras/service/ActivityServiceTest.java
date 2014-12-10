@@ -90,36 +90,36 @@ public class ActivityServiceTest {
 
     }
 
-    @Test
-    public void horaInicialEmIntervaloJaCadastrado() {
+    @Test//horaInicialEmIntervaloJaCadastrado
+    public void startHourAlreadyExist() {
         LocalDateTime start = LocalDateTime.of(2014, Month.DECEMBER, 5, 10, 00);
         LocalDateTime end = LocalDateTime.of(2014, Month.DECEMBER, 5, 10, 40);
         assertTrue(ActivityService.isOverlapHour(start, end));
     }
 
-    @Test
-    public void horaFinalEmIntervaloJaCadastrado() {
+    @Test//horaFinalEmIntervaloJaCadastrado
+    public void finishHourAlreadyExist() {
         LocalDateTime start = LocalDateTime.of(2014, Month.DECEMBER, 5, 9, 00);
         LocalDateTime end = LocalDateTime.of(2014, Month.DECEMBER, 5, 9, 40);
         assertTrue(ActivityService.isOverlapHour(start, end));
     }
 
-    @Test
-    public void horarioDentroDeIntervaloJaCadastrado() {
+    @Test //horarioDentroDeIntervaloJaCadastrado
+    public void timeInsideARangeAlreadyRegistered() {
         LocalDateTime start = LocalDateTime.of(2014, Month.DECEMBER, 5, 9, 40);
         LocalDateTime end = LocalDateTime.of(2014, Month.DECEMBER, 5, 10, 10);
         assertTrue(ActivityService.isOverlapHour(start, end));
     }
 
-    @Test
-    public void dataComIntervaloContendoHorasJaLancadas() {
+    @Test//dataComIntervaloContendoHorasJaLancadas
+    public void dateWithtHoursAlreadyRegistered() {
         LocalDateTime start = LocalDateTime.of(2014, Month.DECEMBER, 5, 9, 0);
         LocalDateTime end = LocalDateTime.of(2014, Month.DECEMBER, 5, 11, 0);
         assertTrue(ActivityService.isOverlapHour(start, end));
     }
     
-    @Test
-    public void periodoNaoSobrepostoDeveRetornaFalse() {
+    @Test//periodoNaoSobrepostoDeveRetornaFalse
+    public void periodNotOverLap() {
         LocalDateTime start = LocalDateTime.of(2014, Month.DECEMBER, 5, 8, 0);
         LocalDateTime end = LocalDateTime.of(2014, Month.DECEMBER, 5, 8, 30);
         assertFalse(ActivityService.isOverlapHour(start, end));
