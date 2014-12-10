@@ -22,27 +22,32 @@ import spark.template.mustache.MustacheTemplateEngine;
 
 public class Routes {
 
-    private Map map = new HashMap();
-    
+    private final Map map = new HashMap();
+
     public void init() {
-        
+
         ProjectRepository projectDAO = new ProjectDAO();
         SubProjectRepository subprojectDAO = new SubProjectDAO();
         GroupRepository groupDAO = new GroupDAO();
-        ActivityTypeRepository activityTypeDAO = new ActivityTypeDAO();        
+        ActivityTypeRepository activityTypeDAO = new ActivityTypeDAO();
         ActivityRepository activityDAO = new ActivityDAO();
-                                
-        //Map map = new HashMap();
+
         map.put("activities", activityDAO.listAll());
         map.put("activities_total_time", activityDAO.getTotalTimeFormated());
         map.put("projects", projectDAO.listAll());
         map.put("subProjects", subprojectDAO.listAll());
         map.put("groups", groupDAO.listAll());
         map.put("activityType", activityTypeDAO.listAll());
-        
-        get("/", (request, response) -> new ModelAndView(null, "login.mustache"), new MustacheTemplateEngine() );
+
+        get("/", (request, response) -> new ModelAndView(null, "login.mustache"), new MustacheTemplateEngine());
 
         get("/login", (request, response) -> new ModelAndView(null, "login.mustache"), new MustacheTemplateEngine());
+
+        before("/lancamentohoras", (request, response) -> {
+            if (request.session().attribute("login") == null) {
+                response.redirect("/login");
+            }
+        });
 
         get("/lancamentohoras", (request, response) -> new ModelAndView(map, "lancamentohoras.mustache"), new MustacheTemplateEngine());
 
@@ -50,20 +55,23 @@ public class Routes {
             ActivityService activityService = new ActivityService();
             activityService.save(request);
             map.put("activities_total_time", new ActivityDAO().getTotalTimeFormated());
-            response.redirect("/lancamentohoras");            
+            response.redirect("/lancamentohoras");
             return null;
         });
 
         post("/login", (request, response) -> {
             String usuario = request.queryParams("usuario");
             String senha = request.queryParams("senha");
-            UserDAO user = new UserDAO();
-            Optional<User> logado = user.login(usuario, senha);
-            logado.ifPresent((valor) -> response.redirect("/lancamentohoras"));
+            UserDAO userDAO = new UserDAO();
+            Optional<User> userLoged = userDAO.login(usuario, senha);
+            userLoged.ifPresent((valor) -> {
+                request.session().attribute("login", userLoged.get());
+                response.redirect("/lancamentohoras");
+            });
             response.redirect("/login");
             return null;
         });
 
     }
-    
+
 }
