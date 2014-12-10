@@ -164,13 +164,28 @@ public class ActivityService {
 
     }
     
-    public static boolean isHoraSobrePosta(LocalDateTime startHour, LocalDateTime finishHour){        
+    public static boolean isOverlapHour(LocalDateTime startHour, LocalDateTime finishHour){        
         List<Activity> activities = new ActivityDAO().listAll();
         int total = activities.stream()
-                .filter((valor)->startHour.isBefore(valor.getStartHour()) && finishHour.isAfter(valor.getFinishHour()))
+                .filter((activity)-> {
+                    return timeIsAlreadyDefined(startHour, activity) 
+                            || timeIsAlreadyDefined(finishHour, activity) 
+                            || isActivityInsideRange(activity, startHour, finishHour);
+                 })
                 .collect(Collectors.toList())
                 .size();
-        return total > 0 ;        
+        return total > 0 ;         
     }
+
+    private static boolean isActivityInsideRange(Activity activity, LocalDateTime startRange, LocalDateTime endRange) {
+        return startRange.isBefore(activity.getStartHour()) 
+                && endRange.isAfter(activity.getFinishHour());
+    }
+    
+    private static boolean timeIsAlreadyDefined(LocalDateTime time, Activity activity){
+        return time.isAfter(activity.getStartHour()) 
+                && time.isBefore(activity.getFinishHour());
+    }
+
 
 }
