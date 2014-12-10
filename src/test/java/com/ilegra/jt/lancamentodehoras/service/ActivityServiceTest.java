@@ -4,26 +4,24 @@ import com.ilegra.jt.lancamentodehoras.dao.Memory;
 import com.ilegra.jt.lancamentodehoras.model.Activity;
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
 public class ActivityServiceTest {
-   
+
     @Before
-    public void setup(){
+    public void setup() {
         int year = 2014;
-        Month month = Month.DECEMBER; 
-        int dayOfMonth = 5;        
+        Month month = Month.DECEMBER;
+        int dayOfMonth = 5;
         Activity first = new Activity();
         first.setStartHour(LocalDateTime.of(year, month, dayOfMonth, 9, 30));
-        first.setFinishHour(LocalDateTime.of(year, month, dayOfMonth, 10, 30));         
+        first.setFinishHour(LocalDateTime.of(year, month, dayOfMonth, 10, 30));
         Memory.activities = Arrays.asList(first);
     }
-    
+
     @Test
     public void receiveEmptyReturnTrue() {
         assertEquals(true, ActivityService.isEmpty(""));
@@ -90,44 +88,49 @@ public class ActivityServiceTest {
 
         assertTrue(ActivityService.validateHours(start, end));
 
-    }    
-    
+    }
+
     @Test
-    public void horaInicialEmIntervaloJaCadastrado(){
+    public void horaInicialEmIntervaloJaCadastrado() {
         LocalDateTime start = LocalDateTime.of(2014, Month.DECEMBER, 5, 10, 00);
-        LocalDateTime end = LocalDateTime.of(2014, Month.DECEMBER, 5, 10, 40); 
+        LocalDateTime end = LocalDateTime.of(2014, Month.DECEMBER, 5, 10, 40);
         assertTrue(ActivityService.isOverlapHour(start, end));
     }
 
-    
     @Test
-    public void horaFinalEmIntervaloJaCadastrado(){
+    public void horaFinalEmIntervaloJaCadastrado() {
         LocalDateTime start = LocalDateTime.of(2014, Month.DECEMBER, 5, 9, 00);
-        LocalDateTime end = LocalDateTime.of(2014, Month.DECEMBER, 5, 9, 40);        
+        LocalDateTime end = LocalDateTime.of(2014, Month.DECEMBER, 5, 9, 40);
         assertTrue(ActivityService.isOverlapHour(start, end));
-    }    
-        
+    }
+
     @Test
-    public void horarioDentroDeIntervaloJaCadastrado(){
+    public void horarioDentroDeIntervaloJaCadastrado() {
         LocalDateTime start = LocalDateTime.of(2014, Month.DECEMBER, 5, 9, 40);
-        LocalDateTime end = LocalDateTime.of(2014, Month.DECEMBER, 5, 10, 10);        
+        LocalDateTime end = LocalDateTime.of(2014, Month.DECEMBER, 5, 10, 10);
         assertTrue(ActivityService.isOverlapHour(start, end));
-    }       
-    
+    }
+
     @Test
-    public void dataComIntervaloContendoHorasJaLancadas(){
+    public void dataComIntervaloContendoHorasJaLancadas() {
         LocalDateTime start = LocalDateTime.of(2014, Month.DECEMBER, 5, 9, 0);
-        LocalDateTime end = LocalDateTime.of(2014, Month.DECEMBER, 5, 11, 0);        
+        LocalDateTime end = LocalDateTime.of(2014, Month.DECEMBER, 5, 11, 0);
         assertTrue(ActivityService.isOverlapHour(start, end));
-    }   
-    
-    @Test
-    public void periodoNaoSobrepostoDeveRetornaFalse(){
-        LocalDateTime start = LocalDateTime.of(2014, Month.DECEMBER, 5, 8, 0);
-        LocalDateTime end = LocalDateTime.of(2014, Month.DECEMBER, 5, 8, 30);        
-        assertFalse(ActivityService.isOverlapHour(start, end));        
     }
     
+    @Test
+    public void periodoNaoSobrepostoDeveRetornaFalse() {
+        LocalDateTime start = LocalDateTime.of(2014, Month.DECEMBER, 5, 8, 0);
+        LocalDateTime end = LocalDateTime.of(2014, Month.DECEMBER, 5, 8, 30);
+        assertFalse(ActivityService.isOverlapHour(start, end));
+    }
+    
+    /**
+     * @Test public void naoAdicionaDataComHoraInicialEmIntervaloJaCadastrado(){
+     * LocalDateTime start = LocalDateTime.of(2014, Month.DECEMBER, 5, 10, 00);
+     * LocalDateTime end = LocalDateTime.of(2014, Month.DECEMBER, 5, 12, 0);
+     * assertEquals(true, ActivityService.isHoraSobrePosta(start, end)); }
+     */
     /**
      * @Test public void validaDiasEntreDatas() { LocalDateTime today =
      * LocalDateTime.now(); LocalDateTime startDate = LocalDateTime.of(2014,
