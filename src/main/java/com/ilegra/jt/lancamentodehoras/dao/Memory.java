@@ -18,15 +18,22 @@ public class Memory {
     public static List<SubProject> subProjects = new ArrayList<>();
     public static List<Group> groups = new ArrayList<>();
     public static List<ActivityType> activityType = new ArrayList<>();
+    public static Integer current_id = 3;
     public static User userLogged;
 
     public static void start() {
 
         userLogged = new User("marcelo", "123"); 
+        userLogged.setId(1);
         
         users.add(userLogged);
-        users.add(new User("paulo", "123"));
-        users.add(new User("aline", "123"));
+        User paulo = new User("paulo", "123");
+        paulo.setId(2);
+        users.add(paulo);
+        
+        User aline = new User("aline", "123");
+        aline.setId(3);
+        users.add(aline);
 
         Project project1 = new Project(0, "Projeto teste 1");
         projects.add(project1);
