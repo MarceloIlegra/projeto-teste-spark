@@ -16,19 +16,19 @@ import com.ilegra.jt.lancamentodehoras.repository.ActivityTypeRepository;
 import com.ilegra.jt.lancamentodehoras.repository.GroupRepository;
 import com.ilegra.jt.lancamentodehoras.repository.ProjectRepository;
 import com.ilegra.jt.lancamentodehoras.repository.SubProjectRepository;
-import java.time.LocalDate;
+import static com.ilegra.jt.lancamentodehoras.validators.ActivityValidator.isHour;
+import static com.ilegra.jt.lancamentodehoras.validators.ActivityValidator.isOverlapHour;
+import static com.ilegra.jt.lancamentodehoras.validators.ActivityValidator.validateHours;
+import static com.ilegra.jt.lancamentodehoras.validators.DateHelper.toLocalDateTime;
+import static com.ilegra.jt.lancamentodehoras.validators.DateHelper.validateDate;
+import static com.ilegra.jt.lancamentodehoras.validators.DateHelper.validateStartDateAfterToday;
+import static com.ilegra.jt.lancamentodehoras.validators.DateHelper.validateStartDateBeforeToday;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
 import spark.Request;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class ActivityService {
-    private static final LocalDateTime today = LocalDateTime.now();
-    private static final int daysLimit = 5;
-
+    
     public void save(Request request) {
         String date = request.queryParams("data");
         String startHourText = request.queryParams("horainicio");
@@ -81,79 +81,5 @@ public class ActivityService {
             ActivityRepository ActivityDAO = new ActivityDAO();
             ActivityDAO.add(user, project, activity1);
         }
-    }
-
-    public static LocalDateTime toLocalDateTime(String date, String hour) {
-        LocalTime time = LocalTime.parse(hour);      
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate localDate = LocalDate.parse(date, formatter);
-        return LocalDateTime.of(localDate, time);
-    }
-
-    public static boolean validateDate(String date) {
-        boolean isValidate = !isEmpty(date) && !isNull(date);
-        LocalDate localDate = null;       
-        if (isValidate) {
-            try { localDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));} 
-            catch (java.time.format.DateTimeParseException exceptionMessage) {isValidate = false;}
-        }
-        return isValidate;
-    }
-
-    public static boolean isHour(String hour) {
-        boolean isValid = true;
-        try {
-            LocalTime time = LocalTime.parse(hour);
-        } catch (java.time.format.DateTimeParseException exceptionMessage) {
-            isValid = false;
-        }
-        return isValid;
-    }
-
-    public static boolean isNull(String data) {
-        return data == null;
-    }
-
-    public static boolean isEmpty(String data) {
-        return data.equals("");
-    }
-
-    public static boolean validateHours(LocalDateTime starHour, LocalDateTime finishHour) {
-        return !starHour.isAfter(finishHour);
-    }
-
-    public static boolean validateStartDateBeforeToday(LocalDateTime startHour) {
-        LocalDateTime dataLimit = today.minusDays(daysLimit); 
-        return startHour.isAfter(dataLimit);
-    }
-
-    public static boolean validateStartDateAfterToday(LocalDateTime startHour) {
-        return !startHour.isAfter(today);
-    }
-    
-    public static boolean isOverlapHour(LocalDateTime startHour, LocalDateTime finishHour){        
-        List<Activity> activities = new ActivityDAO().listAll();
-        int total = activities.stream()
-                .filter((activity)-> {
-                    return timeIsAlreadyDefined(startHour, activity) 
-                            || timeIsAlreadyDefined(finishHour, activity) 
-                            || isActivityInsideRange(activity, startHour, finishHour);
-                 })
-                .collect(Collectors.toList())
-                .size();
-        return total > 0 ;         
-    }
-
-    private static boolean isActivityInsideRange(Activity activity, LocalDateTime startRange, LocalDateTime endRange) {
-        return startRange.isBefore(activity.getStartHour()) 
-                && endRange.isAfter(activity.getFinishHour());
-    }
-    
-    private static boolean timeIsAlreadyDefined(LocalDateTime time, Activity activity){        
-        if(time.equals(activity.getStartHour()) || time.equals(activity.getFinishHour())){
-            return true;
-        }        
-        return time.isAfter(activity.getStartHour()) 
-                && time.isBefore(activity.getFinishHour());
-    }
+    }     
 }
