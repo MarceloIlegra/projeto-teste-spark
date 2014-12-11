@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Project {
+    
+    private Integer id;
+    private String description;
+    private List<SubProject> subProjects = new ArrayList<>();
 
     public Project(Integer id, String description) {
         this.id = id;
         this.description = description;
     }
     
-    private Integer id;
-    private String description;
-    private List<SubProject> subProjects = new ArrayList<>();
-
     public Integer getId() {
         return id;
     }
@@ -36,8 +36,5 @@ public class Project {
 
     public void setSubProjects(List<SubProject> subProjects) {
         this.subProjects = subProjects;
-    }
-    
-    
-    
+    }  
 }

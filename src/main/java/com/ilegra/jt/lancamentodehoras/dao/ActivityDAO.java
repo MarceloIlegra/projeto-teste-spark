@@ -61,6 +61,5 @@ public class ActivityDAO implements ActivityRepository {
         long min = minutes % 60;        
        
         return String.format("%d:%d", hours, min);
-    }    
-
+    }  
 }

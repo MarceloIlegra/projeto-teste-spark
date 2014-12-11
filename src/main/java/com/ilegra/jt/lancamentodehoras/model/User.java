@@ -13,8 +13,7 @@ public class User {
     public User(String login, String password){
         
         this.login = login;
-        this.password = password;
-        
+        this.password = password;        
     }
     
     public int getId() {
@@ -40,6 +39,4 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
-
 }

@@ -20,7 +20,6 @@ public class GroupDAO implements GroupRepository {
                 .stream()
                 .filter((gropus) -> id == gropus.getId())
                 .findFirst();
-
     }
 
     @Override
@@ -29,5 +28,4 @@ public class GroupDAO implements GroupRepository {
                 ? new ArrayList<>()
                 : Memory.groups;
     }
-
 }

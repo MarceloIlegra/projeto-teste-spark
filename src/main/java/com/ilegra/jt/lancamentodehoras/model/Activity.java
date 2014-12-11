@@ -138,7 +138,6 @@ public class Activity {
         long minutes = intervalo.toMinutes() - (hour * 60);
         
         return String.format("%d:%d", hour, minutes);
-
     }
     
     public Duration getWorkedHours(){
@@ -156,8 +155,5 @@ public class Activity {
     @Override
     public String toString() {
         return "Activity{" + "id=" + id + ", user=" + user + ", startHour=" + startHour + ", finishHour=" + finishHour + ", project=" + project + ", subProject=" + subProject + ", description=" + description + ", group=" + group + ", activityType=" + activityType + '}';
-    }
-
-    
-    
+    } 
 }

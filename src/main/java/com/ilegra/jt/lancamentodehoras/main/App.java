@@ -7,14 +7,10 @@ import static spark.Spark.*;
 
 public class App {   
     
-    public static void main( String[] args ){            
-                
-        staticFileLocation("/public");
-       
-        Memory.start();
-        
+    public static void main( String[] args ){         
+        staticFileLocation("/public");       
+        Memory.start();        
         Routes routes = new Routes();
-        routes.init();
-        
+        routes.init();        
     }
 }

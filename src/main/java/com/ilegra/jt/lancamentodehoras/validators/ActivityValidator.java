@@ -47,5 +47,4 @@ public class ActivityValidator {
         return time.isAfter(activity.getStartHour())
                 && time.isBefore(activity.getFinishHour());
     }
-    
 }

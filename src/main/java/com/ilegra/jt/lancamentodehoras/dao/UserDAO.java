@@ -1,4 +1,3 @@
-
 package com.ilegra.jt.lancamentodehoras.dao;
 
 import com.ilegra.jt.lancamentodehoras.model.User;
@@ -13,8 +12,6 @@ public class UserDAO implements UserRepository{
         return  Memory.users
                 .stream()
                 .filter((valor)->valor.getLogin().equals(login) && valor.getPassword().equals(password))
-                .findFirst();
-     
-    }
-    
+                .findFirst();     
+    }    
 }

@@ -5,6 +5,5 @@ import java.util.Optional;
 
 public interface UserRepository {
     
-    public Optional<User> login(String login, String password);   
-    
+    public Optional<User> login(String login, String password);
 }

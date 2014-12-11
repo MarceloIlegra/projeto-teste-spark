@@ -20,7 +20,6 @@ public class SubProjectDAO implements SubProjectRepository {
                 .stream()
                 .filter((subProject) -> id == subProject.getId())
                 .findFirst();
-
     }
 
     @Override
@@ -30,5 +29,4 @@ public class SubProjectDAO implements SubProjectRepository {
                 ? new ArrayList<>()
                 : Memory.subProjects;
     }
-
 }

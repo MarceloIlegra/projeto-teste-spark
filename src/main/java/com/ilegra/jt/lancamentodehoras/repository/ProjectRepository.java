@@ -12,5 +12,4 @@ public interface ProjectRepository {
     public List<Project> listAll();
 
     public Optional<Project> getById(int id);
-
 }
