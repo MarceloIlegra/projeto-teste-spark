@@ -22,7 +22,7 @@ public class Memory {
     public static User userLogged;
 
     public static void start() {
-
+        activities = new ArrayList<>();
         userLogged = new User("marcelo", "123"); 
         
         users.add(userLogged);

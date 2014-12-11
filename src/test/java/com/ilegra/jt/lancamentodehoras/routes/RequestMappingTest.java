@@ -12,9 +12,9 @@ import java.time.Month;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.Test;
-import spark.Request;
 import static org.junit.Assert.*;
 import org.junit.Before;
+import org.junit.Ignore;
 
 public class RequestMappingTest {
     
