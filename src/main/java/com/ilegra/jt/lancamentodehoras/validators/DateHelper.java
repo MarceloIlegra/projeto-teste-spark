@@ -21,14 +21,14 @@ public class DateHelper {
     }
 
     public static boolean validateDate(String date) {
-        if (isEmpty(date) && !isNull(date)) {
+        if (!isEmpty(date) && !isNull(date)) {
             try {
                 LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
             } catch (java.time.format.DateTimeParseException exceptionMessage) {
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     public static boolean isNull(String data) {
