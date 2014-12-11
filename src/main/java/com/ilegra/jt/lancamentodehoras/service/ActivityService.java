@@ -94,11 +94,8 @@ public class ActivityService {
         boolean isValidate = !isEmpty(date) && !isNull(date);
         LocalDate localDate = null;       
         if (isValidate) {
-            try {
-                localDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-            } catch (java.time.format.DateTimeParseException exceptionMessage) {
-                isValidate = false;
-            }
+            try { localDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));} 
+            catch (java.time.format.DateTimeParseException exceptionMessage) {isValidate = false;}
         }
         return isValidate;
     }
