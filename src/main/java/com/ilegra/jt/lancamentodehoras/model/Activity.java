@@ -28,13 +28,30 @@ public class Activity {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
+        if (obj == null) return false;
+        
+        if (getClass() != obj.getClass())return false;
+        
         final Activity other = (Activity) obj;
+        
+        if (!Objects.equals(this.id, other.id)) return false;
+        
+        if (!Objects.equals(this.user, other.user)) return false;
+        
+        if (!Objects.equals(this.startHour, other.startHour)) return false;
+        
+        if (!Objects.equals(this.finishHour, other.finishHour)) return false;
+       
+        if (!Objects.equals(this.project, other.project)) return false;
+
+        if (!Objects.equals(this.subProject, other.subProject)) return false;
+        
+        if (!Objects.equals(this.description, other.description)) return false;
+        
+        if (!Objects.equals(this.group, other.group)) return false;
+        
+        if (!Objects.equals(this.activityType, other.activityType)) return false;
+
         return true;
     }
 
