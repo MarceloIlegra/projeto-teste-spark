@@ -51,7 +51,7 @@ public class DateHelperTest {
     
     @Test
     public void startDateBeforeToday() {
-        LocalDateTime startDate = today.minusDays(5);
+        LocalDateTime startDate = today.minusDays(DateHelper.LIMIT_DAYS+1);
         assertFalse(DateHelper.validateStartDateBeforeToday(startDate));
     }
     

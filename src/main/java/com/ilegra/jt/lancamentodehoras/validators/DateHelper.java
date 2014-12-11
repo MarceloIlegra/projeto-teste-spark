@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 public class DateHelper {
 
     private static final LocalDateTime today = LocalDateTime.now();
-    private static final int LIMIT_DAYS = 5;
+    public static final int LIMIT_DAYS = 5;
 
     public static boolean isIntervalFormatValid(String datePTbr, String startHour, String finishHour){
        return DateHelper.validateDate(datePTbr) 
