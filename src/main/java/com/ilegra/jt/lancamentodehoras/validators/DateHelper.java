@@ -1,13 +1,9 @@
 package com.ilegra.jt.lancamentodehoras.validators;
 
-import com.ilegra.jt.lancamentodehoras.dao.ActivityDAO;
-import com.ilegra.jt.lancamentodehoras.model.Activity;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class DateHelper {
 
