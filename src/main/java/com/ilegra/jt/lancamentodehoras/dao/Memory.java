@@ -18,7 +18,7 @@ public class Memory {
     public static List<SubProject> subProjects = new ArrayList<>();
     public static List<Group> groups = new ArrayList<>();
     public static List<ActivityType> activityType = new ArrayList<>();
-    public static Long currentActivityId = new Long(3);
+    public static Long currentActivityId = new Long(2);
     public static User userLogged;
 
     public static void start() {
