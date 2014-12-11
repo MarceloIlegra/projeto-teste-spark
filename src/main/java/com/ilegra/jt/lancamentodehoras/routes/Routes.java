@@ -64,7 +64,12 @@ public class Routes {
             //Activity activity = null;
             //return "Meu teste: " + request.params(":id");
         });
-        
+        get("/logout", (request, response) -> {
+            request.session().removeAttribute("login");
+            response.redirect("/login");
+            return null;
+        });
+
         post("lancamentohoras/salvar", (request, response) -> {
             ActivityService activityService = new ActivityService();
             activityService.save(request);
