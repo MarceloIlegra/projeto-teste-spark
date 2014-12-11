@@ -10,13 +10,12 @@ public class ActivityDAO implements ActivityRepository {
 
     @Override
     public Long add(User user,Project project, Activity activity) {
-        Memory.current_id++;
-        activity.setId(Memory.current_id);
+        Memory.currentActivityId++;
+        activity.setId(Memory.currentActivityId);
         activity.setUser(user);
         activity.setProject(project);
         Memory.activities.add(activity);
-        System.out.println(activity);
-        return (long) 123;
+        return activity.getId();
     }
 
     @Override

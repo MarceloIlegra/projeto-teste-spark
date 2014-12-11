@@ -18,21 +18,18 @@ public class Memory {
     public static List<SubProject> subProjects = new ArrayList<>();
     public static List<Group> groups = new ArrayList<>();
     public static List<ActivityType> activityType = new ArrayList<>();
-    public static Integer current_id = 3;
+    public static Long currentActivityId = new Long(3);
     public static User userLogged;
 
     public static void start() {
 
         userLogged = new User("marcelo", "123"); 
-        userLogged.setId(1);
         
         users.add(userLogged);
         User paulo = new User("paulo", "123");
-        paulo.setId(2);
         users.add(paulo);
         
         User aline = new User("aline", "123");
-        aline.setId(3);
         users.add(aline);
 
         Project project1 = new Project(0, "Projeto teste 1");
@@ -72,7 +69,7 @@ public class Memory {
         activityType.add(activityType3);
 
         Activity activity1 = new Activity();
-        activity1.setId(0);
+        activity1.setId(new Long(0));
         activity1.setUser(userLogged);
         activity1.setDescription("Atividade descricao 1");
         activity1.setProject(project1);
@@ -84,7 +81,7 @@ public class Memory {
         activities.add(activity1);
 
         Activity activity2 = new Activity();
-        activity2.setId(0);
+        activity2.setId(new Long(1));
         activity2.setUser(userLogged);
         activity2.setDescription("Atividade descricao 1");
         activity2.setProject(project1);
@@ -96,7 +93,7 @@ public class Memory {
         activities.add(activity2);
 
         Activity activity3 = new Activity();
-        activity3.setId(2);
+        activity3.setId(new Long(2));
         activity3.setUser(userLogged);
         activity3.setDescription("Atividade descricao 3");
         activity3.setProject(project3);

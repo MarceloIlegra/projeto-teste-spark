@@ -7,7 +7,7 @@ import java.util.Objects;
 
 public class Activity {
 
-    private Integer id;
+    private Long id;
     private User user;
     private LocalDateTime startHour;
     private LocalDateTime finishHour;
@@ -38,11 +38,11 @@ public class Activity {
         return true;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
