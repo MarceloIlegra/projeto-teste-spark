@@ -5,6 +5,7 @@ import com.ilegra.jt.lancamentodehoras.model.Project;
 import com.ilegra.jt.lancamentodehoras.model.User;
 import com.ilegra.jt.lancamentodehoras.repository.ActivityRepository;
 import java.util.List;
+import java.util.Optional;
 
 public class ActivityDAO implements ActivityRepository {
 
@@ -18,6 +19,13 @@ public class ActivityDAO implements ActivityRepository {
         return activity.getId();
     }
 
+    @Override
+    public Optional<Activity> find(Long id) {
+        return Memory.activities.stream()
+                .filter((activity)->activity.getId() == id)
+                .findFirst();
+    }  
+    
     @Override
     public void delete(User user,Project project, Activity activity) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

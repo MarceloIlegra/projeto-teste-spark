@@ -6,6 +6,7 @@ import com.ilegra.jt.lancamentodehoras.dao.ProjectDAO;
 import com.ilegra.jt.lancamentodehoras.dao.SubProjectDAO;
 import com.ilegra.jt.lancamentodehoras.dao.GroupDAO;
 import com.ilegra.jt.lancamentodehoras.dao.UserDAO;
+import com.ilegra.jt.lancamentodehoras.model.Activity;
 import com.ilegra.jt.lancamentodehoras.model.User;
 import com.ilegra.jt.lancamentodehoras.repository.ActivityRepository;
 import com.ilegra.jt.lancamentodehoras.repository.ActivityTypeRepository;
@@ -51,8 +52,17 @@ public class Routes {
 
         get("/lancamentohoras", (request, response) -> new ModelAndView(map, "lancamentohoras.mustache"), new MustacheTemplateEngine());
 
-        get("/atividades/:id", (request, response) -> {
-            return "Meu teste: " + request.params(":id");
+        get("/atividades/:id", (request, response)->{
+            long id = new Long(request.params(":id"));
+            Optional<Activity> optionalActivity = activityDAO.find(id);
+            if(optionalActivity.isPresent()){
+                
+                return "O codigo é do "+optionalActivity.get().getDescription();
+            }
+            return "Não foi encontrado";
+            //if(optionalActivity.)
+            //Activity activity = null;
+            //return "Meu teste: " + request.params(":id");
         });
         get("/logout", (request, response) -> {
             request.session().removeAttribute("login");
