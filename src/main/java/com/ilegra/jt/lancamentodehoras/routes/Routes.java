@@ -51,6 +51,10 @@ public class Routes {
 
         get("/lancamentohoras", (request, response) -> new ModelAndView(map, "lancamentohoras.mustache"), new MustacheTemplateEngine());
 
+        get("/atividades/:id", (request, response)->{
+            return "Meu teste: " + request.params(":id");
+        });
+        
         post("lancamentohoras/salvar", (request, response) -> {
             ActivityService activityService = new ActivityService();
             activityService.save(request);
