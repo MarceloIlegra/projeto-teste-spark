@@ -25,5 +25,4 @@ public class SubProject {
     public void setDescription(String description) {
         this.description = description;
     }
-
 }

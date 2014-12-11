@@ -6,7 +6,7 @@ import spark.Request;
 
 public class MyRequest extends Request{
 
-    private Map<String, String> params = new HashMap<String, String>();
+    private Map<String, String> params = new HashMap<>();
     
     public MyRequest() {
     }
@@ -19,9 +19,4 @@ public class MyRequest extends Request{
     public String queryParams(String param){        
         return params.get(param);
     }
-
-    
-    
-    
-    
 }

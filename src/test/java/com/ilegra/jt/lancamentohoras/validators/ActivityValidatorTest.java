@@ -85,6 +85,5 @@ public class ActivityValidatorTest {
         LocalDateTime start = LocalDateTime.of(2014, Month.DECEMBER, 5, 8, 0);
         LocalDateTime end = LocalDateTime.of(2014, Month.DECEMBER, 5, 8, 30);
         assertFalse(ActivityValidator.isOverlapHour(start, end));
-    }
-    
+    }  
 }

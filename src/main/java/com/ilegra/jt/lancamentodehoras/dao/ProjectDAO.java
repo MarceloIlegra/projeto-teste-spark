@@ -21,7 +21,6 @@ public class ProjectDAO implements ProjectRepository {
                 .stream()
                 .filter((project) -> id == project.getId())
                 .findFirst();
-
     }
 
     @Override
@@ -30,5 +29,4 @@ public class ProjectDAO implements ProjectRepository {
                 ? new ArrayList<>()
                 : Memory.projects;
     }
-
 }

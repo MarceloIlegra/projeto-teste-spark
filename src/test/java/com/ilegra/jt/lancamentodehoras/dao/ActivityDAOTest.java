@@ -1,4 +1,3 @@
-
 package com.ilegra.jt.lancamentodehoras.dao;
 
 import com.ilegra.jt.lancamentodehoras.model.Activity;
@@ -11,7 +10,7 @@ import org.junit.Before;
 
 public class ActivityDAOTest {
     
-    private ActivityDAO dao = new ActivityDAO();      
+    private final ActivityDAO dao = new ActivityDAO();      
     
     @Before
     public void setup(){
@@ -36,6 +35,5 @@ public class ActivityDAOTest {
     @Test
     public void getTotalTimeFormatedReturnStringCorrectlyFormated(){   
         assertEquals("4:30", this.dao.getTotalTimeFormated());        
-    }    
-    
+    }   
 }

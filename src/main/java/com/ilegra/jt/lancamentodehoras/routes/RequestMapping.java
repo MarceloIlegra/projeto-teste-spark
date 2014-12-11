@@ -1,4 +1,3 @@
-
 package com.ilegra.jt.lancamentodehoras.routes;
 
 import com.ilegra.jt.lancamentodehoras.dao.ActivityTypeDAO;
@@ -21,6 +20,5 @@ public class RequestMapping {
         activity.setActivityType(new ActivityTypeDAO().getById(new Integer(request.queryParams("tipo_atividade"))).get());
         activity.setDescription(request.queryParams("descricao"));                               
         return activity;
-    }
-    
+    }    
 }

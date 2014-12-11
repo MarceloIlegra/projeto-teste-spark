@@ -14,7 +14,6 @@ import java.util.Map;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
-import org.junit.Ignore;
 
 public class RequestMappingTest {
     
@@ -41,7 +40,7 @@ public class RequestMappingTest {
     }
 
     private Map<String, String> requestFakeParams() {
-        Map<String,String> params = new HashMap<String,String>();
+        Map<String,String> params = new HashMap<>();
         params.put("data", "20/12/2014");
         params.put("horainicio","12:00");
         params.put("horafim", "16:00");
@@ -51,6 +50,7 @@ public class RequestMappingTest {
         params.put("tipo_atividade","1");
         params.put("descricao","TESTE");
         return params;
+
     }        
-    
+
 }

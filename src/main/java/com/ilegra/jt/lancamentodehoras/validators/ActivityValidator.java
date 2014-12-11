@@ -47,7 +47,7 @@ public class ActivityValidator {
         return time.isAfter(activity.getStartHour())
                 && time.isBefore(activity.getFinishHour());
     }
-    
+
     public static boolean isValid(Activity activity) {
         return ActivityValidator.validateHours(activity.getStartHour(), activity.getFinishHour())
                 && DateHelper.validateStartDateBeforeToday(activity.getStartHour())
