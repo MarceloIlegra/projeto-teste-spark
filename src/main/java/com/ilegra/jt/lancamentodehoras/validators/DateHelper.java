@@ -10,6 +10,12 @@ public class DateHelper {
     private static final LocalDateTime today = LocalDateTime.now();
     private static final int daysLimit = 5;
 
+    public static boolean isIntervalFormatValid(String datePTbr, String startHour, String finishHour){
+       return DateHelper.validateDate(datePTbr) 
+                && ActivityValidator.isHour(startHour) 
+                && ActivityValidator.isHour(finishHour); 
+    }
+    
     public static LocalDateTime toLocalDateTime(String date, String hour) {
         LocalTime time = LocalTime.parse(hour);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");

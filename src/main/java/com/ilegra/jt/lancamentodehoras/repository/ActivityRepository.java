@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface ActivityRepository {
 
-    public Long add(User user, Project project, Activity activity);
+    public Long add(User user, Activity activity);
 
     public void delete(User user, Project project, Activity activity);
 

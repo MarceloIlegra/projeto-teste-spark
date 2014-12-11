@@ -10,11 +10,10 @@ import java.util.Optional;
 public class ActivityDAO implements ActivityRepository {
 
     @Override
-    public Long add(User user,Project project, Activity activity) {
+    public Long add(User user, Activity activity) {
         Memory.currentActivityId++;
         activity.setId(Memory.currentActivityId);
         activity.setUser(user);
-        activity.setProject(project);
         Memory.activities.add(activity);
         return activity.getId();
     }
