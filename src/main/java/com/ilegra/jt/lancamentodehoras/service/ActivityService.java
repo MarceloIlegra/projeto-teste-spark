@@ -26,12 +26,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class ActivityService {
-
     private static final LocalDateTime today = LocalDateTime.now();
     private static final int daysLimit = 5;
 
     public void save(Request request) {
-
         String date = request.queryParams("data");
         String startHourText = request.queryParams("horainicio");
         String finishHourText = request.queryParams("horafim");
@@ -44,17 +42,8 @@ public class ActivityService {
         LocalDateTime startHour = null;
         LocalDateTime finishHour = null;
 
-        if (validateDate(date) && isHour(startHourText)) {
-
-            startHour = toLocalDateTime(date, startHourText);
-
-        }
-
-        if (validateDate(date) && isHour(finishHourText)) {
-
-            finishHour = toLocalDateTime(date, finishHourText);
-
-        }
+        if (validateDate(date) && isHour(startHourText)) {startHour = toLocalDateTime(date, startHourText);}
+        if (validateDate(date) && isHour(finishHourText)) {finishHour = toLocalDateTime(date, finishHourText);}
 
         ProjectRepository projectDAO = new ProjectDAO();
         Optional<Project> optionalProject = projectDAO.getById(new Integer(projectText));
@@ -92,78 +81,50 @@ public class ActivityService {
             ActivityRepository ActivityDAO = new ActivityDAO();
             ActivityDAO.add(user, project, activity1);
         }
-
     }
 
     public static LocalDateTime toLocalDateTime(String date, String hour) {
-
-        LocalTime time = LocalTime.parse(hour);
-
+        LocalTime time = LocalTime.parse(hour);      
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.parse(date, formatter);
-
         return LocalDateTime.of(localDate, time);
-
     }
 
     public static boolean validateDate(String date) {
-
         boolean isValidate = !isEmpty(date) && !isNull(date);
-        LocalDate localDate = null;
-
+        LocalDate localDate = null;       
         if (isValidate) {
-
             try {
                 localDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
             } catch (java.time.format.DateTimeParseException exceptionMessage) {
                 isValidate = false;
             }
-
         }
-
         return isValidate;
     }
 
     public static boolean isHour(String hour) {
-
         boolean isValid = true;
-
         try {
             LocalTime time = LocalTime.parse(hour);
         } catch (java.time.format.DateTimeParseException exceptionMessage) {
             isValid = false;
         }
-
         return isValid;
     }
 
-    public static boolean isNull(String data) {
-        return data == null;
-    }
+    public static boolean isNull(String data) {return data == null;}
 
-    public static boolean isEmpty(String data) {
-        return data.equals("");
-    }
+    public static boolean isEmpty(String data) {return data.equals("");}
 
-    public static boolean validateHours(LocalDateTime starHour, LocalDateTime finishHour) {
-
-        return !starHour.isAfter(finishHour);
-
-    }
+    public static boolean validateHours(LocalDateTime starHour, LocalDateTime finishHour) {return !starHour.isAfter(finishHour);}
 
     public static boolean validateStartDateBeforeToday(LocalDateTime startHour) {
-
         LocalDateTime dataLimit = today.minusDays(daysLimit);
-
         return startHour.isAfter(dataLimit);
-
     }
 
-    public static boolean validateStartDateAfterToday(LocalDateTime startHour) {
-
-        return !startHour.isAfter(today);
-
-    }
+    public static boolean validateStartDateAfterToday(LocalDateTime startHour) {return !startHour.isAfter(today);}
     
     public static boolean isOverlapHour(LocalDateTime startHour, LocalDateTime finishHour){        
         List<Activity> activities = new ActivityDAO().listAll();
@@ -190,6 +151,4 @@ public class ActivityService {
         return time.isAfter(activity.getStartHour()) 
                 && time.isBefore(activity.getFinishHour());
     }
-
-
 }
