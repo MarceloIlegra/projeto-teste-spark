@@ -113,18 +113,26 @@ public class ActivityService {
         return isValid;
     }
 
-    public static boolean isNull(String data) {return data == null;}
+    public static boolean isNull(String data) {
+        return data == null;
+    }
 
-    public static boolean isEmpty(String data) {return data.equals("");}
+    public static boolean isEmpty(String data) {
+        return data.equals("");
+    }
 
-    public static boolean validateHours(LocalDateTime starHour, LocalDateTime finishHour) {return !starHour.isAfter(finishHour);}
+    public static boolean validateHours(LocalDateTime starHour, LocalDateTime finishHour) {
+        return !starHour.isAfter(finishHour);
+    }
 
     public static boolean validateStartDateBeforeToday(LocalDateTime startHour) {
-        LocalDateTime dataLimit = today.minusDays(daysLimit);
+        LocalDateTime dataLimit = today.minusDays(daysLimit); 
         return startHour.isAfter(dataLimit);
     }
 
-    public static boolean validateStartDateAfterToday(LocalDateTime startHour) {return !startHour.isAfter(today);}
+    public static boolean validateStartDateAfterToday(LocalDateTime startHour) {
+        return !startHour.isAfter(today);
+    }
     
     public static boolean isOverlapHour(LocalDateTime startHour, LocalDateTime finishHour){        
         List<Activity> activities = new ActivityDAO().listAll();
