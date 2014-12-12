@@ -6,7 +6,7 @@ import com.ilegra.jt.lancamentodehoras.dao.GroupDAO;
 import com.ilegra.jt.lancamentodehoras.dao.Memory;
 import com.ilegra.jt.lancamentodehoras.dao.ProjectDAO;
 import com.ilegra.jt.lancamentodehoras.dao.SubProjectDAO;
-import com.ilegra.jt.lancamentodehoras.model.Activity;
+import com.ilegra.jt.lancamentodehoras.pojo.Activity;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.HashMap;

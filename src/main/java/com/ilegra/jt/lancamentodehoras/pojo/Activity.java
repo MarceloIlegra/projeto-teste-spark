@@ -1,4 +1,4 @@
-package com.ilegra.jt.lancamentodehoras.model;
+package com.ilegra.jt.lancamentodehoras.pojo;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -119,13 +119,8 @@ public class Activity {
         return this.getFinishHour().format(formatTime);
     }
 
-    public String getWorkedHoursFormated() {
-
-        Duration intervalo = this.getWorkedHours();
-        long hour = intervalo.toHours();
-        long minutes = intervalo.toMinutes() - (hour * 60);
-        
-        return String.format("%d:%d", hour, minutes);
+    public String getWorkedHoursFormated() {          
+        return String.format("%d:%d",this.getWorkedHours().toHours(),this.getWorkedHours().toMinutes()-(this.getWorkedHours().toHours() * 60));
     }
     
     public Duration getWorkedHours(){

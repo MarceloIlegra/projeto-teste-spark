@@ -1,4 +1,4 @@
-package com.ilegra.jt.lancamentodehoras.model;
+package com.ilegra.jt.lancamentodehoras.pojo;
 
 public class ActivityType {
 

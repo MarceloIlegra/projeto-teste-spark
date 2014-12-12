@@ -1,7 +1,7 @@
 package com.ilegra.jt.lancamentodehoras.service;
 
 import com.ilegra.jt.lancamentodehoras.dao.UserDAO;
-import com.ilegra.jt.lancamentodehoras.model.User;
+import com.ilegra.jt.lancamentodehoras.pojo.User;
 import java.util.Optional;
 
 public class UserService {

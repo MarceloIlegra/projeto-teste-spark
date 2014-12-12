@@ -1,6 +1,6 @@
 package com.ilegra.jt.lancamentodehoras.dao;
 
-import com.ilegra.jt.lancamentodehoras.model.Activity;
+import com.ilegra.jt.lancamentodehoras.pojo.Activity;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.Arrays;

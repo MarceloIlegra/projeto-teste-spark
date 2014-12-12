@@ -1,8 +1,8 @@
 package com.ilegra.jt.lancamentodehoras.dao;
 
-import com.ilegra.jt.lancamentodehoras.model.Activity;
-import com.ilegra.jt.lancamentodehoras.model.Project;
-import com.ilegra.jt.lancamentodehoras.model.User;
+import com.ilegra.jt.lancamentodehoras.pojo.Activity;
+import com.ilegra.jt.lancamentodehoras.pojo.Project;
+import com.ilegra.jt.lancamentodehoras.pojo.User;
 import com.ilegra.jt.lancamentodehoras.repository.ActivityRepository;
 import java.util.List;
 import java.util.Optional;
