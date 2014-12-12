@@ -74,10 +74,9 @@ public class Routes {
         post("lancamentohoras/salvar", (request, response) -> {
             if(DateHelper.isIntervalFormatValid(request.queryParams("data"), 
                     request.queryParams("horainicio"), 
-                    request.queryParams("horafim"))){            
-                Activity activity = new RequestMapping().mapRequestToActivity(request);
-                
-                map.put("activities_total_time", new ActivityDAO().getTotalTimeFormated());
+                    request.queryParams("horafim"))){                
+                new ActivityService().save(request.session().attribute("login"), 
+                        new RequestMapping().mapRequestToActivity(request));
                 response.redirect("/lancamentohoras");
             }
             return null;
