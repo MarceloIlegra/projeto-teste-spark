@@ -1,4 +1,4 @@
-package com.ilegra.jt.lancamentodehoras.model;
+package com.ilegra.jt.lancamentodehoras.pojo;
 
 public class User {
     
@@ -10,8 +10,7 @@ public class User {
         
     }
     
-    public User(String login, String password){
-        
+    public User(String login, String password){        
         this.login = login;
         this.password = password;        
     }

@@ -1,17 +1,17 @@
-package com.ilegra.jt.lancamentodehoras.model;
+package com.ilegra.jt.lancamentodehoras.pojo;
 
-public class Group {
+public class SubProject {
 
     private Integer id;
     private String description;
 
-    public Group(Integer id, String description) {
-        this.id = id;
-        this.description = description;
-    }
-
     public Integer getId() {
         return id;
+    }
+
+    public SubProject(Integer id, String description) {
+        this.id = id;
+        this.description = description;
     }
 
     public void setId(Integer id) {

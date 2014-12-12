@@ -1,7 +1,7 @@
 package com.ilegra.jt.lancamentohoras.validators;
 
 import com.ilegra.jt.lancamentodehoras.dao.Memory;
-import com.ilegra.jt.lancamentodehoras.model.Activity;
+import com.ilegra.jt.lancamentodehoras.pojo.Activity;
 import com.ilegra.jt.lancamentodehoras.validators.ActivityValidator;
 import java.time.LocalDateTime;
 import java.time.Month;

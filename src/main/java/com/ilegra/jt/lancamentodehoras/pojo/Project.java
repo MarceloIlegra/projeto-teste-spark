@@ -1,4 +1,4 @@
-package com.ilegra.jt.lancamentodehoras.model;
+package com.ilegra.jt.lancamentodehoras.pojo;
 
 import java.util.ArrayList;
 import java.util.List;

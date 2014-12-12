@@ -1,7 +1,7 @@
 package com.ilegra.jt.lancamentodehoras.dao;
 
-import com.ilegra.jt.lancamentodehoras.model.Group;
-import com.ilegra.jt.lancamentodehoras.model.User;
+import com.ilegra.jt.lancamentodehoras.pojo.Group;
+import com.ilegra.jt.lancamentodehoras.pojo.User;
 import com.ilegra.jt.lancamentodehoras.repository.GroupRepository;
 import java.util.ArrayList;
 import java.util.List;
