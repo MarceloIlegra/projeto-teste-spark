@@ -6,8 +6,8 @@ import java.util.Optional;
 
 public class UserService {
 
-    public void authenticateUser(User user) {
+    public void authenticateUser(String login, String password) {
         UserDAO dao = new UserDAO();
-        Optional<User> userLogin = dao.login(user.getLogin(), user.getPassword());
+        Optional<User> userLogin = dao.login(login, password);
     }
 }
