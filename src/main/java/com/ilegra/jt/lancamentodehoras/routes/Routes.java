@@ -59,29 +59,29 @@ public class Routes {
             Optional<User> userLoged = userDAO.login(usuario, senha);
             userLoged.ifPresent((valor) -> {
                 request.session().attribute("login", userLoged.get());
-                response.redirect("/lancamentohoras");
+                response.redirect("/atividades");
             });
             response.redirect("/login");
             return null;
         });        
         
-        before("/lancamentohoras", (request, response) -> {
+        before("/atividades", (request, response) -> {
             if (request.session().attribute("login") == null) {
                 response.redirect("/login");
             }
         });
 
-        get("/lancamentohoras", (request, response) -> new ModelAndView(map, "lancamentohoras.mustache"), new MustacheTemplateEngine());
+        get("/atividades", (request, response) -> new ModelAndView(map, "lancamentohoras.mustache"), new MustacheTemplateEngine());
 
         get("/atividades/:id", "application/json", (request, response)-> new ActivityService().findById(new Long(request.params(":id"))).get(), new JsonTransformer());        
         
-        post("lancamentohoras/salvar", (request, response) -> {
+        post("/atividades/", (request, response) -> {
             if(DateHelper.isIntervalFormatValid(request.queryParams("data"), 
                     request.queryParams("horainicio"), 
                     request.queryParams("horafim"))){                
                 new ActivityService().save(request.session().attribute("login"), 
                         new RequestMapping().mapRequestToActivity(request));
-                response.redirect("/lancamentohoras");
+                response.redirect("/atividades");
             }
             return null;
         });              
