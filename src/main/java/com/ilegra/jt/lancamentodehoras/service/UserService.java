@@ -6,8 +6,9 @@ import java.util.Optional;
 
 public class UserService {
 
-    public void autenticar(User user) throws Exception{        
+    public Optional<User> authenticateUser(String login, String password) {
         UserDAO dao = new UserDAO();
-        Optional<User> userLogin = dao.login(user.getLogin(), user.getPassword());                       
+        Optional<User> userLogin = dao.login(login, password);
+        return userLogin;
     }
 }

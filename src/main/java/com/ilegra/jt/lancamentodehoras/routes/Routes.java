@@ -5,8 +5,6 @@ import com.ilegra.jt.lancamentodehoras.dao.ActivityTypeDAO;
 import com.ilegra.jt.lancamentodehoras.dao.ProjectDAO;
 import com.ilegra.jt.lancamentodehoras.dao.SubProjectDAO;
 import com.ilegra.jt.lancamentodehoras.dao.GroupDAO;
-import com.ilegra.jt.lancamentodehoras.dao.UserDAO;
-import com.ilegra.jt.lancamentodehoras.pojo.Activity;
 import com.ilegra.jt.lancamentodehoras.pojo.User;
 import com.ilegra.jt.lancamentodehoras.repository.ActivityRepository;
 import com.ilegra.jt.lancamentodehoras.repository.ActivityTypeRepository;
@@ -14,7 +12,9 @@ import com.ilegra.jt.lancamentodehoras.repository.GroupRepository;
 import com.ilegra.jt.lancamentodehoras.repository.ProjectRepository;
 import com.ilegra.jt.lancamentodehoras.repository.SubProjectRepository;
 import com.ilegra.jt.lancamentodehoras.service.ActivityService;
-import com.ilegra.jt.lancamentodehoras.validators.DateHelper;
+import com.ilegra.jt.lancamentodehoras.service.UserService;
+import com.ilegra.jt.lancamentodehoras.validators.RequestValidator;
+
 import com.ilegra.jt.lancamentodehoras.viewtransformer.JsonTransformer;
 import java.util.HashMap;
 import java.util.Map;
@@ -53,18 +53,15 @@ public class Routes {
         });
 
         post("/login", (request, response) -> {
-            String usuario = request.queryParams("usuario");
-            String senha = request.queryParams("senha");
-            UserDAO userDAO = new UserDAO();
-            Optional<User> userLoged = userDAO.login(usuario, senha);
+            Optional<User> userLoged = new UserService().authenticateUser(request.queryParams("usuario"), request.queryParams("senha"));
             userLoged.ifPresent((valor) -> {
                 request.session().attribute("login", userLoged.get());
                 response.redirect("/atividades");
             });
             response.redirect("/login");
             return null;
-        });        
-        
+        });
+
         before("/atividades", (request, response) -> {
             if (request.session().attribute("login") == null) {
                 response.redirect("/login");
@@ -76,7 +73,7 @@ public class Routes {
         get("/atividades/:id", "application/json", (request, response)-> new ActivityService().findById(new Long(request.params(":id"))).get(), new JsonTransformer());        
         
         put("/atividades/:id", (request, response)->{            
-            if(DateHelper.isIntervalFormatValid(request.queryParams("data"), 
+            if(RequestValidator.isIntervalFormatValid(request.queryParams("data"), 
                     request.queryParams("horainicio"), 
                     request.queryParams("horafim"))){
                 boolean updated = new ActivityService().update(request.session().attribute("login"), 
@@ -94,7 +91,7 @@ public class Routes {
         get("/atividades/_listagem", (request, response)-> new ModelAndView(map, "_listagem.mustache"), new MustacheTemplateEngine());
         
         post("/atividades", (request, response) -> {
-            if(DateHelper.isIntervalFormatValid(request.queryParams("data"), 
+            if(RequestValidator.isIntervalFormatValid(request.queryParams("data"), 
                     request.queryParams("horainicio"), 
                     request.queryParams("horafim"))){                
                 new ActivityService().save(request.session().attribute("login"), 
@@ -105,5 +102,4 @@ public class Routes {
         });              
 
     }
-
 }

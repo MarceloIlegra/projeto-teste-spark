@@ -5,7 +5,7 @@ import com.ilegra.jt.lancamentodehoras.dao.GroupDAO;
 import com.ilegra.jt.lancamentodehoras.dao.ProjectDAO;
 import com.ilegra.jt.lancamentodehoras.dao.SubProjectDAO;
 import com.ilegra.jt.lancamentodehoras.pojo.Activity;
-import static com.ilegra.jt.lancamentodehoras.validators.DateHelper.toLocalDateTime;
+import static com.ilegra.jt.lancamentodehoras.validators.RequestValidator.toLocalDateTime;
 import spark.Request;
 
 public class RequestMapping {
