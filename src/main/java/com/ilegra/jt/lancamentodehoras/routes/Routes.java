@@ -15,6 +15,7 @@ import com.ilegra.jt.lancamentodehoras.repository.ProjectRepository;
 import com.ilegra.jt.lancamentodehoras.repository.SubProjectRepository;
 import com.ilegra.jt.lancamentodehoras.service.ActivityService;
 import com.ilegra.jt.lancamentodehoras.validators.DateHelper;
+import com.ilegra.jt.lancamentodehoras.viewtransformer.JsonTransformer;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -53,13 +54,8 @@ public class Routes {
 
         get("/lancamentohoras", (request, response) -> new ModelAndView(map, "lancamentohoras.mustache"), new MustacheTemplateEngine());
 
-        get("/atividades/:id", (request, response)->{
-            Optional<Activity> activity = new ActivityService().findById(new Long(request.params(":id")));
-            if(activity.isPresent()){
-                return "O codigo é do "+activity.get().getDescription();
-            }
-            return "Não foi encontrado";
-        });
+        get("/atividades/:id", "application/json", (request, response)-> new ActivityService().findById(new Long(request.params(":id"))).get(), new JsonTransformer());
+        
         get("/logout", (request, response) -> {
             request.session().removeAttribute("login");
             response.redirect("/login");
