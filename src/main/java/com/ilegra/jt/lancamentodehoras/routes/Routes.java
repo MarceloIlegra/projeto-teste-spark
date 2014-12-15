@@ -12,8 +12,12 @@ import com.ilegra.jt.lancamentodehoras.repository.GroupRepository;
 import com.ilegra.jt.lancamentodehoras.repository.ProjectRepository;
 import com.ilegra.jt.lancamentodehoras.repository.SubProjectRepository;
 import com.ilegra.jt.lancamentodehoras.service.ActivityService;
+<<<<<<< HEAD
 import com.ilegra.jt.lancamentodehoras.service.UserService;
 import com.ilegra.jt.lancamentodehoras.validators.DateHelper;
+=======
+import com.ilegra.jt.lancamentodehoras.validators.RequestValidator;
+>>>>>>> 0be0c73d5d4f5d78f2f1677ffc99b538df4767f1
 import com.ilegra.jt.lancamentodehoras.viewtransformer.JsonTransformer;
 import java.util.HashMap;
 import java.util.Map;
@@ -75,11 +79,11 @@ public class Routes {
             return request.params("id");
         });
 
-        post("/atividades/", (request, response) -> {
-            if (DateHelper.isIntervalFormatValid(request.queryParams("data"),
-                    request.queryParams("horainicio"),
-                    request.queryParams("horafim"))) {
-                new ActivityService().save(request.session().attribute("login"),
+        post("/atividades/", (request, response) -> {            
+            if(RequestValidator.isIntervalFormatValid(request.queryParams("data"), 
+                    request.queryParams("horainicio"), 
+                    request.queryParams("horafim"))){                
+                new ActivityService().save(request.session().attribute("login"), 
                         new RequestMapping().mapRequestToActivity(request));
                 response.redirect("/atividades");
             }

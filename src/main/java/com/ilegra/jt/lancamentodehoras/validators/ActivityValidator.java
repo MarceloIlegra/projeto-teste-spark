@@ -50,8 +50,8 @@ public class ActivityValidator {
 
     public static boolean isValid(Activity activity) {
         return ActivityValidator.validateHours(activity.getStartHour(), activity.getFinishHour())
-                && DateHelper.validateStartDateBeforeToday(activity.getStartHour())
-                && DateHelper.validateStartDateAfterToday(activity.getStartHour())
+                && RequestValidator.validateStartDateBeforeToday(activity.getStartHour())
+                && RequestValidator.validateStartDateAfterToday(activity.getStartHour())
                 && !ActivityValidator.isOverlapHour(activity.getStartHour(),activity.getFinishHour());
     }    
     
