@@ -46,30 +46,9 @@ public class Routes {
 
         get("/login", (request, response) -> new ModelAndView(null, "login.mustache"), new MustacheTemplateEngine());
 
-        before("/lancamentohoras", (request, response) -> {
-            if (request.session().attribute("login") == null) {
-                response.redirect("/login");
-            }
-        });
-
-        get("/lancamentohoras", (request, response) -> new ModelAndView(map, "lancamentohoras.mustache"), new MustacheTemplateEngine());
-
-        get("/atividades/:id", "application/json", (request, response)-> new ActivityService().findById(new Long(request.params(":id"))).get(), new JsonTransformer());
-        
         get("/logout", (request, response) -> {
             request.session().removeAttribute("login");
             response.redirect("/login");
-            return null;
-        });
-
-        post("lancamentohoras/salvar", (request, response) -> {
-            if(DateHelper.isIntervalFormatValid(request.queryParams("data"), 
-                    request.queryParams("horainicio"), 
-                    request.queryParams("horafim"))){                
-                new ActivityService().save(request.session().attribute("login"), 
-                        new RequestMapping().mapRequestToActivity(request));
-                response.redirect("/lancamentohoras");
-            }
             return null;
         });
 
@@ -84,7 +63,28 @@ public class Routes {
             });
             response.redirect("/login");
             return null;
+        });        
+        
+        before("/lancamentohoras", (request, response) -> {
+            if (request.session().attribute("login") == null) {
+                response.redirect("/login");
+            }
         });
+
+        get("/lancamentohoras", (request, response) -> new ModelAndView(map, "lancamentohoras.mustache"), new MustacheTemplateEngine());
+
+        get("/atividades/:id", "application/json", (request, response)-> new ActivityService().findById(new Long(request.params(":id"))).get(), new JsonTransformer());        
+        
+        post("lancamentohoras/salvar", (request, response) -> {
+            if(DateHelper.isIntervalFormatValid(request.queryParams("data"), 
+                    request.queryParams("horainicio"), 
+                    request.queryParams("horafim"))){                
+                new ActivityService().save(request.session().attribute("login"), 
+                        new RequestMapping().mapRequestToActivity(request));
+                response.redirect("/lancamentohoras");
+            }
+            return null;
+        });              
 
     }
 
