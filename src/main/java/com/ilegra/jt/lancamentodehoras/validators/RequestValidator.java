@@ -5,13 +5,13 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-public class DateHelper {
+public class RequestValidator {
 
     private static final LocalDateTime today = LocalDateTime.now();
     public static final int LIMIT_DAYS = 5;
 
     public static boolean isIntervalFormatValid(String datePTbr, String startHour, String finishHour){
-       return DateHelper.validateDate(datePTbr) 
+       return RequestValidator.validateDate(datePTbr) 
                 && ActivityValidator.isHour(startHour) 
                 && ActivityValidator.isHour(finishHour); 
     }

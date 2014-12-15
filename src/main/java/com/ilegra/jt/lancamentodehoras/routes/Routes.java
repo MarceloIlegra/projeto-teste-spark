@@ -14,7 +14,7 @@ import com.ilegra.jt.lancamentodehoras.repository.GroupRepository;
 import com.ilegra.jt.lancamentodehoras.repository.ProjectRepository;
 import com.ilegra.jt.lancamentodehoras.repository.SubProjectRepository;
 import com.ilegra.jt.lancamentodehoras.service.ActivityService;
-import com.ilegra.jt.lancamentodehoras.validators.DateHelper;
+import com.ilegra.jt.lancamentodehoras.validators.RequestValidator;
 import com.ilegra.jt.lancamentodehoras.viewtransformer.JsonTransformer;
 import java.util.HashMap;
 import java.util.Map;
@@ -80,7 +80,7 @@ public class Routes {
         });
         
         post("/atividades/", (request, response) -> {
-            if(DateHelper.isIntervalFormatValid(request.queryParams("data"), 
+            if(RequestValidator.isIntervalFormatValid(request.queryParams("data"), 
                     request.queryParams("horainicio"), 
                     request.queryParams("horafim"))){                
                 new ActivityService().save(request.session().attribute("login"), 
