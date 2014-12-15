@@ -33,7 +33,14 @@ public class ActivityDAO implements ActivityRepository {
 
     @Override
     public void update(User user,Project project, Activity activity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int index = 0;
+        for(Activity item : Memory.activities){
+            if(activity.getId().equals(item.getId())){
+                Memory.activities.set(index, activity);
+                break;
+            }
+            index++;
+        }        
     }
 
     @Override

@@ -15,5 +15,13 @@ public class ActivityService {
     public Optional<Activity> findById(long id){
         return new ActivityDAO().find(id);
     }
+    
+    public boolean update(User user, Activity activity){
+        if (ActivityValidator.isValid(activity)){
+            new ActivityDAO().update(user, activity.getProject(), activity);
+            return true;
+        }
+        return false;
+    }
 
 }

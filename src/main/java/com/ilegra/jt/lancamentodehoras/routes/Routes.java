@@ -75,19 +75,33 @@ public class Routes {
 
         get("/atividades/:id", "application/json", (request, response)-> new ActivityService().findById(new Long(request.params(":id"))).get(), new JsonTransformer());        
         
-        put("/atividades/:id", (request, response)->{
-            return request.params("id");
+        put("/atividades/:id", (request, response)->{            
+            if(DateHelper.isIntervalFormatValid(request.queryParams("data"), 
+                    request.queryParams("horainicio"), 
+                    request.queryParams("horafim"))){
+                boolean updated = new ActivityService().update(request.session().attribute("login"), 
+                        new RequestMapping().mapRequestToActivity(request)); 
+                if(updated)
+                    return "Activity "+request.params(":id")+" updated!";
+                else
+                    return "Activity "+request.params(":id")+" invalid2!";
+            } else {
+                return "Formato incorreto!";
+            }
+            
         });
         
-        post("/atividades/", (request, response) -> {
+        get("/atividades/_listagem", (request, response)-> new ModelAndView(map, "_listagem.mustache"), new MustacheTemplateEngine());
+        
+        post("/atividades", (request, response) -> {
             if(DateHelper.isIntervalFormatValid(request.queryParams("data"), 
                     request.queryParams("horainicio"), 
                     request.queryParams("horafim"))){                
                 new ActivityService().save(request.session().attribute("login"), 
                         new RequestMapping().mapRequestToActivity(request));
-                response.redirect("/atividades");
+                return "Rever mensagens";
             }
-            return null;
+            return "Formato de campo invalido!";
         });              
 
     }

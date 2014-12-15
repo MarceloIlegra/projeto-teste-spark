@@ -18,7 +18,10 @@ public class RequestMapping {
         activity.setSubProject(new SubProjectDAO().getById(new Integer(request.queryParams("subprojeto"))).get());
         activity.setGroup(new GroupDAO().getById(new Integer(request.queryParams("grupo"))).get());
         activity.setActivityType(new ActivityTypeDAO().getById(new Integer(request.queryParams("tipo_atividade"))).get());
-        activity.setDescription(request.queryParams("descricao"));                               
+        activity.setDescription(request.queryParams("descricao")); 
+        if(request.params(":id") != null && !request.params(":id").equals("")){
+            activity.setId(new Long(request.params(":id")));
+        }
         return activity;
     }    
 }
