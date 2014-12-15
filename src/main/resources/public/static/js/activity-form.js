@@ -9,12 +9,14 @@ var clearModal = function () {
 
 var showModalEditMode = function (activity) {
     $("#formulario_nova_atividade").prop("method", "put");
+    $("#formulario_nova_atividade").prop("action", "atividades/"+activity.id);
     prepareModal(activity);
     openModal();
 };
 
 var showModalNewMode = function () {
     $("#formulario_nova_atividade").prop("method", "post");
+    $("#formulario_nova_atividade").prop("action", "atividades");
     clearModal();
 };
 
@@ -46,7 +48,7 @@ $(document).ready(function () {
     $("#formulario_nova_atividade").submit(function (event) {
         event.preventDefault();
         $.ajax({
-            url: "lancamentohoras/",
+            url: $(this).attr("action"),
             data: $(this).serialize(),
             type: $(this).attr("method"),
             success: function (html) {

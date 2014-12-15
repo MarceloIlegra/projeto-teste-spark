@@ -75,6 +75,10 @@ public class Routes {
 
         get("/atividades/:id", "application/json", (request, response)-> new ActivityService().findById(new Long(request.params(":id"))).get(), new JsonTransformer());        
         
+        put("/atividades/:id", (request, response)->{
+            return request.params("id");
+        });
+        
         post("/atividades/", (request, response) -> {
             if(DateHelper.isIntervalFormatValid(request.queryParams("data"), 
                     request.queryParams("horainicio"), 
