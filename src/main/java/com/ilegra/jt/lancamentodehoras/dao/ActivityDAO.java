@@ -5,6 +5,7 @@ import com.ilegra.jt.lancamentodehoras.pojo.Project;
 import com.ilegra.jt.lancamentodehoras.pojo.User;
 import com.ilegra.jt.lancamentodehoras.repository.ActivityRepository;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public class ActivityDAO implements ActivityRepository {
@@ -21,7 +22,7 @@ public class ActivityDAO implements ActivityRepository {
     @Override
     public Optional<Activity> find(Long id) {
         return Memory.activities.stream()
-                .filter((activity)->activity.getId() == id)
+                .filter((activity)->Objects.equals(activity.getId(), id))
                 .findFirst();
     }  
     

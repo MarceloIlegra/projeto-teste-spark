@@ -54,16 +54,11 @@ public class Routes {
         get("/lancamentohoras", (request, response) -> new ModelAndView(map, "lancamentohoras.mustache"), new MustacheTemplateEngine());
 
         get("/atividades/:id", (request, response)->{
-            long id = new Long(request.params(":id"));
-            Optional<Activity> optionalActivity = activityDAO.find(id);
-            if(optionalActivity.isPresent()){
-                
-                return "O codigo é do "+optionalActivity.get().getDescription();
+            Optional<Activity> activity = new ActivityService().findById(new Long(request.params(":id")));
+            if(activity.isPresent()){
+                return "O codigo é do "+activity.get().getDescription();
             }
             return "Não foi encontrado";
-            //if(optionalActivity.)
-            //Activity activity = null;
-            //return "Meu teste: " + request.params(":id");
         });
         get("/logout", (request, response) -> {
             request.session().removeAttribute("login");
