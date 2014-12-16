@@ -30,6 +30,11 @@ function converterHoraParaMinutos(valor) {
     return parseInt(hora) * 60 + parseInt(min);
 }
 
+function formatHour(hours, minutes){
+    return (parseInt(hours)<10 ? "0"+hours : hours)+
+            ":"+(parseInt(minutes)<10 ? "0"+minutes : minutes);
+}
+
 function converterMinutosParaHorasMinutos(valor) {
     var hora = Math.floor(valor / 60);
     var minuto = valor % 60;
