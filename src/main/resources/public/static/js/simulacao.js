@@ -1,18 +1,14 @@
 var itens = [];
 
 function gerarTabela(){
-
 	$("#tblHoras tbody").html("");
-
 	var tbody = '';
 	var totalMinutos = 0;
 	var diferencaMinutos = 0;
 
-	for (var i = 0, max=itens.length; i<max; i++){
-		
+	for (var i = 0, max=itens.length; i<max; i++){		
 		diferencaMinutos = calcularDiferencaEntreHoras(itens[i].horainicio, itens[i].horafim);
 		totalMinutos += diferencaMinutos;
-
 		tbody += 
 			'<tr>' +
 			'<td>'+itens[i].data+'</td>'+
@@ -28,26 +24,21 @@ function gerarTabela(){
 				'<img src="resources/imagens/editar.png" class="editar"title="Editar"  id="e-'+i+'">'+
 				'<img src="resources/imagens/deletar.png" class="deletar"title="Deletar" id="r-'+i+'">'+
 				'<img src="resources/imagens/duplicar.png" class="duplicar"title="Duplicar" id="d-'+i+'">'+					
-			'</td>';				
-					
+			'</td>';									
 	}
 	
 	if(itens.length > 0){				
-
 		tbody +='<tr>'	+
-					'<td id="horas" colspan=8>Total de Horas:</td>'+
-					'<td colspan=2>'+converterMinutosParaHorasMinutos(totalMinutos)+'</td>'+	
-				'</tr>';		
-	}
-						
+			'<td id="horas" colspan=8>Total de Horas:</td>'+
+			'<td colspan=2>'+converterMinutosParaHorasMinutos(totalMinutos)+'</td>'+	
+			'</tr>';		
+	}						
 	$("#tblHoras tbody").html(tbody);	
 	carregarEventos();	
 }
 
 function limparId(id){
-
 	return id.substring(2);	
-
 }
 
 function limparModal(){
@@ -63,10 +54,8 @@ function limparModal(){
 }
 
 function carregarFormularioModal(idHTML){
-
 	var index = limparId(idHTML);
 	var atividade = itens[index];
-
 	$("#nova-atividade-data").val(atividade.data);
 	$("#nova-atividade-horainicio").val(atividade.horainicio);
 	$("#nova-atividade-horafim").val(atividade.horafim);
@@ -75,15 +64,11 @@ function carregarFormularioModal(idHTML){
 	$("#nova-atividade-grupo").val(atividade.grupo);
 	$("#nova-atividade-tipo").val(atividade.tipo);
 	$("#nova-atividade-descricao").val(atividade.descricao);
-
 	$("#novaAtividadeModal").modal("show");	
-
 }
 
 function carregarEventos(){
-
 	$(".deletar").click(function(){
-	
 		if(confirm("Deseja excluir esse registro?")){
 			var index = limparId($(this).attr("id"));
 			itens.splice(index, 1)
@@ -92,7 +77,6 @@ function carregarEventos(){
 	});	
 
 	$(".editar").click(function(){
-
 		$("#nova-atividade-id").val(index);
 		carregarFormularioModal($(this).attr("id"));
 	});
@@ -102,17 +86,13 @@ function carregarEventos(){
 	});	
 }
 
-
 $(function(){
-
-	gerarTabela();
-	
+	gerarTabela();	
 	$(".limpar-modal").click(function(){
 		limparModal();
 	});
 
-	$("#salvar").click(function(){
-		
+	$("#salvar").click(function(){		
 		var atividade = {
 			data: $("#nova-atividade-data").val(),
 			horainicio: $("#nova-atividade-horainicio").val(),
@@ -125,19 +105,15 @@ $(function(){
 		};		
 		
 		if( formularioAtividadeValido(atividade) ){
-
-			var id = $("#nova-atividade-id").val();
-			
+			var id = $("#nova-atividade-id").val();			
 			if(id.trim() === ""){
 				itens.push(atividade);	
 			} else {
 				itens[id] = atividade;
 			}				
-
 			limparModal();
 			gerarTabela();
 			alert ("Atividade adicionada com sucesso!")			
-		} 		
-		
+		} 				
 	});
 });
