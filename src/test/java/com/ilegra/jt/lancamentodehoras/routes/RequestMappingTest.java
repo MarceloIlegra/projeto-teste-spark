@@ -1,4 +1,3 @@
-
 package com.ilegra.jt.lancamentodehoras.routes;
 
 import com.ilegra.jt.lancamentodehoras.dao.ActivityTypeDAO;
@@ -6,6 +5,7 @@ import com.ilegra.jt.lancamentodehoras.dao.GroupDAO;
 import com.ilegra.jt.lancamentodehoras.dao.Memory;
 import com.ilegra.jt.lancamentodehoras.dao.ProjectDAO;
 import com.ilegra.jt.lancamentodehoras.dao.SubProjectDAO;
+import com.ilegra.jt.lancamentodehoras.dao.UserDAO;
 import com.ilegra.jt.lancamentodehoras.pojo.Activity;
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -29,6 +29,7 @@ public class RequestMappingTest {
 
     private Activity activityFake() {
         Activity expected = new Activity();
+        expected.setUser(new UserDAO().login("aline","123").get());
         expected.setStartHour(LocalDateTime.of(2014, Month.DECEMBER, 20, 12, 0));
         expected.setFinishHour(LocalDateTime.of(2014, Month.DECEMBER, 20, 16, 0));
         expected.setProject(new ProjectDAO().getById(1).get());
@@ -41,6 +42,8 @@ public class RequestMappingTest {
 
     private Map<String, String> requestFakeParams() {
         Map<String,String> params = new HashMap<>();
+        params.put("usuario","aline");
+        params.put("senha","123");
         params.put("data", "20/12/2014");
         params.put("horainicio","12:00");
         params.put("horafim", "16:00");
