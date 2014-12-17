@@ -24,7 +24,6 @@ public class RequestMappingTest {
     }
     
     @Test
-    @Ignore
     public void mappingTest(){           
         assertEquals(activityFake(), new RequestMapping().mapRequestToActivity(new MyRequest(requestFakeParams())));        
     }
@@ -38,8 +37,7 @@ public class RequestMappingTest {
         expected.setSubProject(new SubProjectDAO().getById(1).get());
         expected.setGroup(new GroupDAO().getById(1).get());                
         expected.setActivityType(new ActivityTypeDAO().getById(1).get());
-        expected.setDescription("TESTE");
-        expected.setId(new Long(1));
+        expected.setDescription("TESTE");        
         return expected;        
     }
 
@@ -54,8 +52,7 @@ public class RequestMappingTest {
         params.put("subprojeto","1");
         params.put("grupo","1");
         params.put("tipo_atividade","1");
-        params.put("descricao","TESTE");
-        params.put(":id","1");
+        params.put("descricao","TESTE");        
         return params;
     }        
 }

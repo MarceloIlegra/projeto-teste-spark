@@ -29,8 +29,8 @@ public class RequestMapping {
         activity.setDescription(request.queryParams("descricao"));
     }
     private void idNotEmpty(Request request){
-        if(request.params(":id") !=null && !request.params(":id").equals("")){
-            activity.setId(new Long(request.params(":id")));             
+        if(request.queryParams(":id") !=null && !request.queryParams(":id").equals("")){
+            activity.setId(new Long(request.queryParams(":id")));             
         }      
     }
 }
