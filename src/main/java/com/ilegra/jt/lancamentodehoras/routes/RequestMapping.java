@@ -19,7 +19,6 @@ public class RequestMapping {
     }
     
     private void loadActivity(Request request) {
-        activity.setUser(new UserDAO().login(request.queryParams("usuario"),request.queryParams("senha")).get());
         activity.setStartHour(toLocalDateTime(request.queryParams("data"), request.queryParams("horainicio")));
         activity.setFinishHour(toLocalDateTime(request.queryParams("data"), request.queryParams("horafim")));
         activity.setProject(new ProjectDAO().getById(new Integer(request.queryParams("projeto"))).get());

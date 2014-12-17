@@ -72,7 +72,6 @@ var loadEvents = function(){
     });        
 };
 
-
 $(document).ready(function () {
     loadEvents();
 });

@@ -6,7 +6,7 @@ import java.time.Month;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class DateHelperTest {
+public class RequestValidatorTest {
     
     private static final LocalDateTime today = LocalDateTime.now();
 

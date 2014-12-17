@@ -23,14 +23,13 @@ public class RequestMappingTest {
         Memory.start();
     }
     
-    @Test
+    @Test    
     public void mappingTest(){           
         assertEquals(activityFake(), new RequestMapping().mapRequestToActivity(new MyRequest(requestFakeParams())));        
     }
 
     private Activity activityFake() {
-        Activity expected = new Activity();
-        expected.setUser(new UserDAO().login("aline","123").get());
+        Activity expected = new Activity();        
         expected.setStartHour(LocalDateTime.of(2014, Month.DECEMBER, 20, 12, 0));
         expected.setFinishHour(LocalDateTime.of(2014, Month.DECEMBER, 20, 16, 0));
         expected.setProject(new ProjectDAO().getById(1).get());
@@ -42,9 +41,7 @@ public class RequestMappingTest {
     }
 
     private Map<String, String> requestFakeParams() {
-        Map<String,String> params = new HashMap<>();
-        params.put("usuario","aline");
-        params.put("senha","123");
+        Map<String,String> params = new HashMap<>();        
         params.put("data", "20/12/2014");
         params.put("horainicio","12:00");
         params.put("horafim", "16:00");
