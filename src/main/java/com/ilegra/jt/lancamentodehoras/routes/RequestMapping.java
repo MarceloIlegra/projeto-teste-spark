@@ -13,7 +13,8 @@ public class RequestMapping {
     Activity activity = new Activity();
     
     public Activity  mapRequestToActivity(Request request){          
-        loadActivity(request);        
+        loadActivity(request);   
+        idNotEmpty(request);         
         return activity;
     }
     
@@ -26,5 +27,10 @@ public class RequestMapping {
         activity.setGroup(new GroupDAO().getById(new Integer(request.queryParams("grupo"))).get());
         activity.setActivityType(new ActivityTypeDAO().getById(new Integer(request.queryParams("tipo_atividade"))).get());
         activity.setDescription(request.queryParams("descricao"));
-    }    
+    }
+    private void idNotEmpty(Request request){
+        if(request.params(":id") !=null && !request.params(":id").equals("")){
+            activity.setId(new Long(request.params(":id")));             
+        }      
+    }
 }
