@@ -14,9 +14,9 @@ public class RequestMapping {
         Activity activity = new Activity();
         activity.setStartHour(toLocalDateTime(request.queryParams("data"), request.queryParams("horainicio")));
         activity.setFinishHour(toLocalDateTime(request.queryParams("data"), request.queryParams("horafim")));
-        activity.setProject((ProjectService.getById(new Integer(request.queryParams("project")))));
+        activity.setProject((ProjectService.getById(new Integer(request.queryParams("projeto")))));
         activity.setSubProject((SubProjectService.getById(new Integer(request.queryParams("subprojeto")))));
-        activity.setGroup(GroupService.getById(new Integer(request.queryParams("gurpo"))));
+        activity.setGroup(GroupService.getById(new Integer(request.queryParams("grupo"))));
         activity.setActivityType(ActivityTypeService.getById(new Integer(request.queryParams("tipo_atividade"))));       
         activity.setDescription(request.queryParams("descricao"));
         activity.setId(setId(request.queryParams(":id")));
