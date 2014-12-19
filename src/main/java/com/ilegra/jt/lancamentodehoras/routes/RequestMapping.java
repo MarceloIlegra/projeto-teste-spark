@@ -1,35 +1,28 @@
 package com.ilegra.jt.lancamentodehoras.routes;
 
-import com.ilegra.jt.lancamentodehoras.dao.ActivityTypeDAO;
-import com.ilegra.jt.lancamentodehoras.dao.GroupDAO;
-import com.ilegra.jt.lancamentodehoras.dao.ProjectDAO;
-import com.ilegra.jt.lancamentodehoras.dao.SubProjectDAO;
-import com.ilegra.jt.lancamentodehoras.dao.UserDAO;
 import com.ilegra.jt.lancamentodehoras.pojo.Activity;
+import com.ilegra.jt.lancamentodehoras.service.ActivityTypeService;
+import com.ilegra.jt.lancamentodehoras.service.GroupService;
+import com.ilegra.jt.lancamentodehoras.service.ProjectService;
+import com.ilegra.jt.lancamentodehoras.service.SubProjectService;
 import static com.ilegra.jt.lancamentodehoras.validators.RequestValidator.toLocalDateTime;
 import spark.Request;
 
 public class RequestMapping {
-    Activity activity = new Activity();
     
-    public Activity  mapRequestToActivity(Request request){          
-        loadActivity(request);   
-        idNotEmpty(request);         
-        return activity;
-    }
-    
-    private void loadActivity(Request request) {
+    public Activity mapRequestToActivity(Request request) {
+        Activity activity = new Activity();
         activity.setStartHour(toLocalDateTime(request.queryParams("data"), request.queryParams("horainicio")));
         activity.setFinishHour(toLocalDateTime(request.queryParams("data"), request.queryParams("horafim")));
-        activity.setProject(new ProjectDAO().getById(new Integer(request.queryParams("projeto"))).get());
-        activity.setSubProject(new SubProjectDAO().getById(new Integer(request.queryParams("subprojeto"))).get());
-        activity.setGroup(new GroupDAO().getById(new Integer(request.queryParams("grupo"))).get());
-        activity.setActivityType(new ActivityTypeDAO().getById(new Integer(request.queryParams("tipo_atividade"))).get());
+        activity.setProject((ProjectService.getById(new Integer(request.queryParams("project")))));
+        activity.setSubProject((SubProjectService.getById(new Integer(request.queryParams("subprojeto")))));
+        activity.setGroup(GroupService.getById(new Integer(request.queryParams("gurpo"))));
+        activity.setActivityType(ActivityTypeService.getById(new Integer(request.queryParams("tipo_atividade"))));       
         activity.setDescription(request.queryParams("descricao"));
-    }
-    private void idNotEmpty(Request request){
-        if(request.queryParams(":id") !=null && !request.queryParams(":id").equals("")){
-            activity.setId(new Long(request.queryParams(":id")));             
-        }      
-    }
+        activity.setId(setId(request.queryParams(":id")));
+        return activity;
+    }    
+    private Long setId(String id){
+        return id != null && !id.isEmpty() ? new Long(id) : null;             
+    }  
 }
