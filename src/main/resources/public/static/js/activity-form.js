@@ -1,10 +1,10 @@
 var openModal = function () {
-    $("#novaAtividadeModal").modal("show");
+    $("#novaAtividadeModal").modal("show");    
 };
 
 var clearModal = function () {
     $("#formulario_nova_atividade").find("textarea").val("");
-    $("#formulario_nova_atividade").find("input").not("input[type=submit]").val("");
+    $("#formulario_nova_atividade").find("input").not("input[type=submit]").val("");     
     $("select").val("");
 };
 
@@ -17,8 +17,9 @@ var showModalEditMode = function (activity) {
 
 var showModalNewMode = function () {
     $("#formulario_nova_atividade").prop("method", "post");
-    $("#formulario_nova_atividade").prop("action", "/atividades");
+    $("#formulario_nova_atividade").prop("action", "/atividades");    
     clearModal();
+    $("#nova-atividade-data").datepicker("setDate", new Date());
 };
 
 var prepareModal = function (activity) {
