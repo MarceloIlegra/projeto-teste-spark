@@ -5,6 +5,7 @@ import com.ilegra.jt.lancamentodehoras.dao.ActivityTypeDAO;
 import com.ilegra.jt.lancamentodehoras.dao.ProjectDAO;
 import com.ilegra.jt.lancamentodehoras.dao.SubProjectDAO;
 import com.ilegra.jt.lancamentodehoras.dao.GroupDAO;
+import com.ilegra.jt.lancamentodehoras.pojo.Activity;
 import com.ilegra.jt.lancamentodehoras.pojo.User;
 import com.ilegra.jt.lancamentodehoras.repository.ActivityRepository;
 import com.ilegra.jt.lancamentodehoras.repository.ActivityTypeRepository;
@@ -73,33 +74,33 @@ public class Routes {
         get("/atividades/:id", "application/json", (request, response)-> new ActivityService().findById(new Long(request.params(":id"))).get(), new JsonTransformer());        
         
         put("/atividades/:id", (request, response)->{            
-            if(RequestValidator.isIntervalFormatValid(request.queryParams("data"), 
-                    request.queryParams("horainicio"), 
-                    request.queryParams("horafim"))){
-                boolean updated = new ActivityService().update(request.session().attribute("login"), 
-                        new RequestMapping().mapRequestToActivity(request)); 
+            if(RequestValidator.isIntervalFormatValid(request.queryParams("data"),request.queryParams("horainicio"),request.queryParams("horafim"))){
+                boolean updated = new ActivityService().update(request.session().attribute("login"),new RequestMapping().mapRequestToActivity(request)); 
                 if(updated)
                     return "Activity "+request.params(":id")+" updated!";
                 else
                     return "Activity "+request.params(":id")+" invalid2!";
             } else {
                 return "Formato incorreto!";
-            }
-            
+            }            
         });
+        
+        delete("/atividades/:id", (request,response) -> { 
+            boolean delete = new ActivityService().delete(request.session().attribute("login"),new RequestMapping().mapRequestToActivity(request));
+                if(delete)
+                    return "Activity" + request.params(":id")+" deleted";                   
+                else
+                    return "Activity" + request.params(":id")+" not deleted";                
+    });
         
         get("/atividades/_listagem", (request, response)-> new ModelAndView(map, "_listagem.mustache"), new MustacheTemplateEngine());
         
         post("/atividades", (request, response) -> {
-            if(RequestValidator.isIntervalFormatValid(request.queryParams("data"), 
-                    request.queryParams("horainicio"), 
-                    request.queryParams("horafim"))){                
-                new ActivityService().save(request.session().attribute("login"), 
-                        new RequestMapping().mapRequestToActivity(request));
+            if(RequestValidator.isIntervalFormatValid(request.queryParams("data"),request.queryParams("horainicio"),request.queryParams("horafim"))){                
+                new ActivityService().save(request.session().attribute("login"),new RequestMapping().mapRequestToActivity(request));
                 return "Rever mensagens";
             }
             return "Formato de campo invalido!";
-        });              
-
+        });             
     }
 }

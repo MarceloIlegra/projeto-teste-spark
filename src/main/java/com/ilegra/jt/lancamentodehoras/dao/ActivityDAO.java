@@ -28,7 +28,13 @@ public class ActivityDAO implements ActivityRepository {
     
     @Override
     public void delete(User user,Project project, Activity activity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        int index = Memory.activities.size();
+        for(Activity item : Memory.activities){
+            if(activity.getId().equals(item.getId())){
+                Memory.activities.remove(item);                
+            }
+            index--;
+        }
     }
 
     @Override

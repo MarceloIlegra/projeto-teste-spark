@@ -1,23 +1,23 @@
 var openModal = function () {
-    $("#novaAtividadeModal").modal("show");    
+    $("#novaAtividadeModal").modal("show");
 };
 
 var clearModal = function () {
     $("#formulario_nova_atividade").find("textarea").val("");
-    $("#formulario_nova_atividade").find("input").not("input[type=submit]").val("");     
+    $("#formulario_nova_atividade").find("input").not("input[type=submit]").val("");
     $("select").val("");
 };
 
 var showModalEditMode = function (activity) {
     $("#formulario_nova_atividade").prop("method", "put");
-    $("#formulario_nova_atividade").prop("action", "/atividades/"+activity.id);
+    $("#formulario_nova_atividade").prop("action", "/atividades/" + activity.id);
     prepareModal(activity);
     openModal();
 };
 
 var showModalNewMode = function () {
     $("#formulario_nova_atividade").prop("method", "post");
-    $("#formulario_nova_atividade").prop("action", "/atividades");    
+    $("#formulario_nova_atividade").prop("action", "/atividades");
     clearModal();
     $("#nova-atividade-data").datepicker("setDate", new Date());
 };
@@ -36,18 +36,18 @@ var prepareModal = function (activity) {
     $("#nova-atividade-id").val(activity.id);
 };
 
-var loadTable = function(){
+var loadTable = function () {
     $.ajax({
         url: "/atividades/_listagem",
         type: "get",
-        success: function(html){
-            $("#section-atividades").html(html);  
+        success: function (html) {
+            $("#section-atividades").html(html);
             loadEvents();
         }
-    });    
+    });
 };
 
-var loadEvents = function(){
+var loadEvents = function () {
     $(".editar_atividade").click(function (event) {
         event.preventDefault();
         $.getJSON($(this).attr("href"), function (data) {
@@ -58,7 +58,7 @@ var loadEvents = function(){
         event.preventDefault();
         showModalNewMode();
     });
-    
+
     $("#formulario_nova_atividade").submit(function (event) {
         event.preventDefault();
         $.ajax({
@@ -67,10 +67,24 @@ var loadEvents = function(){
             type: $(this).attr("method"),
             success: function (message) {
                 clearModal();
-                loadTable();               
+                loadTable();
             }
         });
-    });        
+    });
+    $(".excluir_atividade").click(function () {         
+        if (confirm("Deseja excluir esse registro?")) {
+            $.ajax({
+                type: "POST",
+                data: $(this).attr(':id'),
+                url: "/atividades",
+                success: function (message) {                    
+                    loadTable();                    
+                }
+            });
+        } else {
+            return alert("Atividade nao deletada");
+        }
+    });
 };
 
 $(document).ready(function () {

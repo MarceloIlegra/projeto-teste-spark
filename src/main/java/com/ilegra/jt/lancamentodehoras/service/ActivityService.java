@@ -23,5 +23,11 @@ public class ActivityService {
         }
         return false;
     }
-
+    public boolean delete(User user, Activity activity){
+        if(activity.getId() != null){
+            new ActivityDAO().delete(user, activity.getProject(), activity);
+            return true;
+        }
+        return false;        
+    }
 }
