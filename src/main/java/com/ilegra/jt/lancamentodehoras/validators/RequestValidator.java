@@ -1,5 +1,6 @@
 package com.ilegra.jt.lancamentodehoras.validators;
 
+import static java.lang.Integer.parseInt;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -30,7 +31,7 @@ public class RequestValidator {
         }
         return true;
     }
-
+    
     public static boolean isNull(String data) {
         return data == null;
     }

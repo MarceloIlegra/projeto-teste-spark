@@ -39,9 +39,9 @@ public class ActivityDAO implements ActivityRepository {
 
     @Override
     public void update(User user,Project project, Activity activity) {
-        int index = 0;
+        int index =0;
         for(Activity item : Memory.activities){
-            if(activity.getId().equals(item.getId())){
+            if(activity.getId().equals(item.getId())){                
                 Memory.activities.set(index, activity);
                 break;
             }

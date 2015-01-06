@@ -25,6 +25,8 @@ var showModalNewMode = function () {
 var prepareModal = function (activity) {
     var date = activity.startHour.date;
     console.log(formatHour(activity.startHour.time.hour, activity.startHour.time.minute));
+    if(date.day <10)date.day = "0"+date.day;
+    if(date.month<10)date.month = "0"+date.month;
     $("#nova-atividade-data").val(date.day + "/" + date.month + "/" + date.year);
     $("#nova-atividade-horainicio").val(formatHour(activity.startHour.time.hour, activity.startHour.time.minute));
     $("#nova-atividade-horafim").val(formatHour(activity.finishHour.time.hour, activity.finishHour.time.minute));

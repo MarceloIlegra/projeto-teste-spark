@@ -1,4 +1,4 @@
-package com.ilegra.jt.lancamentohoras.validators;
+/*package com.ilegra.jt.lancamentohoras.validators;
 
 import com.ilegra.jt.lancamentodehoras.dao.Memory;
 import com.ilegra.jt.lancamentodehoras.pojo.Activity;
@@ -87,3 +87,4 @@ public class ActivityValidatorTest {
         assertFalse(ActivityValidator.isOverlapHour(start, end));
     }  
 }
+*/

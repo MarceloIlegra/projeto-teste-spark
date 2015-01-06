@@ -13,5 +13,5 @@ public class UserDAO implements UserRepository{
                 .stream()
                 .filter((valor)->valor.getLogin().equals(login) && valor.getPassword().equals(password))
                 .findFirst();     
-    }    
+    }
 }

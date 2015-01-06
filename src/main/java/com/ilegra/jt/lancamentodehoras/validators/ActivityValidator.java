@@ -53,6 +53,11 @@ public class ActivityValidator {
                 && RequestValidator.validateStartDateBeforeToday(activity.getStartHour())
                 && RequestValidator.validateStartDateAfterToday(activity.getStartHour())
                 && !ActivityValidator.isOverlapHour(activity.getStartHour(),activity.getFinishHour());
-    }    
+    }
     
+    public static boolean isValidEdit(Activity activity) {
+        return ActivityValidator.validateHours(activity.getStartHour(), activity.getFinishHour())
+                && RequestValidator.validateStartDateBeforeToday(activity.getStartHour())
+                && RequestValidator.validateStartDateAfterToday(activity.getStartHour());                
+    }
 }

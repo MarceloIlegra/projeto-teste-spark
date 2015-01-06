@@ -5,7 +5,6 @@ import com.ilegra.jt.lancamentodehoras.dao.ActivityTypeDAO;
 import com.ilegra.jt.lancamentodehoras.dao.ProjectDAO;
 import com.ilegra.jt.lancamentodehoras.dao.SubProjectDAO;
 import com.ilegra.jt.lancamentodehoras.dao.GroupDAO;
-import com.ilegra.jt.lancamentodehoras.pojo.Activity;
 import com.ilegra.jt.lancamentodehoras.pojo.User;
 import com.ilegra.jt.lancamentodehoras.repository.ActivityRepository;
 import com.ilegra.jt.lancamentodehoras.repository.ActivityTypeRepository;
@@ -14,6 +13,7 @@ import com.ilegra.jt.lancamentodehoras.repository.ProjectRepository;
 import com.ilegra.jt.lancamentodehoras.repository.SubProjectRepository;
 import com.ilegra.jt.lancamentodehoras.service.ActivityService;
 import com.ilegra.jt.lancamentodehoras.service.UserService;
+import com.ilegra.jt.lancamentodehoras.validators.ActivityValidator;
 import com.ilegra.jt.lancamentodehoras.validators.RequestValidator;
 
 import com.ilegra.jt.lancamentodehoras.viewtransformer.JsonTransformer;
@@ -65,25 +65,27 @@ public class Routes {
 
         before("/atividades", (request, response) -> {
             if (request.session().attribute("login") == null) {
-                response.redirect("/login");
-            }
+                response.redirect("/login");                
+            }            
         });
 
         get("/atividades", (request, response) -> new ModelAndView(map, "lancamentohoras.mustache"), new MustacheTemplateEngine());
 
         get("/atividades/:id", "application/json", (request, response)-> new ActivityService().findById(new Long(request.params(":id"))).get(), new JsonTransformer());        
         
-        put("/atividades/:id", (request, response)->{            
-            if(RequestValidator.isIntervalFormatValid(request.queryParams("data"),request.queryParams("horainicio"),request.queryParams("horafim"))){
-                boolean updated = new ActivityService().update(request.session().attribute("login"),new RequestMapping().mapRequestToActivity(request)); 
-                if(updated)
-                    return "Activity "+request.params(":id")+" updated!";
-                else
-                    return "Activity "+request.params(":id")+" invalid2!";
+        put("/atividades/:id", (request, response)-> { 
+           if (RequestValidator.isIntervalFormatValid(request.queryParams("data"), request.queryParams("horainicio"), request.queryParams("horafim"))) {
+                boolean updated = new ActivityService().update(request.session().attribute("login"), new RequestMapping().mapRequestToActivity(request));
+                if (updated) {
+                    return "Activity " + request.params(":id") + " updated!";
+                } else {
+                    return "Activity " + request.params(":id") + " invalid2!";
+                }
             } else {
-                return "Formato incorreto!";
-            }            
+                return "Formato incorreto!";            
+           }
         });
+        
         
         delete("/atividades/:id", (request,response) -> { 
             boolean delete = new ActivityService().delete(request.session().attribute("login"),new RequestMapping().mapRequestToActivity(request));
