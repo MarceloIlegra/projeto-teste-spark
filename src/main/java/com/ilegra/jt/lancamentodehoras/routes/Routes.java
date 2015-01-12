@@ -88,7 +88,6 @@ public class Routes {
         
         delete("/atividades/:id", (request,response) -> {
             boolean delete = new ActivityService().delete((request.session().attribute("login")),new ActivityService().convertOptionalToActivity(new ActivityService().findById(new Long(request.queryParams("nova-atividade-id")))));
-            System.out.println(delete);
             if(delete){
                     return "Activity" + request.params(":id")+" deleted";                   
                 } else{
