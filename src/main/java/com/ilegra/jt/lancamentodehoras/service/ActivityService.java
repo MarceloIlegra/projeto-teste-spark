@@ -24,10 +24,18 @@ public class ActivityService {
         return false;
     }
     public boolean delete(User user, Activity activity){
-        if(activity.getId() != null){
+        if(activity.getId()!= null){
             new ActivityDAO().delete(user, activity.getProject(), activity);
             return true;
-        }
+        }        
         return false;        
     }
+    public Activity convertOptionalToActivity(Optional<Activity> optionalActivity){
+        Activity activity = new Activity();
+        if(optionalActivity.isPresent()){
+            activity = optionalActivity.get();
+            return activity;
+        }
+        return null;
+    }    
 }

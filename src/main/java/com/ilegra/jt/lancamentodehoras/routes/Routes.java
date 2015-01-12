@@ -13,7 +13,6 @@ import com.ilegra.jt.lancamentodehoras.repository.ProjectRepository;
 import com.ilegra.jt.lancamentodehoras.repository.SubProjectRepository;
 import com.ilegra.jt.lancamentodehoras.service.ActivityService;
 import com.ilegra.jt.lancamentodehoras.service.UserService;
-import com.ilegra.jt.lancamentodehoras.validators.ActivityValidator;
 import com.ilegra.jt.lancamentodehoras.validators.RequestValidator;
 
 import com.ilegra.jt.lancamentodehoras.viewtransformer.JsonTransformer;
@@ -87,13 +86,16 @@ public class Routes {
         });
         
         
-        delete("/atividades/:id", (request,response) -> { 
-            boolean delete = new ActivityService().delete(request.session().attribute("login"),new RequestMapping().mapRequestToActivity(request));
-                if(delete)
+        delete("/atividades/:id", (request,response) -> {
+            System.out.println(new ActivityService().convertOptionalToActivity(new ActivityService().findById(new Long(request.queryParams("nova-atividade-id")))));
+            boolean delete = new ActivityService().delete((request.session().attribute("login")),new ActivityService().convertOptionalToActivity(new ActivityService().findById(new Long(request.queryParams("nova-atividade-id")))));
+            System.out.println(delete);
+            if(delete){
                     return "Activity" + request.params(":id")+" deleted";                   
-                else
-                    return "Activity" + request.params(":id")+" not deleted";                
-    });
+                } else{
+                    return "Activity" + request.params(":id")+" not deleted";
+                }
+        });
         
         get("/atividades/_listagem", (request, response)-> new ModelAndView(map, "_listagem.mustache"), new MustacheTemplateEngine());
         

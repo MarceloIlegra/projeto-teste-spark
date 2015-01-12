@@ -30,10 +30,11 @@ public class ActivityDAO implements ActivityRepository {
     public void delete(User user,Project project, Activity activity) {
         int index = Memory.activities.size();
         for(Activity item : Memory.activities){
-            if(activity.getId().equals(item.getId())){
-                Memory.activities.remove(item);                
-            }
-            index--;
+            if(activity.getId().equals(item.getId())){                
+                Memory.activities.remove(item);
+                break;
+            }  
+            index--;            
         }
     }
 

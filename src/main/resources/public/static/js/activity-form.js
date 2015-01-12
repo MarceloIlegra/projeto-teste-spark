@@ -25,7 +25,7 @@ var showModalNewMode = function () {
 var prepareModal = function (activity) {
     var date = activity.startHour.date;
     console.log(formatHour(activity.startHour.time.hour, activity.startHour.time.minute));
-    if(date.day <10)date.day = "0"+date.day;
+    if(date.day <10)date.day = "0"+ date.day;
     if(date.month<10)date.month = "0"+date.month;
     $("#nova-atividade-data").val(date.day + "/" + date.month + "/" + date.year);
     $("#nova-atividade-horainicio").val(formatHour(activity.startHour.time.hour, activity.startHour.time.minute));
@@ -56,6 +56,7 @@ var loadEvents = function () {
             showModalEditMode(data);
         });
     });
+    
     $("#abrirModalAtividade").click(function (event) {
         event.preventDefault();
         showModalNewMode();
@@ -72,20 +73,6 @@ var loadEvents = function () {
                 loadTable();
             }
         });
-    });
-    $(".excluir_atividade").click(function () {         
-        if (confirm("Deseja excluir esse registro?")) {
-            $.ajax({
-                type: "POST",
-                data: $(this).attr(':id'),
-                url: "/atividades",
-                success: function (message) {                    
-                    loadTable();                    
-                }
-            });
-        } else {
-            return alert("Atividade nao deletada");
-        }
     });
 };
 
