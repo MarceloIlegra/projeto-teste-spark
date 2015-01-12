@@ -6,7 +6,7 @@ import com.ilegra.jt.lancamentodehoras.pojo.User;
 import com.ilegra.jt.lancamentodehoras.validators.ActivityValidator;
 import java.util.Optional;
 
-public class activityService {
+public class ActivityService {
     
     public void save(User user, Activity activity) {                
         if (ActivityValidator.isValid(activity)) new ActivityDAO().add(user,activity);

@@ -11,8 +11,8 @@ import com.ilegra.jt.lancamentodehoras.repository.ActivityTypeRepository;
 import com.ilegra.jt.lancamentodehoras.repository.GroupRepository;
 import com.ilegra.jt.lancamentodehoras.repository.ProjectRepository;
 import com.ilegra.jt.lancamentodehoras.repository.SubProjectRepository;
-import com.ilegra.jt.lancamentodehoras.service.activityService;
 import com.ilegra.jt.lancamentodehoras.service.UserService;
+import com.ilegra.jt.lancamentodehoras.service.ActivityService;
 import com.ilegra.jt.lancamentodehoras.validators.RequestValidator;
 
 import com.ilegra.jt.lancamentodehoras.viewtransformer.JsonTransformer;
@@ -34,7 +34,8 @@ public class Routes {
         GroupRepository groupDAO = new GroupDAO();
         ActivityTypeRepository activityTypeDAO = new ActivityTypeDAO();
         ActivityRepository activityDAO = new ActivityDAO();
-        activityService activityService = new activityService();
+        ActivityService activityService = new ActivityService();
+        RequestMapping requestMapping = new RequestMapping();
 
         map.put("activities", activityDAO.listAll());
         map.put("activities_total_time", activityDAO.getTotalTimeFormated());
@@ -71,11 +72,11 @@ public class Routes {
 
         get("/atividades", (request, response) -> new ModelAndView(map, "lancamentohoras.mustache"), new MustacheTemplateEngine());
 
-        get("/atividades/:id", "application/json", (request, response)-> new activityService().findById(new Long(request.params(":id"))).get(), new JsonTransformer());        
+        get("/atividades/:id", "application/json", (request, response)-> activityService.findById(new Long(request.params(":id"))).get(), new JsonTransformer());        
         
         put("/atividades/:id", (request, response)-> { 
            if (RequestValidator.isIntervalFormatValid(request.queryParams("data"), request.queryParams("horainicio"), request.queryParams("horafim"))) {
-                boolean updated = new activityService().update(request.session().attribute("login"), new RequestMapping().mapRequestToActivity(request));
+                boolean updated = activityService.update(request.session().attribute("login"), requestMapping.mapRequestToActivity(request));
                 if (updated) {
                     return "Activity " + request.params(":id") + " updated!";
                 } else {
@@ -88,7 +89,8 @@ public class Routes {
         
         
         delete("/atividades/:id", (request,response) -> {
-            boolean delete = new activityService().delete((request.session().attribute("login")),new activityService().convertOptionalToActivity(new activityService().findById(new Long(request.queryParams("nova-atividade-id")))));
+            boolean delete = activityService.delete((request.session().attribute("login")),
+                    activityService.convertOptionalToActivity(activityService.findById(new Long(request.queryParams("nova-atividade-id")))));
             if(delete){
                     return "Activity" + request.params(":id")+" deleted";                   
                 } else{
@@ -100,7 +102,7 @@ public class Routes {
         
         post("/atividades", (request, response) -> {
             if(RequestValidator.isIntervalFormatValid(request.queryParams("data"),request.queryParams("horainicio"),request.queryParams("horafim"))){                
-                new activityService().save(request.session().attribute("login"),new RequestMapping().mapRequestToActivity(request));
+                activityService.save(request.session().attribute("login"),requestMapping.mapRequestToActivity(request));
                 return "Rever mensagens";
             }
             return "Formato de campo invalido!";

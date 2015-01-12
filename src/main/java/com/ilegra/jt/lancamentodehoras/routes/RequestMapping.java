@@ -1,7 +1,6 @@
 package com.ilegra.jt.lancamentodehoras.routes;
 
 import com.ilegra.jt.lancamentodehoras.pojo.Activity;
-import com.ilegra.jt.lancamentodehoras.service.activityService;
 import com.ilegra.jt.lancamentodehoras.service.ActivityTypeService;
 import com.ilegra.jt.lancamentodehoras.service.GroupService;
 import com.ilegra.jt.lancamentodehoras.service.ProjectService;
