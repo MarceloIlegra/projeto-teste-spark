@@ -31,11 +31,6 @@ public class ActivityService {
         return false;        
     }
     public Activity convertOptionalToActivity(Optional<Activity> optionalActivity){
-        Activity activity = new Activity();
-        if(optionalActivity.isPresent()){
-            activity = optionalActivity.get();
-            return activity;
-        }
-        return null;
-    }    
+        return (optionalActivity.isPresent()) ?  optionalActivity.get() : null;            
+    }
 }
