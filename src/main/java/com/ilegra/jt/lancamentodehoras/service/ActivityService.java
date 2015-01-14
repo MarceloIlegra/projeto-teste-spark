@@ -2,8 +2,10 @@ package com.ilegra.jt.lancamentodehoras.service;
 
 import com.ilegra.jt.lancamentodehoras.dao.ActivityDAO;
 import com.ilegra.jt.lancamentodehoras.pojo.Activity;
+import com.ilegra.jt.lancamentodehoras.pojo.Project;
 import com.ilegra.jt.lancamentodehoras.pojo.User;
 import com.ilegra.jt.lancamentodehoras.validators.ActivityValidator;
+import java.util.List;
 import java.util.Optional;
 
 public class ActivityService {
@@ -32,5 +34,8 @@ public class ActivityService {
     }
     public Activity convertOptionalToActivity(Optional<Activity> optionalActivity){
         return (optionalActivity.isPresent()) ?  optionalActivity.get() : null;            
+    }
+    public List<Activity> findByMonth(User user,Project project, Short month){
+           return  new ActivityDAO().listByMonth(user, project, month);
     }
 }

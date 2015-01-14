@@ -13,6 +13,7 @@ import com.ilegra.jt.lancamentodehoras.repository.ProjectRepository;
 import com.ilegra.jt.lancamentodehoras.repository.SubProjectRepository;
 import com.ilegra.jt.lancamentodehoras.service.UserService;
 import com.ilegra.jt.lancamentodehoras.service.ActivityService;
+import com.ilegra.jt.lancamentodehoras.service.ProjectService;
 import com.ilegra.jt.lancamentodehoras.validators.RequestValidator;
 
 import com.ilegra.jt.lancamentodehoras.viewtransformer.JsonTransformer;
@@ -102,7 +103,7 @@ public class Routes {
         
         post("/atividades", (request, response) -> {
             if(RequestValidator.isIntervalFormatValid(request.queryParams("data"),request.queryParams("horainicio"),request.queryParams("horafim"))){                
-                activityService.save(request.session().attribute("login"),requestMapping.mapRequestToActivity(request));
+                activityService.save(request.session().attribute("login"),requestMapping.mapRequestToActivity(request));  
                 return "Rever mensagens";
             }
             return "Formato de campo invalido!";

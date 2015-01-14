@@ -7,6 +7,7 @@ import com.ilegra.jt.lancamentodehoras.repository.ActivityRepository;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class ActivityDAO implements ActivityRepository {
 
@@ -28,13 +29,11 @@ public class ActivityDAO implements ActivityRepository {
     
     @Override
     public void delete(User user,Project project, Activity activity) {
-        int index = Memory.activities.size();
         for(Activity item : Memory.activities){
             if(activity.getId().equals(item.getId())){                
                 Memory.activities.remove(item);
                 break;
-            }  
-            index--;            
+            }
         }
     }
 
@@ -52,7 +51,10 @@ public class ActivityDAO implements ActivityRepository {
 
     @Override
     public List<Activity> listByMonth(User user,Project project, Short month) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Memory.activities
+                .stream()
+                .filter((activity)->Objects.equals(activity.getStartHour().getMonth().getValue(),month))
+                .collect(Collectors.toList());
     }
 
     @Override

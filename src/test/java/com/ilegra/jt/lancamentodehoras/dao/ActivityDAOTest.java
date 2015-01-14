@@ -35,5 +35,6 @@ public class ActivityDAOTest {
     @Test
     public void getTotalTimeFormatedReturnStringCorrectlyFormated(){   
         assertEquals("4:30", this.dao.getTotalTimeFormated());        
-    }   
+    }
+    
 }
