@@ -1,6 +1,7 @@
 package com.ilegra.jt.lancamentodehoras.validators;
 
 import com.ilegra.jt.lancamentodehoras.dao.ActivityDAO;
+import com.ilegra.jt.lancamentodehoras.dao.Memory;
 import com.ilegra.jt.lancamentodehoras.pojo.Activity;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -34,7 +35,7 @@ public class ActivityValidator {
                 .size();
         return total > 0;
     }
-
+    
     private static boolean isActivityInsideRange(Activity activity, LocalDateTime startRange, LocalDateTime endRange) {
         return startRange.isBefore(activity.getStartHour())
                 && endRange.isAfter(activity.getFinishHour());
@@ -47,7 +48,7 @@ public class ActivityValidator {
         return time.isAfter(activity.getStartHour())
                 && time.isBefore(activity.getFinishHour());
     }
-
+    
     public static boolean isValid(Activity activity) {
         return ActivityValidator.validateHours(activity.getStartHour(), activity.getFinishHour())
                 && RequestValidator.validateStartDateBeforeToday(activity.getStartHour())

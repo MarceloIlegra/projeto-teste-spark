@@ -23,5 +23,5 @@ public class RequestMapping {
             activity.setId(new Long(request.queryParams("nova-atividade-id")));             
         }   
         return activity;
-    }    
+    }
 }

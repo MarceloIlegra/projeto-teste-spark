@@ -18,8 +18,4 @@ public interface ActivityRepository {
     public List<Activity> listByMonth(User user,Short month);
 
     public List<Activity> listAll();
-    
-    public String getTotalTimeFormated();
-    
-    public long getTotalTimeInMinutes();
 }

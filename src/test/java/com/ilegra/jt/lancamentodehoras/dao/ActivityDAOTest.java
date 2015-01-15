@@ -4,8 +4,6 @@ import com.ilegra.jt.lancamentodehoras.pojo.Activity;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.Arrays;
-import org.junit.Test;
-import static org.junit.Assert.*;
 import org.junit.Before;
 
 public class ActivityDAOTest {
@@ -25,16 +23,4 @@ public class ActivityDAOTest {
         second.setFinishHour(LocalDateTime.of(year, month, dayOfMonth, 15, 30));        
         Memory.activities = Arrays.asList(first, second);        
     }
-    
-    @Test
-    public void getTotalTimeInMinutesSumCorrectly(){   
-        int expected = (4*60)+30;
-        assertEquals(expected, this.dao.getTotalTimeInMinutes());        
-    }
-    
-    @Test
-    public void getTotalTimeFormatedReturnStringCorrectlyFormated(){   
-        assertEquals("4:30", this.dao.getTotalTimeFormated());        
-    }
-    
 }
