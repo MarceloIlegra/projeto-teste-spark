@@ -20,16 +20,16 @@ public class ActivityService {
     
     public void update(User user, Activity activity){
         if (ActivityValidator.isValidEdit(activity))
-            new ActivityDAO().update(user, activity.getProject(), activity);
+            new ActivityDAO().update(user,activity);
     }
     public void delete(User user, Activity activity){
         if(activity.getId()!= null)
-            new ActivityDAO().delete(user, activity.getProject(), activity);
+            new ActivityDAO().delete(user,activity);
     }
     public Activity convertOptionalToActivity(Optional<Activity> optionalActivity){
         return (optionalActivity.isPresent()) ?  optionalActivity.get() : null;            
     }
     public List<Activity> findByMonth(User user,Project project, Short month){
-           return  new ActivityDAO().listByMonth(user, project, month);
+           return  new ActivityDAO().listByMonth(user,month);
     }
 }
