@@ -1,7 +1,6 @@
 package com.ilegra.jt.lancamentodehoras.dao;
 
 import com.ilegra.jt.lancamentodehoras.pojo.Activity;
-import com.ilegra.jt.lancamentodehoras.pojo.Project;
 import com.ilegra.jt.lancamentodehoras.pojo.User;
 import com.ilegra.jt.lancamentodehoras.repository.ActivityRepository;
 import java.util.List;
@@ -28,7 +27,7 @@ public class ActivityDAO implements ActivityRepository {
     }  
     
     @Override
-    public void delete(User user,Project project, Activity activity) {
+    public void delete(User user,Activity activity) {
         for(Activity item : Memory.activities){
             if(activity.getId().equals(item.getId())){                
                 Memory.activities.remove(item);
@@ -38,7 +37,7 @@ public class ActivityDAO implements ActivityRepository {
     }
 
     @Override
-    public void update(User user,Project project, Activity activity) {
+    public void update(User user,Activity activity) {
         int index =0;
         for(Activity item : Memory.activities){
             if(activity.getId().equals(item.getId())){                
@@ -50,7 +49,7 @@ public class ActivityDAO implements ActivityRepository {
     }
 
     @Override
-    public List<Activity> listByMonth(User user,Project project, Short month) {
+    public List<Activity> listByMonth(User user,Short month) {
         return Memory.activities
                 .stream()
                 .filter((activity)->Objects.equals(activity.getStartHour().getMonth().getValue(),month))
@@ -74,8 +73,7 @@ public class ActivityDAO implements ActivityRepository {
     public String getTotalTimeFormated(){
         long minutes = this.getTotalTimeInMinutes();
         long hours = (long)Math.floor(minutes/60);
-        long min = minutes % 60;        
-       
+        long min = minutes % 60;       
         return String.format("%d:%d", hours, min);
     }  
 }
