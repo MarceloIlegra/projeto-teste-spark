@@ -52,7 +52,7 @@ public class ActivityDAO implements ActivityRepository {
     public List<Activity> listByMonth(User user,Short month) {
         return Memory.activities
                 .stream()
-                .filter((activity)->Objects.equals(activity.getStartHour().getMonth().getValue(),month))
+                .filter((activity)->(activity.getStartHour().getMonth().getValue()== month))
                 .collect(Collectors.toList());
     }
 
