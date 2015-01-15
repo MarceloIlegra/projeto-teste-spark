@@ -18,19 +18,13 @@ public class ActivityService {
         return new ActivityDAO().find(id);
     }
     
-    public boolean update(User user, Activity activity){
-        if (ActivityValidator.isValidEdit(activity)){
+    public void update(User user, Activity activity){
+        if (ActivityValidator.isValidEdit(activity))
             new ActivityDAO().update(user, activity.getProject(), activity);
-            return true;
-        }
-        return false;
     }
-    public boolean delete(User user, Activity activity){
-        if(activity.getId()!= null){
+    public void delete(User user, Activity activity){
+        if(activity.getId()!= null)
             new ActivityDAO().delete(user, activity.getProject(), activity);
-            return true;
-        }        
-        return false;        
     }
     public Activity convertOptionalToActivity(Optional<Activity> optionalActivity){
         return (optionalActivity.isPresent()) ?  optionalActivity.get() : null;            
