@@ -24,4 +24,8 @@ public class RequestMapping {
         }   
         return activity;
     }
+    
+    public short requestToShort(Request request){
+        return Short.parseShort(request.queryParams("mes_ano"));
+    }
 }

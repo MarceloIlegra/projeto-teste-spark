@@ -89,31 +89,31 @@ public class Routes {
                 new ModelAndView(map, "lancamentohoras.mustache"), new MustacheTemplateEngine());
         
         get("/atividades/filterByMonth",(request,respose)->
-                activityService.findByMonth(request.session().attribute("login"),(short)11));
+                activityService.findByMonth(request.session().attribute("login"),requestMapping.requestToShort(request)));
                
         get("/atividades/:id", "application/json", (request, response)-> 
-                activityService.findById(new Long(request.params(":id"))).get(), new JsonTransformer());        
+                activityService.findById(new Long(request.params(":id"))).get(), new JsonTransformer());
+        
+        get("/atividades/_listagem", (request, response)-> new ModelAndView(map, "_listagem.mustache"), new MustacheTemplateEngine());
         
         put("/atividades/:id", (request, response)-> { 
            if (RequestValidator.isIntervalFormatValid(request.queryParams("data"), request.queryParams("horainicio"), request.queryParams("horafim"))) {
                  activityService.update(request.session().attribute("login"), requestMapping.mapRequestToActivity(request));
            }
-           return null;
+           return "";
         });
         
         delete("/atividades/:id", (request,response) -> {
             activityService.delete((request.session().attribute("login")),
                     activityService.convertOptionalToActivity(activityService.findById(new Long(request.queryParams("nova-atividade-id")))));
-            return null;
+            return "";
         });
-        
-        get("/atividades/_listagem", (request, response)-> new ModelAndView(map, "_listagem.mustache"), new MustacheTemplateEngine());
         
         post("/atividades", (request, response) -> {
             if(RequestValidator.isIntervalFormatValid(request.queryParams("data"),request.queryParams("horainicio"),request.queryParams("horafim"))){                
-                activityService.save(request.session().attribute("login"),requestMapping.mapRequestToActivity(request));  
+                activityService.save(request.session().attribute("login"),requestMapping.mapRequestToActivity(request)); 
             }
-            return null;
+            return "";
         });             
     }
 }
