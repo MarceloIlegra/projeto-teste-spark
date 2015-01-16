@@ -106,7 +106,7 @@ public class Routes {
         delete("/atividades/:id", (request,response) -> {
             activityService.delete((request.session().attribute("login")),
                     activityService.convertOptionalToActivity(activityService.findById(new Long(request.queryParams("nova-atividade-id")))));
-            return "";
+            return "deletado com sucesso";
         });
         
         post("/atividades", (request, response) -> {
