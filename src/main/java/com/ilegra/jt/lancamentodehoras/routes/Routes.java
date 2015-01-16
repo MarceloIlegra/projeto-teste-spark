@@ -5,7 +5,7 @@ import com.ilegra.jt.lancamentodehoras.dao.ActivityTypeDAO;
 import com.ilegra.jt.lancamentodehoras.dao.ProjectDAO;
 import com.ilegra.jt.lancamentodehoras.dao.SubProjectDAO;
 import com.ilegra.jt.lancamentodehoras.dao.GroupDAO;
-import com.ilegra.jt.lancamentodehoras.dao.Memory;
+import com.ilegra.jt.lancamentodehoras.helpers.WorkHoursFormated;
 import com.ilegra.jt.lancamentodehoras.pojo.User;
 import com.ilegra.jt.lancamentodehoras.repository.ActivityRepository;
 import com.ilegra.jt.lancamentodehoras.repository.ActivityTypeRepository;
@@ -30,29 +30,17 @@ public class Routes {
     private final ActivityService activityService = new ActivityService();
     private final RequestMapping requestMapping = new RequestMapping(); 
     
-    public long getTotalTimeInMinutes(){
-        return Memory.activities
-                .stream()
-                .mapToLong((activity)->activity.getWorkedHours().toMinutes())
-                .sum();        
-    }    
-    public String getTotalTimeFormated(){
-        long minutes = this.getTotalTimeInMinutes();
-        long hours = (long)Math.floor(minutes/60);
-        long min = minutes % 60;       
-        return String.format("%d:%d", hours, min);
-    }  
-    
     public void init() {
         
         ProjectRepository projectDAO = new ProjectDAO();
         SubProjectRepository subprojectDAO = new SubProjectDAO();
         GroupRepository groupDAO = new GroupDAO();
         ActivityTypeRepository activityTypeDAO = new ActivityTypeDAO();
-        ActivityRepository activityDAO = new ActivityDAO();       
+        ActivityRepository activityDAO = new ActivityDAO(); 
+        WorkHoursFormated workHoursFormated = new WorkHoursFormated();
 
         map.put("activities", activityDAO.listAll());
-        map.put("activities_total_time",getTotalTimeFormated());
+        map.put("activities_total_time",workHoursFormated.getTotalTimeFormated());
         map.put("projects", projectDAO.listAll());
         map.put("subProjects", subprojectDAO.listAll());
         map.put("groups", groupDAO.listAll());
