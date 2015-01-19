@@ -1,7 +1,6 @@
 package com.ilegra.jt.lancamentodehoras.dao;
 
 import com.ilegra.jt.lancamentodehoras.pojo.Activity;
-import com.ilegra.jt.lancamentodehoras.pojo.User;
 import com.ilegra.jt.lancamentodehoras.repository.ActivityRepository;
 import java.util.List;
 import java.util.Objects;
@@ -11,10 +10,10 @@ import java.util.stream.Collectors;
 public class ActivityDAO implements ActivityRepository {
 
     @Override
-    public Long add(User user, Activity activity) {
+    public Long add(Activity activity) {
         Memory.currentActivityId++;
         activity.setId(Memory.currentActivityId);
-        activity.setUser(user);
+        activity.setUser(activity.getUser());
         Memory.activities.add(activity);
         return activity.getId();
     }
@@ -27,7 +26,7 @@ public class ActivityDAO implements ActivityRepository {
     }  
     
     @Override
-    public void delete(User user,Activity activity) {
+    public void delete(Activity activity) {
         for(Activity item : Memory.activities){
             if(activity.getId().equals(item.getId())){                
                 Memory.activities.remove(item);
@@ -37,7 +36,7 @@ public class ActivityDAO implements ActivityRepository {
     }
 
     @Override
-    public void update(User user,Activity activity) {
+    public void update(Activity activity) {
         int index =0;
         for(Activity item : Memory.activities){
             if(activity.getId().equals(item.getId())){                
@@ -49,7 +48,7 @@ public class ActivityDAO implements ActivityRepository {
     }
 
     @Override
-    public List<Activity> listByMonth(User user,Short month) {
+    public List<Activity> listByMonth(Short month) {
         return Memory.activities
                 .stream()
                 .filter((activity)->(activity.getStartHour().getMonth().getValue()== month))
