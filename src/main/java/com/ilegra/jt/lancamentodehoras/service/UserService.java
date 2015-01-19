@@ -10,5 +10,9 @@ public class UserService {
         UserDAO dao = new UserDAO();
         Optional<User> userLogin = dao.login(login, password);
         return userLogin;
-    }    
+    }
+    
+   public static User getById(Integer id) {
+        return new UserDAO().getById(id).get();
+    }
 }

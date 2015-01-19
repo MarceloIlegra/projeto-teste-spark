@@ -14,4 +14,12 @@ public class UserDAO implements UserRepository{
                 .filter((valor)->valor.getLogin().equals(login) && valor.getPassword().equals(password))
                 .findFirst();     
     }
+    
+    @Override
+    public Optional<User> getById(int id) {
+        return Memory.users
+                .stream()
+                .filter((user) -> id == user.getId())
+                .findFirst();
+    }
 }

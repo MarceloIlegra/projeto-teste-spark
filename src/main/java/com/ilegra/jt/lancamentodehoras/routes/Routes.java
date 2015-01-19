@@ -77,7 +77,7 @@ public class Routes {
                 new ModelAndView(map, "lancamentohoras.mustache"), new MustacheTemplateEngine());
         
         get("/atividades/filterByMonth",(request,respose)->
-                activityService.findByMonth(requestMapping.requestToShort(request)));
+                activityService.findByMonth(request.session().attribute("login"),requestMapping.requestToShort(request)));
                
         get("/atividades/:id", "application/json", (request, response)-> 
                 activityService.findById(new Long(request.params(":id"))).get(), new JsonTransformer());

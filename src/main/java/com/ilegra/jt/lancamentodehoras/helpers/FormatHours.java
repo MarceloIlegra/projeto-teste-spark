@@ -2,7 +2,7 @@ package com.ilegra.jt.lancamentodehoras.helpers;
 
 import com.ilegra.jt.lancamentodehoras.dao.Memory;
 
-public class WorkHoursFormated {
+public class FormatHours {
     
     private long getTotalTimeInMinutes(){
         return Memory.activities
