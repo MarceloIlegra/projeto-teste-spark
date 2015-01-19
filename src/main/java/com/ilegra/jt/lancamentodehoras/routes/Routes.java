@@ -5,7 +5,7 @@ import com.ilegra.jt.lancamentodehoras.dao.ActivityTypeDAO;
 import com.ilegra.jt.lancamentodehoras.dao.ProjectDAO;
 import com.ilegra.jt.lancamentodehoras.dao.SubProjectDAO;
 import com.ilegra.jt.lancamentodehoras.dao.GroupDAO;
-import com.ilegra.jt.lancamentodehoras.helpers.WorkHoursFormated;
+import com.ilegra.jt.lancamentodehoras.helpers.FormatHours;
 import com.ilegra.jt.lancamentodehoras.pojo.User;
 import com.ilegra.jt.lancamentodehoras.repository.ActivityRepository;
 import com.ilegra.jt.lancamentodehoras.repository.ActivityTypeRepository;
@@ -37,7 +37,7 @@ public class Routes {
         GroupRepository groupDAO = new GroupDAO();
         ActivityTypeRepository activityTypeDAO = new ActivityTypeDAO();
         ActivityRepository activityDAO = new ActivityDAO(); 
-        WorkHoursFormated workHoursFormated = new WorkHoursFormated();
+        FormatHours workHoursFormated = new FormatHours();
 
         map.put("activities", activityDAO.listAll());
         map.put("activities_total_time",workHoursFormated.getTotalTimeFormated());
@@ -77,7 +77,7 @@ public class Routes {
                 new ModelAndView(map, "lancamentohoras.mustache"), new MustacheTemplateEngine());
         
         get("/atividades/filterByMonth",(request,respose)->
-                activityService.findByMonth(request.session().attribute("login"),requestMapping.requestToShort(request)));
+                activityService.findByMonth(requestMapping.requestToShort(request)));
                
         get("/atividades/:id", "application/json", (request, response)-> 
                 activityService.findById(new Long(request.params(":id"))).get(), new JsonTransformer());
@@ -86,22 +86,22 @@ public class Routes {
         
         put("/atividades/:id", (request, response)-> { 
            if (RequestValidator.isIntervalFormatValid(request.queryParams("data"), request.queryParams("horainicio"), request.queryParams("horafim"))) {
-                 activityService.update(request.session().attribute("login"), requestMapping.mapRequestToActivity(request));
+                 activityService.update(requestMapping.mapRequestToActivity(request));
            }
            return "";
         });
         
         delete("/atividades/:id", (request,response) -> {
-            activityService.delete((request.session().attribute("login")),
-                    activityService.convertOptionalToActivity(activityService.findById(new Long(request.queryParams("nova-atividade-id")))));
+            activityService.delete(activityService.convertOptionalToActivity(activityService.findById(new Long(request.queryParams("nova-atividade-id")))));
             return "deletado com sucesso";
         });
         
         post("/atividades", (request, response) -> {
+            System.out.println(requestMapping.mapRequestToActivity(request));
             if(RequestValidator.isIntervalFormatValid(request.queryParams("data"),request.queryParams("horainicio"),request.queryParams("horafim"))){                
-                activityService.save(request.session().attribute("login"),requestMapping.mapRequestToActivity(request)); 
+                activityService.save(requestMapping.mapRequestToActivity(request)); 
             }
-            return "";
+            return request.session().attribute("login");
         });             
     }
 }
