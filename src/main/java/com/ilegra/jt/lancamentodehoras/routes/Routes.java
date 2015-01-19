@@ -92,16 +92,18 @@ public class Routes {
         });
         
         delete("/atividades/:id", (request,response) -> {
-            activityService.delete(activityService.convertOptionalToActivity(activityService.findById(new Long(request.queryParams("nova-atividade-id")))));
-            return "deletado com sucesso";
+            activityService.findById(new Long(request.queryParams("nova-atividade-id"))).map((activity)->{
+                activityService.delete(activity);
+                return null;
+            });
+            return "";
         });
         
         post("/atividades", (request, response) -> {
-            System.out.println(requestMapping.mapRequestToActivity(request));
             if(RequestValidator.isIntervalFormatValid(request.queryParams("data"),request.queryParams("horainicio"),request.queryParams("horafim"))){                
                 activityService.save(requestMapping.mapRequestToActivity(request)); 
             }
-            return request.session().attribute("login");
+            return "";
         });             
     }
 }
