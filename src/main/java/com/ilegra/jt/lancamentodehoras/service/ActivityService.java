@@ -25,10 +25,6 @@ public class ActivityService {
         if(activity.getId()!= null)new ActivityDAO().delete(activity);
     }
     
-    public Activity convertOptionalToActivity(Optional<Activity> optionalActivity){
-        return (optionalActivity.isPresent()) ?  optionalActivity.get() : null;            
-    }
-    
     public List<Activity> findByMonth(User user ,Short month){
            return  new ActivityDAO().listByMonth(user,month);
     }
