@@ -29,16 +29,18 @@
                 <td>{{description}}</td>
                 <td>{{activityType.description}}</td>
                 <td>{{workedHoursFormated}}</td>
-                <td><a href="atividades/{{id}}" class="editar_atividade">Editar</a></td>
-                <td><a method ="delete" href="atividades/{{id}}" class="excluir_atividade">Excluir</a></td>
+                <td><a href="atividades/{{id}}" title="Editar" class="editar_atividade"><img src="static/imagens/editar.png"></a>
+                    <a href="atividades/{{id}}" title="Deletar" class="excluir_atividade"><img src="static/imagens/deletar.png"></a>
+                    <a href="atividades/{{id}}" title="Duplicar" class="duplicar_atividade"><img src="static/imagens/duplicar.png"></a>
+                </td>    
              </tr>                            
          {{/activities}}                  
      </tbody>
      <tfoot>
          <tr>
             <td colspan="8"></td>
+            <td>Total Hrs:</td>
             <td>{{activities_total_time}}</td>
-            <td>Ações</td>
          </tr>                            
      </tfoot>
    </table>
