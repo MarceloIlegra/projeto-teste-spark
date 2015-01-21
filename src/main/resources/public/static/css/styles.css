@@ -43,7 +43,8 @@ caption {
 }
 
 #logo {
-	width: 120px;
+	width: 148px;
+        height: 120px;
 	display:inline-block;
 	margin-top: 15px;
 	margin-bottom: 15px;
@@ -66,10 +67,6 @@ caption {
 
 
 tr:hover td {
-	background-color: #c0c0c0;
-}
-
-#pesquisar {
 	background-color: #c0c0c0;
 }
 
@@ -113,7 +110,7 @@ footer{
 }
 
 
-.editar,.duplicar,.deletar{
+.editar_atividade{
 	cursor:pointer;
 }
 
@@ -128,4 +125,8 @@ Passar para temas
 
 #logout{
         margin-left: 850px;  
+}
+
+#logo {
+	background-image: url("/static/imagens/logo_ilegra.png");
 }
