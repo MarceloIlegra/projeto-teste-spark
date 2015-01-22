@@ -130,3 +130,7 @@ Passar para temas
 #logo {
 	background-image: url("/static/imagens/logo_ilegra.png");
 }
+
+h4{
+    text-align:center;
+}
