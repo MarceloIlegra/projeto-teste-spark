@@ -1,78 +1,79 @@
-               <form  role="form" class="form-horizontal" style="display:none;" id="formulario_pesquisa">
-                  <br />
-                  <div class="jumbotron">				  
-					 <div class="form-group">
-                                    <label for="text" class="control-label col-md-2">Colaborador</label>
-                                    <div class="col-md-6">
-                                       <input type="text" name="colaborador" id="colaborador" class="form-control"/>
-                                    </div>
-                                 </div>								 
-					<div class="form-group">
-                                    <label for="data" class="control-label col-md-2">Mês/Ano</label>
-                                    <div class="col-md-3">
-                                       <input type="month" name="mes_ano" id="mes_ano" class="form-control"/>
-                                    </div>
-                                 </div>								 
-                    <div class="form-group">
-                        <label for="data" class="control-label col-md-2">Data</label>
-                        <div class="col-md-3">
-                           <input type="date" name="data" id="data" class="form-control"/>
-                        </div>
-                     </div>					 
-                     <div class="form-group">
-                        <label for="projeto" class="control-label col-md-2" >Projeto</label>
-                        <div class="col-md-6">
-                           <select name="projeto" id="projeto" class="form-control">
-                              <option value="">Selecione...</option>
+<form role="form" class="form-horizontal" style="display:none;" id="formulario_pesquisa">
+    <br>
+        <div class="jumbotron">				  
+            <div class="form-group">
+                <label for="text" class="control-label col-md-2">Colaborador</label>
+                    <div class="col-md-6">
+                        <input type="text" name="colaborador" id="colaborador" class="form-control"/>
+                    </div>
+            </div>								 
+            <div class="form-group">
+                <label for="data" class="control-label col-md-2">Mês/Ano</label>
+                    <div class="col-md-3">
+                        <input type="month" name="mes_ano" id="mes_ano" class="form-control"/>
+                    </div>
+            </div>								 
+            <div class="form-group">
+                <label for="data" class="control-label col-md-2">Data</label>
+                    <div class="col-md-3">
+                        <input type="date" name="data" id="data" class="form-control"/>
+                    </div>
+            </div>					 
+            <div class="form-group">
+                <label for="projeto" class="control-label col-md-2" >Projeto</label>
+                    <div class="col-md-6">
+                        <select name="projeto" id="projeto" class="form-control">
+                            <option value="">Selecione...</option>
                                 {{#projects}}
-                                   <option value="{{id}}">{{description}}</option>
+                            <option value="{{id}}">{{description}}</option>
                                 {{/projects}}
-                           </select>
-                        </div>
-                     </div>					 
-                     <div class="form-group">
-                        <label for="subprojeto" class="control-label col-md-2">Sub-projeto</label>
-                        <div class="col-md-6">
-                           <select name="subprojeto" id="subprojeto" class="form-control">
-                              <option value="">Selecione...</option>
+                        </select>
+                    </div>
+            </div>					 
+            <div class="form-group">
+                <label for="subprojeto" class="control-label col-md-2">Sub-projeto</label>
+                    <div class="col-md-6">
+                        <select name="subprojeto" id="subprojeto" class="form-control">
+                            <option value="">Selecione...</option>
                                 {{#subProjects}}
-                                    <option value="{{id}}">{{description}}</option>
+                            <option value="{{id}}">{{description}}</option>
                                 {{/subProjects}}
-                           </select>
-                        </div>
-                     </div>					 
-                     <div class="form-group">
-                        <label for="grupo" class="control-label col-md-2">Grupo</label>
-                        <div class="col-md-6">
-                           <select name="grupo" id="grupo" class="form-control">
-                             <option value="">Selecione...</option>
+                        </select>
+                    </div>
+            </div>					 
+            <div class="form-group">
+                <label for="grupo" class="control-label col-md-2">Grupo</label>
+                    <div class="col-md-6">
+                        <select name="grupo" id="grupo" class="form-control">
+                            <option value="">Selecione...</option>
                                 {{#groups}}
-                                    <option value="{{id}}">{{description}}</option>
+                            <option value="{{id}}">{{description}}</option>
                                 {{/groups}}
-                           </select>
-                        </div>
-                     </div>					 
-                     <div class="form-group">
-                        <label for="tipo_atividade" class="control-label col-md-2">Tipo Atividade</label>
-                        <div class="col-md-6">
-                           <select name="tipo_atividade" id="tipo_atividade" class="form-control">
-                             <option value="">Selecione...</option>
-                                    {{#activityType}}
-                                        <option value="{{id}}">{{description}}</option>
-                                    {{/activityType}}
-                           </select>
-                        </div>
-                     </div>					 
-                     <div class="form-group">
-                        <label for="descricao" id="descricao" class="control-label col-md-2">Descrição</label>
-                        <div class="col-md-6">
-                           <textarea rows="3" cols="50" class ="form-control descricao_area"></textarea>
-                        </div>
-                     </div>					 
-                     <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                           <input type="submit" value="Pesquisar" id="pesquisar" class="btn botoes"/>
-                        </div>
-                     </div>					 
-                  </div>
-               </form>
+                        </select>
+                     </div>
+            </div>					 
+            <div class="form-group">
+                <label for="tipo_atividade" class="control-label col-md-2">Tipo Atividade</label>   
+                    <div class="col-md-6">
+                        <select name="tipo_atividade" id="tipo_atividade" class="form-control">
+                            <option value="">Selecione...</option>
+                                {{#activityType}}
+                            <option value="{{id}}">{{description}}</option>
+                                {{/activityType}}
+                        </select>
+                    </div>
+            </div>					 
+            <div class="form-group">
+                <label for="descricao" id="descricao" class="control-label col-md-2">Descrição</label>
+                    <div class="col-md-6">
+                        <textarea rows="3" cols="50" class ="form-control descricao_area"></textarea>
+                    </div>
+            </div>					 
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Pesquisar" id="pesquisar" class="btn botoes"/>
+                </div>
+            </div>					 
+        </div>
+    </br>    
+</form>
