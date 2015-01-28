@@ -82,6 +82,16 @@ public class Routes {
         get("/atividades/:id", "application/json", (request, response)-> 
                 activityService.findById(new Long(request.params(":id"))).get(), new JsonTransformer());
         
+       get("/atividades/search",(request,response)->
+                activityService.search(requestMapping.requestToProject(request),
+                        requestMapping.requestToSubProject(request),
+                        requestMapping.requestToGroup(request),
+                        requestMapping.requestToActivityType(request),
+                        request.queryParams("descricao")));
+       
+       get("atividades/searchString",(request,response)->
+               activityService.searchString(request.queryParams("descricao")));
+      
         get("/atividades/_listagem", (request, response)-> new ModelAndView(map, "_listagem.mustache"), new MustacheTemplateEngine());
         
         put("/atividades/:id", (request, response)-> { 
