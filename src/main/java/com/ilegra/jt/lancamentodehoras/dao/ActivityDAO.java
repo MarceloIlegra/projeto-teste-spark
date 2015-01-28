@@ -1,8 +1,13 @@
 package com.ilegra.jt.lancamentodehoras.dao;
 
 import com.ilegra.jt.lancamentodehoras.pojo.Activity;
+import com.ilegra.jt.lancamentodehoras.pojo.ActivityType;
+import com.ilegra.jt.lancamentodehoras.pojo.Group;
+import com.ilegra.jt.lancamentodehoras.pojo.Project;
+import com.ilegra.jt.lancamentodehoras.pojo.SubProject;
 import com.ilegra.jt.lancamentodehoras.pojo.User;
 import com.ilegra.jt.lancamentodehoras.repository.ActivityRepository;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -59,5 +64,23 @@ public class ActivityDAO implements ActivityRepository {
     @Override
     public List<Activity> listAll() {
         return Memory.activities;
-    }   
+    }
+    
+    public List<Activity> search(Project project,SubProject subProject,Group group,ActivityType activityType,String descricao){
+        return Memory.activities
+                .stream()
+                .filter((activity) ->(activity.getProject().equals(project) ||
+                        (activity.getSubProject().equals(subProject)||
+                        (activity.getGroup().equals(group)) ||
+                        (activity.getActivityType().equals(activityType))||
+                        (activity.getDescription().contains(descricao)))))
+                .collect(Collectors.toList());
+    }
+    
+    public List<Activity> searchString(String descricao){
+        return Memory.activities
+                .stream()
+                .filter((activity)-> (activity.getDescription().contains(descricao)))
+                .collect(Collectors.toList());
+    }
 }
