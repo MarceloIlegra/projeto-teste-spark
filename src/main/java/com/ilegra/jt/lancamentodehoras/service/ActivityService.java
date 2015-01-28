@@ -2,8 +2,13 @@ package com.ilegra.jt.lancamentodehoras.service;
 
 import com.ilegra.jt.lancamentodehoras.dao.ActivityDAO;
 import com.ilegra.jt.lancamentodehoras.pojo.Activity;
+import com.ilegra.jt.lancamentodehoras.pojo.ActivityType;
+import com.ilegra.jt.lancamentodehoras.pojo.Group;
+import com.ilegra.jt.lancamentodehoras.pojo.Project;
+import com.ilegra.jt.lancamentodehoras.pojo.SubProject;
 import com.ilegra.jt.lancamentodehoras.pojo.User;
 import com.ilegra.jt.lancamentodehoras.validators.ActivityValidator;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,5 +32,13 @@ public class ActivityService {
     
     public List<Activity> findByMonth(User user ,Short month){
            return  new ActivityDAO().listByMonth(user,month);
+    }
+    
+    public List<Activity> search(Project project ,SubProject subProject ,Group group ,ActivityType activityType,String descricao){
+        return new ActivityDAO().search(project,subProject,group,activityType,descricao);
+    }
+    
+    public List<Activity> searchString(String descricao){
+        return new ActivityDAO().searchString(descricao);
     }
 }
