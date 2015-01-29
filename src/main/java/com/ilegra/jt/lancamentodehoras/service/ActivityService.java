@@ -8,7 +8,6 @@ import com.ilegra.jt.lancamentodehoras.pojo.Project;
 import com.ilegra.jt.lancamentodehoras.pojo.SubProject;
 import com.ilegra.jt.lancamentodehoras.pojo.User;
 import com.ilegra.jt.lancamentodehoras.validators.ActivityValidator;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
