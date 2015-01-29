@@ -83,10 +83,10 @@ public class Routes {
                 activityService.findById(new Long(request.params(":id"))).get(), new JsonTransformer());
         
        get("/atividades/search",(request,response)->
-                activityService.search(requestMapping.requestToProject(request),
-                        requestMapping.requestToSubProject(request),
-                        requestMapping.requestToGroup(request),
-                        requestMapping.requestToActivityType(request),
+                activityService.search(requestMapping.requestToProject(request).get(),
+                        requestMapping.requestToSubProject(request).get(),
+                        requestMapping.requestToGroup(request).get(),
+                        requestMapping.requestToActivityType(request).get(),
                         request.queryParams("descricao")));
        
        get("atividades/searchString",(request,response)->
