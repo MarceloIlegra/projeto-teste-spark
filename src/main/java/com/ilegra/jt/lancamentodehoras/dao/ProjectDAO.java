@@ -16,7 +16,6 @@ public class ProjectDAO implements ProjectRepository {
 
     @Override
     public Optional<Project> getById(int id) {
-
         return Memory.projects
                 .stream()
                 .filter((project) -> id == project.getId())
