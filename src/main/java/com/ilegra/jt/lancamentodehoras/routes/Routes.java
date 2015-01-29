@@ -82,7 +82,7 @@ public class Routes {
         get("/atividades/:id", "application/json", (request, response)-> 
                 activityService.findById(new Long(request.params(":id"))).get(), new JsonTransformer());
         
-       get("/atividades/search",(request,response)->
+       post("/atividades/search",(request,response)->
                 activityService.search(requestMapping.requestToProject(request).get(),
                         requestMapping.requestToSubProject(request).get(),
                         requestMapping.requestToGroup(request).get(),
