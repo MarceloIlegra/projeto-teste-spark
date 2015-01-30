@@ -29,6 +29,7 @@ public class Routes {
     private final Map map = new HashMap();
     private final ActivityService activityService = new ActivityService();
     private final RequestMapping requestMapping = new RequestMapping(); 
+    private final MustacheTemplateEngine mustacheTemplateEngine = new MustacheTemplateEngine();
     
     public void init() {
         
@@ -46,9 +47,9 @@ public class Routes {
         map.put("groups", groupDAO.listAll());
         map.put("activityType", activityTypeDAO.listAll());
 
-        get("/", (request, response) -> new ModelAndView(null, "login.mustache"), new MustacheTemplateEngine());
+        get("/", (request, response) -> new ModelAndView(null, "login.mustache"),mustacheTemplateEngine);
 
-        get("/login", (request, response) -> new ModelAndView(null, "login.mustache"), new MustacheTemplateEngine());
+        get("/login", (request, response) -> new ModelAndView(null, "login.mustache"),mustacheTemplateEngine);
 
         get("/logout", (request, response) -> {
             request.session().removeAttribute("login");
@@ -74,7 +75,7 @@ public class Routes {
         });
 
         get("/atividades", (request, response) -> 
-                new ModelAndView(map, "lancamentohoras.mustache"), new MustacheTemplateEngine());
+                new ModelAndView(map, "lancamentohoras.mustache"),mustacheTemplateEngine);
         
         get("/atividades/filterByMonth",(request,respose)->
                 activityService.findByMonth(request.session().attribute("login"),requestMapping.requestToShort(request)));
@@ -92,7 +93,7 @@ public class Routes {
        get("atividades/searchString",(request,response)->
                activityService.searchString(request.queryParams("descricao")));
       
-        get("/atividades/_listagem", (request, response)-> new ModelAndView(map, "_listagem.mustache"), new MustacheTemplateEngine());
+        get("/atividades/_listagem", (request, response)-> new ModelAndView(map, "_listagem.mustache"), mustacheTemplateEngine);
         
         put("/atividades/:id", (request, response)-> { 
            if (RequestValidator.isIntervalFormatValid(request.queryParams("data"), request.queryParams("horainicio"), request.queryParams("horafim"))) {
