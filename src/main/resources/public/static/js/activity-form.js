@@ -2,6 +2,10 @@ var openModal = function () {
     $("#novaAtividadeModal").modal("show");
 };
 
+var closeModal = function () {
+    $("#novaAtividadeModal").modal("hide");
+};
+
 var clearModal = function () {
     $("#formulario_nova_atividade").find("textarea").val("");
     $("#formulario_nova_atividade").find("input").not("input[type=submit]").val("");
@@ -69,7 +73,7 @@ var loadEvents = function () {
             data: $(this).serialize(),
             type: $(this).attr("method"),
             success: function (message) {
-                clearModal();
+                closeModal();                
                 loadTable();
             }
         });
