@@ -23,6 +23,9 @@
                <div class="navbar-header">
                   <div id="logo-listagem"></div>
                   <h3 id="logo-texto">Sistema de Horas</h3>
+                    <div class="botao_logout">
+                        <a href="/logout" class="btn botoes" id="logout">Logout</a>
+                    </div>
                </div>
             </div>
          </header>
@@ -34,7 +37,6 @@
                <button type="button" class="btn botoes" id="abrirModalAtividade" data-toggle="modal" data-target="#novaAtividadeModal">
                Nova Atividade
                </button>
-                <a href="/logout" class="btn botoes" id="logout">Logout</a>	   
                {{>_modal_atividade}}			   
                {{>_pesquisa_form}}
             </section>

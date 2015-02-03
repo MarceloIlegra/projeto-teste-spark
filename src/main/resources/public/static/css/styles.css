@@ -134,3 +134,8 @@ Passar para temas
 h4{
     text-align:center;
 }
+
+.botao_logout{
+	text-align: right;
+        width: 1142px;
+}
