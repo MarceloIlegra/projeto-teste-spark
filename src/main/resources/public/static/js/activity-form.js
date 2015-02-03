@@ -59,6 +59,7 @@ var loadEvents = function () {
         $.getJSON($(this).attr("href"), function (data) {
             showModalEditMode(data);
         });
+        closeModal();
     });
     
     $("#abrirModalAtividade").click(function (event) {
