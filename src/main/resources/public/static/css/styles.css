@@ -35,7 +35,7 @@ caption {
 	}
 }
 
-#titulo-login{
+#titulo-TelaLogin{
 	margin-left: 20px;
 	color: white;
 	display: inline-block;
@@ -43,6 +43,8 @@ caption {
 	vertical-align: middle;
 	font-size: 20px;
 	color:#717173;
+        margin-left: 183px;
+        margin-top: 66px;
 }
 
 #logo {
@@ -133,8 +135,11 @@ Passar para temas
         width: 67px;
 }
 
-#logo {
+.logoTela_incial{
 	background-image: url("/static/imagens/logo_ilegra.png");
+        width: 158px;
+        height: 121px;
+        
 }
 
 h4{
