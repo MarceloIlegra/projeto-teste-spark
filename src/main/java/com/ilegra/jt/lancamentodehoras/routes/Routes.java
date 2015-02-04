@@ -41,7 +41,7 @@ public class Routes {
         FormatHours workHoursFormated = new FormatHours();
 
         map.put("activities", activityDAO.listAll());
-        map.put("activities_total_time",workHoursFormated.getTotalTimeFormated());
+        updateWorkedTime(workHoursFormated);
         map.put("projects", projectDAO.listAll());
         map.put("subProjects", subprojectDAO.listAll());
         map.put("groups", groupDAO.listAll());
@@ -98,6 +98,7 @@ public class Routes {
         put("/atividades/:id", (request, response)-> { 
            if (RequestValidator.isIntervalFormatValid(request.queryParams("data"), request.queryParams("horainicio"), request.queryParams("horafim"))) {
                  activityService.update(requestMapping.mapRequestToActivity(request));
+                 updateWorkedTime(workHoursFormated);
            }
            return "";
         });
@@ -105,6 +106,7 @@ public class Routes {
         delete("/atividades/:id", (request,response) -> {
             activityService.findById(new Long(request.queryParams("nova-atividade-id"))).map((activity)->{
                 activityService.delete(activity);
+                updateWorkedTime(workHoursFormated);
                 return null;
             });
             return "";
@@ -113,8 +115,13 @@ public class Routes {
         post("/atividades", (request, response) -> {
             if(RequestValidator.isIntervalFormatValid(request.queryParams("data"),request.queryParams("horainicio"),request.queryParams("horafim"))){                
                 activityService.save(requestMapping.mapRequestToActivity(request)); 
+                updateWorkedTime(workHoursFormated);
             }
             return "";
         });             
+    }
+
+    private void updateWorkedTime(FormatHours workHoursFormated) {
+        map.put("activities_total_time",workHoursFormated.getTotalTimeFormated());
     }
 }
