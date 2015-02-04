@@ -1,10 +1,14 @@
-var openModal = function () {
+var openModal = function(){
     $("#novaAtividadeModal").modal("show");
 };
 
 var closeModal = function () {
     $("#novaAtividadeModal").modal("hide");
 };
+
+$('#novaAtividadeModal').on('shown.bs.modal', function () {
+$('#nova-atividade-horainicio').focus();
+});
 
 var clearModal = function () {
     $("#formulario_nova_atividade").find("textarea").val("");
