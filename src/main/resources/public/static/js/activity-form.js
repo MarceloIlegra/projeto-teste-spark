@@ -1,23 +1,22 @@
 var openModal = function(){
-    $("#novaAtividadeModal").modal("show");
+  $("#novaAtividadeModal").modal("show");
 };
-
-var closeModal = function () {
-    $("#novaAtividadeModal").modal("hide");
-};
-
-$('#novaAtividadeModal').on('shown.bs.modal', function () {
-$('#nova-atividade-horainicio').focus();
-});
 
 var clearModal = function () {
     $("#formulario_nova_atividade").find("textarea").val("");
-    $("#formulario_nova_atividade").find("input").not("input[type=submit]").val("");
+    $("#nova-atividade-horainicio").val(($("#nova-atividade-horafim").val()));
+    $("#nova-atividade-horafim").val("");
     $("select").val("");
 };
 
 var showModalEditMode = function (activity) {
     $("#formulario_nova_atividade").prop("method", "put");
+    $("#formulario_nova_atividade").prop("action", "/atividades/" + activity.id);
+    prepareModal(activity);
+    openModal();
+};
+
+var showModalCloneMode = function (activity){
     $("#formulario_nova_atividade").prop("action", "/atividades/" + activity.id);
     prepareModal(activity);
     openModal();
@@ -63,8 +62,16 @@ var loadEvents = function () {
         $.getJSON($(this).attr("href"), function (data) {
             showModalEditMode(data);
         });
-        closeModal();
     });
+    
+    $(".duplicar_atividade").click(function (event){
+        event.preventDefault();
+        $.getJSON($(this).attr("href"), function (data) {
+            showModalCloneMode(data);
+        });
+        clearModal();
+    });
+    
     
     $("#abrirModalAtividade").click(function (event) {
         event.preventDefault();
@@ -78,7 +85,7 @@ var loadEvents = function () {
             data: $(this).serialize(),
             type: $(this).attr("method"),
             success: function (message) {
-                closeModal();                
+                showModalNewMode();
                 loadTable();
             }
         });
