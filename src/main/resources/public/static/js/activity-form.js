@@ -2,6 +2,10 @@ var openModal = function(){
   $("#novaAtividadeModal").modal("show");
 };
 
+$('#novaAtividadeModal').on('shown.bs.modal', function () {
+$('#nova-atividade-horainicio').focus();
+});
+
 var clearModal = function () {
     $("#formulario_nova_atividade").find("textarea").val("");
     $("#nova-atividade-horainicio").val(($("#nova-atividade-horafim").val()));
