@@ -118,7 +118,15 @@ public class Routes {
                 updateWorkedTime(workHoursFormated);
             }
             return "";
-        });             
+        }); 
+        
+        post("/atividades/:id", (request, response) -> {
+            if(RequestValidator.isIntervalFormatValid(request.queryParams("data"),request.queryParams("horainicio"),request.queryParams("horafim"))){                
+                activityService.save(requestMapping.mapRequestToActivity(request)); 
+                updateWorkedTime(workHoursFormated);
+            }
+            return "";
+        }); 
     }
 
     private void updateWorkedTime(FormatHours workHoursFormated) {
