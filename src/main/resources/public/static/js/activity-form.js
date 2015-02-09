@@ -94,6 +94,19 @@ var loadEvents = function () {
             }
         });
     });
+    
+    $(".excluir_atividade").click(function (){
+        if(confirm("Você deseja excluir este registro?")){
+         $.ajax({
+            type: "DELETE",            
+            url:  $(this).attr("href"),
+            success: function(message){
+                loadTable();
+        }
+        });
+        };
+        return false;
+    });
 };
 
 $(document).ready(function () {
