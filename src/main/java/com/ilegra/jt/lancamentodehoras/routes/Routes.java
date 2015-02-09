@@ -79,18 +79,18 @@ public class Routes {
         
         get("/atividades/filterByMonth",(request,respose)->
                 activityService.findByMonth(request.session().attribute("login"),requestMapping.requestToShort(request)));
-               
+        
         get("/atividades/:id", "application/json", (request, response)-> 
                 activityService.findById(new Long(request.params(":id"))).get(), new JsonTransformer());
         
-       post("/atividades/search",(request,response)->
+        post("/atividades/search",(request,response)->
                 activityService.search(requestMapping.requestToProject(request).get(),
                         requestMapping.requestToSubProject(request).get(),
                         requestMapping.requestToGroup(request).get(),
                         requestMapping.requestToActivityType(request).get(),
                         request.queryParams("descricao")));
        
-       get("atividades/searchString",(request,response)->
+        get("atividades/searchString",(request,response)->
                activityService.searchString(request.queryParams("descricao")));
       
         get("/atividades/_listagem", (request, response)-> new ModelAndView(map, "_listagem.mustache"), mustacheTemplateEngine);
@@ -104,7 +104,7 @@ public class Routes {
         });
         
         delete("/atividades/:id", (request,response) -> {
-            activityService.findById(new Long(request.queryParams("nova-atividade-id"))).map((activity)->{
+            activityService.findById(new Long(request.params(":id"))).map((activity)->{
                 activityService.delete(activity);
                 updateWorkedTime(workHoursFormated);
                 return null;
