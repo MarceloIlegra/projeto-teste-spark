@@ -75,11 +75,4 @@ public class ActivityDAO implements ActivityRepository {
                         (activity.getDescription().toLowerCase().contains(descricao.toLowerCase())))))
                 .collect(Collectors.toList());
     }
-    
-    public List<Activity> searchString(String descricao){
-        return Memory.activities
-                .stream()
-                .filter((activity)-> (activity.getDescription().toLowerCase().contains(descricao.toLowerCase())))
-                .collect(Collectors.toList());
-    }
 }

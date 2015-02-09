@@ -90,9 +90,6 @@ public class Routes {
                         requestMapping.requestToActivityType(request).get(),
                         request.queryParams("descricao")));
        
-        get("atividades/searchString",(request,response)->
-               activityService.searchString(request.queryParams("descricao")));
-      
         get("/atividades/_listagem", (request, response)-> new ModelAndView(map, "_listagem.mustache"), mustacheTemplateEngine);
         
         put("/atividades/:id", (request, response)-> { 

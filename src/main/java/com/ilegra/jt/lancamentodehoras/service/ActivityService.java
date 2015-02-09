@@ -36,8 +36,4 @@ public class ActivityService {
     public List<Activity> search(Project project ,SubProject subProject ,Group group ,ActivityType activityType,String descricao){
         return new ActivityDAO().search(project,subProject,group,activityType,descricao);
     }
-    
-    public List<Activity> searchString(String descricao){
-        return new ActivityDAO().searchString(descricao);
-    }
 }
