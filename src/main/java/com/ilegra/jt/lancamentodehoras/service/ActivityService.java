@@ -22,7 +22,7 @@ public class ActivityService {
     }  
     
     public void update(Activity activity){
-        if (ActivityValidator.isValidEdit(activity))new ActivityDAO().update(activity);
+        if (ActivityValidator.isValid(activity))new ActivityDAO().update(activity);
     }
     
     public void delete(Activity activity){
