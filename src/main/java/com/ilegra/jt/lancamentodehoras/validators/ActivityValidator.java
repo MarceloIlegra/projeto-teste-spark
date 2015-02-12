@@ -26,26 +26,29 @@ public class ActivityValidator {
         List<Activity> activities = new ActivityDAO().listAll();
         int total = activities.stream()
                 .filter((activity) -> {
-                    return timeIsAlreadyDefined(startHour, activity)
-                    || timeIsAlreadyDefined(finishHour, activity)
-                    || isActivityInsideRange(activity, startHour, finishHour);
+                    return (activityTimeIsBetweenActivityHoursAlreadyRegistred(activity, startHour, finishHour) 
+                            || activityTimeBeforeActivityFinalTimeAlreadyRegistred(activity, startHour, finishHour)
+                            || activityTimeAfterActivityInitialTimeAlreadyRegistred(activity, startHour, finishHour));
                 })
                 .collect(Collectors.toList())
                 .size();
         return total > 0;
     }
     
-    private static boolean isActivityInsideRange(Activity activity, LocalDateTime startRange, LocalDateTime endRange) {
-        return startRange.isBefore(activity.getStartHour())
+    
+    public static boolean activityTimeIsBetweenActivityHoursAlreadyRegistred(Activity activity ,LocalDateTime startRange ,LocalDateTime endRange){
+          return  startRange.isAfter(activity.getStartHour())
+                  && endRange.isBefore(activity.getFinishHour());
+    }
+    
+    public static boolean activityTimeBeforeActivityFinalTimeAlreadyRegistred(Activity activity ,LocalDateTime startRange ,LocalDateTime endRange){
+        return startRange.isBefore(activity.getFinishHour())
                 && endRange.isAfter(activity.getFinishHour());
     }
-
-    private static boolean timeIsAlreadyDefined(LocalDateTime time, Activity activity) {
-        if (time.equals(activity.getStartHour()) || time.equals(activity.getFinishHour())) {
-            return true;
-        }
-        return time.isAfter(activity.getStartHour())
-                && time.isBefore(activity.getFinishHour());
+    
+    public static boolean activityTimeAfterActivityInitialTimeAlreadyRegistred(Activity activity ,LocalDateTime startRange ,LocalDateTime endRange){
+        return startRange.isBefore(activity.getStartHour())
+                && endRange.isBefore(activity.getFinishHour());
     }
     
     public static boolean isValid(Activity activity) {
@@ -53,11 +56,5 @@ public class ActivityValidator {
                 && RequestValidator.validateStartDateBeforeToday(activity.getStartHour())
                 && RequestValidator.validateStartDateAfterToday(activity.getStartHour())
                 && !ActivityValidator.isOverlapHour(activity.getStartHour(),activity.getFinishHour());
-    }
-    
-    public static boolean isValidEdit(Activity activity) {
-        return ActivityValidator.validateHours(activity.getStartHour(), activity.getFinishHour())
-                && RequestValidator.validateStartDateBeforeToday(activity.getStartHour())
-                && RequestValidator.validateStartDateAfterToday(activity.getStartHour());                
     }
 }
