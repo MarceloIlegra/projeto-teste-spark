@@ -41,7 +41,7 @@ public class Routes {
         FormatHours workHoursFormated = new FormatHours();
 
         map.put("activities", activityDAO.listAll());
-        updateWorkedTime(workHoursFormated);
+        //updateWorkedTime(workHoursFormated);
         map.put("projects", projectDAO.listAll());
         map.put("subProjects", subprojectDAO.listAll());
         map.put("groups", groupDAO.listAll());
