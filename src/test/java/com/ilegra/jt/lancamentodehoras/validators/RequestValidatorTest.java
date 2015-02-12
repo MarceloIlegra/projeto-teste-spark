@@ -1,4 +1,4 @@
-package com.ilegra.jt.lancamentohoras.validators;
+package com.ilegra.jt.lancamentodehoras.validators;
 
 import com.ilegra.jt.lancamentodehoras.validators.RequestValidator;
 import java.time.LocalDateTime;
@@ -42,10 +42,8 @@ public class RequestValidatorTest {
     
     @Test
     public void toLocalDateTimeConvertCorrectly() {
-
         LocalDateTime expected = LocalDateTime.of(2014, Month.MARCH, 10, 10, 20);
         LocalDateTime actual = RequestValidator.toLocalDateTime("10/03/2014", "10:20");
-
         assertEquals(expected, actual);
     }
     
