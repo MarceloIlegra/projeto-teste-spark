@@ -19,7 +19,7 @@ public class Memory {
     public static List<SubProject> subProjects = new ArrayList<>();
     public static List<Group> groups = new ArrayList<>();
     public static List<ActivityType> activityType = new ArrayList<>();
-    public static Long currentActivityId = (long) 2;
+    public static Long currentActivityId = (long) 0;
     public static User userLogged;
 
     public static void start() {
@@ -30,7 +30,6 @@ public class Memory {
         loadGroups();
         loadGroups();
         loadActivityTypes();
-        createActivitys();
     }
 
     private static void loadUsers() {        
@@ -49,6 +48,7 @@ public class Memory {
     private static void loadActivityTypes(){
         activityType=Arrays.asList(new ActivityType(0, "Tipo teste 1"),new ActivityType(1, "Tipo teste 2"),new ActivityType(2, "Tipo teste 3"));        
     }
+    
     private static void createActivitys(){
         Activity activity1 = new Activity();
         activity1.setId(new Long(0));
@@ -85,5 +85,5 @@ public class Memory {
         activity3.setStartHour(LocalDateTime.of(2014, 11, 21, 14, 30));
         activity3.setFinishHour(LocalDateTime.of(2014, 11, 21, 18, 30));
         activities.add(activity3);        
-    }    
+    } 
 }
