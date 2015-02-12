@@ -30,7 +30,6 @@ var showModalNewMode = function () {
     $("#formulario_nova_atividade").prop("method", "post");
     $("#formulario_nova_atividade").prop("action", "/atividades");
     $("#nova-atividade-data").datepicker("setDate", new Date());
-    $("#nova-atividade-id").val("");
 };
 
 var prepareModal = function (activity) {
@@ -106,9 +105,10 @@ var loadEvents = function () {
                 }
             });
         };
+        return false;
     });
 };
-
+    
 $(document).ready(function () {
     loadEvents();
 });
