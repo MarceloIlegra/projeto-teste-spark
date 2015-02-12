@@ -29,8 +29,8 @@ var showModalCloneMode = function (activity){
 var showModalNewMode = function () {
     $("#formulario_nova_atividade").prop("method", "post");
     $("#formulario_nova_atividade").prop("action", "/atividades");
-    clearModal();
     $("#nova-atividade-data").datepicker("setDate", new Date());
+    $("#nova-atividade-id").val("");
 };
 
 var prepareModal = function (activity) {
@@ -93,6 +93,7 @@ var loadEvents = function () {
                 loadTable();
             }
         });
+        clearModal();
     });
     
     $(".excluir_atividade").click(function (){
@@ -102,10 +103,9 @@ var loadEvents = function () {
             url:  $(this).attr("href"),
             success: function(message){
                 loadTable();
-        }
-        });
+                }
+            });
         };
-        return false;
     });
 };
 
