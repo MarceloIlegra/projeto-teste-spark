@@ -40,7 +40,7 @@ public class RequestValidator {
     }
 
     public static boolean validateStartDateBeforeToday(LocalDateTime startHour) {
-        return startHour.isAfter(today.minusDays(LIMIT_DAYS));
+         return startHour.isAfter(today.minusDays(LIMIT_DAYS));
     }
 
     public static boolean validateStartDateAfterToday(LocalDateTime startHour) {
