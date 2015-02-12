@@ -16,10 +16,10 @@ public class ActivityDAO implements ActivityRepository {
 
     @Override
     public Long add(Activity activity) {
-        Memory.currentActivityId++;
         activity.setId(Memory.currentActivityId);
         activity.setUser(activity.getUser());
         Memory.activities.add(activity);
+        Memory.currentActivityId++;
         return activity.getId();
     }
 
