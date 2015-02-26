@@ -1,9 +1,9 @@
-var openModal = function(){
-  $("#novaAtividadeModal").modal("show");
+var openModal = function () {
+    $("#novaAtividadeModal").modal("show");
 };
 
 $('#novaAtividadeModal').on('shown.bs.modal', function () {
-$('#nova-atividade-horainicio').focus();
+    $('#nova-atividade-horainicio').focus();
 });
 
 var clearModal = function () {
@@ -20,7 +20,7 @@ var showModalEditMode = function (activity) {
     openModal();
 };
 
-var showModalCloneMode = function (activity){
+var showModalCloneMode = function (activity) {
     $("#formulario_nova_atividade").prop("action", "/atividades/" + activity.id);
     prepareModal(activity);
     openModal();
@@ -35,8 +35,10 @@ var showModalNewMode = function () {
 var prepareModal = function (activity) {
     var date = activity.startHour.date;
     console.log(formatHour(activity.startHour.time.hour, activity.startHour.time.minute));
-    if(date.day <10)date.day = "0"+ date.day;
-    if(date.month<10)date.month = "0"+date.month;
+    if (date.day < 10)
+        date.day = "0" + date.day;
+    if (date.month < 10)
+        date.month = "0" + date.month;
     $("#nova-atividade-data").val(date.day + "/" + date.month + "/" + date.year);
     $("#nova-atividade-horainicio").val(formatHour(activity.startHour.time.hour, activity.startHour.time.minute));
     $("#nova-atividade-horafim").val(formatHour(activity.finishHour.time.hour, activity.finishHour.time.minute));
@@ -66,21 +68,21 @@ var loadEvents = function () {
             showModalEditMode(data);
         });
     });
-    
-    $(".duplicar_atividade").click(function (event){
+
+    $(".duplicar_atividade").click(function (event) {
         event.preventDefault();
         $.getJSON($(this).attr("href"), function (data) {
             showModalCloneMode(data);
         });
         clearModal();
     });
-    
-    
+
+
     $("#abrirModalAtividade").click(function (event) {
         event.preventDefault();
         showModalNewMode();
     });
-
+    
     $("#formulario_nova_atividade").submit(function (event) {
         event.preventDefault();
         $.ajax({
@@ -94,21 +96,34 @@ var loadEvents = function () {
         });
         clearModal();
     });
-    
-    $(".excluir_atividade").click(function (){
-        if(confirm("Você deseja excluir este registro?")){
-         $.ajax({
-            type: "DELETE",            
-            url:  $(this).attr("href"),
-            success: function(message){
+
+    $("#formulario_pesquisa").submit(function (event) {
+        event.preventDefault();
+        $.ajax({
+            type: "POST",
+            data: $(this).serialize(),
+            url: $(this).attr("href"),
+            success: function () {
                 loadTable();
+            }
+        });
+    });
+
+    $(".excluir_atividade").click(function () {
+        if (confirm("Você deseja excluir este registro?")) {
+            $.ajax({
+                type: "DELETE",
+                url: $(this).attr("href"),
+                success: function () {
+                    loadTable();
                 }
             });
-        };
+        }
+        ;
         return false;
     });
 };
-    
+
 $(document).ready(function () {
     loadEvents();
 });

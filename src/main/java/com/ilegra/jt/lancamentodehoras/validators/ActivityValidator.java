@@ -34,8 +34,6 @@ public class ActivityValidator {
                 .size();
         return total > 0;
     }
-    
-    
     public static boolean activityTimeIsBetweenActivityHoursAlreadyRegistred(Activity activity ,LocalDateTime startRange ,LocalDateTime endRange){
           return  startRange.isAfter(activity.getStartHour())
                   && endRange.isBefore(activity.getFinishHour());
@@ -56,5 +54,11 @@ public class ActivityValidator {
                 && RequestValidator.validateStartDateBeforeToday(activity.getStartHour())
                 && RequestValidator.validateStartDateAfterToday(activity.getStartHour())
                 && !ActivityValidator.isOverlapHour(activity.getStartHour(),activity.getFinishHour());
+    }
+    
+    public static boolean isValidEdit(Activity activity) {
+        return ActivityValidator.validateHours(activity.getStartHour(), activity.getFinishHour())
+                && RequestValidator.validateStartDateBeforeToday(activity.getStartHour())
+                && RequestValidator.validateStartDateAfterToday(activity.getStartHour());
     }
 }

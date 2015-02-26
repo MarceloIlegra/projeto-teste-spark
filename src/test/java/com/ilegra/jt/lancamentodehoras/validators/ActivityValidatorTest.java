@@ -1,12 +1,11 @@
 package com.ilegra.jt.lancamentodehoras.validators;
 
-import com.ilegra.jt.lancamentodehoras.dao.ActivityTypeDAO;
-import com.ilegra.jt.lancamentodehoras.dao.GroupDAO;
 import com.ilegra.jt.lancamentodehoras.dao.Memory;
-import com.ilegra.jt.lancamentodehoras.dao.ProjectDAO;
-import com.ilegra.jt.lancamentodehoras.dao.SubProjectDAO;
 import com.ilegra.jt.lancamentodehoras.pojo.Activity;
-import com.ilegra.jt.lancamentodehoras.validators.ActivityValidator;
+import com.ilegra.jt.lancamentodehoras.service.ActivityTypeService;
+import com.ilegra.jt.lancamentodehoras.service.GroupService;
+import com.ilegra.jt.lancamentodehoras.service.ProjectService;
+import com.ilegra.jt.lancamentodehoras.service.SubProjectService;
 import java.time.LocalDateTime;
 import java.time.Month;
 import org.junit.Test;
@@ -25,13 +24,12 @@ public class ActivityValidatorTest {
     @Before
     public void setup() {
         Activity first = new Activity();
-        Activity second = new Activity();
         first.setStartHour(LocalDateTime.of(today.getYear(), today.getMonth(), today.getDayOfMonth(),8,0));
         first.setFinishHour(LocalDateTime.of(today.getYear(), today.getMonth(), today.getDayOfMonth(),10,0));
-        first.setProject(new ProjectDAO().getById(1).get());
-        first.setSubProject(new SubProjectDAO().getById(1).get());
-        first.setGroup(new GroupDAO().getById(1).get());                
-        first.setActivityType(new ActivityTypeDAO().getById(1).get());
+        first.setProject(ProjectService.getById(1).get());
+        first.setSubProject(SubProjectService.getById(1).get());
+        first.setGroup(GroupService.getById(1).get());
+        first.setActivityType(ActivityTypeService.getById(1).get());
         first.setDescription("TESTE");    
         first.setId(new Long(1));
         Memory.activities.add(first);
